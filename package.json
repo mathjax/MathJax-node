@@ -4,7 +4,7 @@
     "description": "API's for calling MathJax from node.js",
     "keywords": ["MathJax","math","svg","MathML","TeX","AsciiMath"],
     "maintainers": [
-        "Davide P. Cervone <dpvc@union.edu> (http://www.math.union.edu/locate/Cervone/)",
+        "Davide P. Cervone <dpvc@union.edu> (http://www.math.union.edu/locate/Cervone/)"
     ],
     "bugs": {
         "email": "dpvc@union.edu",
