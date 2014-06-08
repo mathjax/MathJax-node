@@ -12,12 +12,14 @@ The `bin` directory contains a collection of command-line programs for
 converting among MathJax's various formats.  These can be used as examples 
 of calling the MathJax API's.
 
-MathJax-node relies on the [jsdom](https://www.npmjs.org/package/jsdom)
-library, so make sure you have that installed. Use
+Use
 
-    npm install jsdom
+    npm install https://github.com/dpvc/MathJax-node/tarball/master
 
-These API's can also produce PNG images, but that requires the
+to install MathJax-node and its dependencies.
+
+These API's can produce PNG images, but that requires the
 [Batik](http://xmlgraphics.apache.org/batik/download.html) library.  It 
-should be installed in the `batik` directory.
+should be installed in the `batik` directory.  See the README file in that 
+directory for more details.
 
