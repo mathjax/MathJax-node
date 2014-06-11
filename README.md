@@ -22,7 +22,11 @@ You will need to use a local copy of MathJax, and it needs to be the
 [nodejs](https://github.com/dpvc/MathJax/tree/nodejs) branch (which
 has some modifications that will go into the core version of MathJax
 after the v2.4 release).  Put your copy of MathJax in the `mathjax`
-directory.  See the README file there for more details.
+directory.
+
+    git clone https://github.com/mathjax/MathJax mathjax
+    cd mathjax
+    git checkout nodejs
 
 These API's can produce PNG images, but that requires the
 [Batik](http://xmlgraphics.apache.org/batik/download.html) library.  It 
