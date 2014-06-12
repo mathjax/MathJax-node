@@ -1,6 +1,6 @@
 # MathJax-node
 
-This repository contains files that provide API's to call MathJax from 
+This repository contains files that provide APIs to call MathJax from 
 node.js programs.  There is an API for converting individual math 
 expressions (in any of MathJax's input formats) into SVG images or MathML 
 code, and there is an API for converting HTML snippets containing any of 
