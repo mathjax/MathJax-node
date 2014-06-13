@@ -24,7 +24,7 @@ has some modifications that will go into the core version of MathJax
 after the v2.4 release).  Put your copy of MathJax in the `mathjax`
 directory.
 
-    git clone https://github.com/mathjax/MathJax mathjax
+    git clone https://github.com/dpvc/MathJax mathjax
     cd mathjax
     git checkout nodejs
 
