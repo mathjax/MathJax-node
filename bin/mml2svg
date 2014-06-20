@@ -23,13 +23,26 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-single.js").typeset;
+var mjAPI = require("../lib/mj-single.js");
+
+var font = "TeX";
+if (process.argv[2] === "--font") {
+  if (process.argv.length < 4) {
+    console.error("missing font name");
+    process.exit(1);
+  }
+  font = process.argv[3];
+  process.argv.splice(2,2);
+  if (font === "STIX") {font = "STIX-Web"}
+}
+mjAPI.config({MathJax: {SVG: {font: font}}});
+mjAPI.start();
 
 if (process.argv.length !== 3) {
-  console.error("Usage: mml2svg 'math' > file.svg");
+  console.error("Usage: mml2svg [--font fontname] 'math' > file.svg");
   process.exit(1);
 }
 
-typeset({math:process.argv[2], format:"MathML", svg:true, img:true}, function (data) {
+mjAPI.typeset({math:process.argv[2], format:"MathML", svg:true}, function (data) {
   if (!data.errors) {console.log(data.svg)}
 });

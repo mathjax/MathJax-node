@@ -25,15 +25,28 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-single.js").typeset;
+var mjAPI = require("../lib/mj-single.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
+
+var font = "TeX";
+if (process.argv[2] === "--font") {
+  if (process.argv.length < 4) {
+    console.error("missing font name");
+    process.exit(1);
+  }
+  font = process.argv[3];
+  process.argv.splice(2,2);
+  if (font === "STIX") {font = "STIX-Web"}
+}
+mjAPI.config({MathJax: {SVG: {font: font}}});
+mjAPI.start();
 
 //
 //  Produce a Usage message, if needed
 //
 if (process.argv.length !== 2) {
-  console.error("Usage: mml2svg-html5 <input.html > output.html");
+  console.error("Usage: mml2svg-html5 [--font fontname] < input.html > output.html");
   process.exit(1);
 }
 
@@ -57,7 +70,7 @@ function processHTML(html,callback) {
   var state = {};
   for (var i = 0, m = math.length; i < m; i++) {
     var data = {math:math[i].outerHTML, format:"MathML", svg:true, state:state, xmlns:xmlns};
-    typeset(data,(function (node,last) {return function (result) {
+    mjAPI.typeset(data,(function (node,last) {return function (result) {
       if (result.svg) {
         var div = document.createElement("div");
         div.innerHTML = result.svg;

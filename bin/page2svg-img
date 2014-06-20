@@ -25,15 +25,28 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-page.js").typeset;
+var mjAPI = require("../lib/mj-page.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
+
+var font = "TeX";
+if (process.argv[2] === "--font") {
+  if (process.argv.length < 4) {
+    console.error("missing font name");
+    process.exit(1);
+  }
+  font = process.argv[3];
+  process.argv.splice(2,2);
+  if (font === "STIX") {font = "STIX-Web"}
+}
+mjAPI.config({MathJax: {SVG: {font: font}}});
+mjAPI.start();
 
 //
 //  Produce a Usage message, if needed
 //
 if (process.argv.length !== 3) {
-  console.error("Usage: page2svg-img 'svg-file-prefix' < input.html > output.html");
+  console.error("Usage: page2svg-img [--font fontname] 'svg-file-prefix' < input.html > output.html");
   process.exit(1);
 }
 
@@ -44,7 +57,8 @@ var prefix = process.argv[2]; // the file prefix
 //
 function processHTML(html,callback) {
   var document = jsdom(html);
-  typeset({html:document.body.innerHTML, imgSVG:true}, function (result) {
+  var xmlns = getXMLNS(document);
+  mjAPI.typeset({html:document.body.innerHTML, imgSVG:true}, function (result) {
     document.body.innerHTML = result.html;
     document.head.appendChild(document.body.firstChild);
     var img = document.getElementsByClassName("MathJax_SVG_IMG");
@@ -62,6 +76,20 @@ function processHTML(html,callback) {
     var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
+}
+
+//
+//  Look up the MathML namespace from the <html> attributes
+//
+function getXMLNS(document) {
+  var html = document.head.parentNode;
+  for (var i = 0, m = html.attributes.length; i < m; i++) {
+    var attr = html.attributes[i];
+    if (attr.nodeName.substr(0,6) === "xmlns:" &&
+        attr.nodeValue === "http://www.w3.org/1998/Math/MathML")
+             {return attr.nodeName.substr(6)}
+  }
+  return "mml";
 }
 
 //

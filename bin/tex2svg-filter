@@ -29,9 +29,22 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-single.js").typeset;
+var mjAPI = require("../lib/mj-single.js");
 var readline = require('readline');
 var fs = require('fs');
+
+var font = "TeX";
+if (process.argv[2] === "--font") {
+  if (process.argv.length < 4) {
+    console.error("missing font name");
+    process.exit(1);
+  }
+  font = process.argv[3];
+  process.argv.splice(2,2);
+  if (font === "STIX") {font = "STIX-Web"}
+}
+mjAPI.config({MathJax: {SVG: {font: font}}});
+mjAPI.start();
 
 //
 //  Produce a Usage message, if needed
@@ -85,7 +98,7 @@ function SaveSVG() {
     data.format = "inline-TeX";
   }
   data.math = math;
-  typeset(data,function (result) {
+  mjAPI.typeset(data,function (result) {
     if (result.svg) {
       fs.writeFileSync(file,result.svg);
       console.log(file+" written");

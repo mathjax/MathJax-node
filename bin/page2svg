@@ -25,15 +25,28 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-page.js").typeset;
+var mjAPI = require("../lib/mj-page.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
+
+var font = "TeX";
+if (process.argv[2] === "--font") {
+  if (process.argv.length < 4) {
+    console.error("missing font name");
+    process.exit(1);
+  }
+  font = process.argv[3];
+  process.argv.splice(2,2);
+  if (font === "STIX") {font = "STIX-Web"}
+}
+mjAPI.config({MathJax: {SVG: {font: font}}});
+mjAPI.start();
 
 //
 //  Produce a Usage message, if needed
 //
 if (process.argv.length !== 2) {
-  console.error("Usage: page2svg < input.html > output.html");
+  console.error("Usage: page2svg [--font fontname] < input.html > output.html");
   process.exit(1);
 }
 
@@ -43,7 +56,7 @@ if (process.argv.length !== 2) {
 function processHTML(html,callback) {
   var document = jsdom(html,null,{features:{FetchExternalResources: false}});
   var xmlns = getXMLNS(document);
-  typeset({html:document.body.innerHTML, xmlns:xmlns}, function (result) {
+  mjAPI.typeset({html:document.body.innerHTML, xmlns:xmlns}, function (result) {
     document.body.innerHTML = result.html;
     document.head.appendChild(document.body.firstChild);
     var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");

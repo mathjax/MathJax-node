@@ -24,19 +24,37 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-single.js").typeset;
+var mjAPI = require("../lib/mj-single.js");
 
 var format = "TeX";
-if (process.argv[2] === "--inline") {
-  format = "inline-TeX";
-  process.argv.splice(2,1);
+var font = "TeX";
+while (process.argv[2].substr(0,2) === "--") {
+  switch (process.argv[2]) {
+    case "--inline":
+      format = "inline-TeX";
+      process.argv.splice(2,1);
+      break;
+
+    case "--font":
+      font = process.argv[3];
+      if (font === "STIX") {font = "STIX-Web"}
+      process.argv.splice(2,2);
+      break;
+
+    default:
+      console.error("Unknown option '"+process.argv[2]+"'");
+      process.exit(1);
+      break;
+  }
 }
+mjAPI.config({MathJax: {SVG: {font: font}}});
+mjAPI.start();
 
 if (process.argv.length !== 3) {
-  console.error("Usage: tex2png [--inline] 'math' > file.png");
+  console.error("Usage: tex2png [--inline] [--font fontname] 'math' > file.png");
   process.exit(1);
 }
 
-typeset({math:process.argv[2], format:format, png:true}, function (data) {
+mjAPI.typeset({math:process.argv[2], format:format, png:true}, function (data) {
   if (!data.errors) {process.stdout.write(new Buffer(data.png.slice(22),'base64'))}
 });
