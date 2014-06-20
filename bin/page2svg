@@ -41,13 +41,28 @@ if (process.argv.length !== 2) {
 //  Process an HTML file:
 //
 function processHTML(html,callback) {
-  var document = jsdom(html);
-  typeset({html:document.body.innerHTML}, function (result) {
+  var document = jsdom(html,null,{features:{FetchExternalResources: false}});
+  var xmlns = getXMLNS(document);
+  typeset({html:document.body.innerHTML, xmlns:xmlns}, function (result) {
     document.body.innerHTML = result.html;
     document.head.appendChild(document.body.firstChild);
     var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
+}
+
+//
+//  Look up the MathML namespace from the <html> attributes
+//
+function getXMLNS(document) {
+  var html = document.head.parentNode;
+  for (var i = 0, m = html.attributes.length; i < m; i++) {
+    var attr = html.attributes[i];
+    if (attr.nodeName.substr(0,6) === "xmlns:" &&
+        attr.nodeValue === "http://www.w3.org/1998/Math/MathML")
+             {return attr.nodeName.substr(6)}
+  }
+  return "mml";
 }
 
 //
