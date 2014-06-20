@@ -2,11 +2,12 @@
 
 /************************************************************************
  *
- *  mml2svg-html5
+ *  mml2svg-global
  *
  *  Reads an HTML5 file from stdin that contains MathML
  *  and writes a new HTML5 document to stdout that
- *  contains SVG versions of the math instead.
+ *  contains SVG versions of the math instead, with a
+ *  global font cache.
  *
  * ----------------------------------------------------------------------
  *
@@ -33,7 +34,7 @@ var jsdom = require('jsdom').jsdom;
 //  Produce a Usage message, if needed
 //
 if (process.argv.length !== 2) {
-  console.error("Usage: mml2svg-html5 <input.html > output.html");
+  console.error("Usage: mml2svg-global <input.html > output.html");
   process.exit(1);
 }
 
@@ -47,16 +48,28 @@ if (process.argv.length !== 2) {
 //        do the callback with the complete page.
 //
 function processHTML(html,callback) {
-  var document = jsdom(html);
+  var document = jsdom(html,null,{features:{FetchExternalResources: false}});
+  var xmlns = getXMLNS(document);
+  var sheet = document.head.appendChild(document.createElement("style"));
+  sheet.innerHTML = ".MathJax_SVG_display {text-align:center; margin:1em 0}";
   var math = document.getElementsByTagName("math");
-  var data = {math:"", format:"MathML", svg:true, useGlobalCache:true, state:{}};
+  var mathns = document.getElementsByTagName(xmlns+":math");
+  math = [].slice.call(math,0).concat([].slice.call(mathns,0)); // combine the two lists
+  var state = {};
   for (var i = 0, m = math.length; i < m; i++) {
-    data.math = math[i].outerHTML;
+    var data = {math:math[i].outerHTML, format:"MathML", svg:true, useGlobalCache:true,
+                state:state, xmlns:xmlns};
     typeset(data,(function (node,last) {return function (result) {
       if (result.svg) {
-        var span = document.createElement("span");
-        span.innerHTML = result.svg;
-        node.parentNode.replaceChild(span.firstChild,node);
+        var div = document.createElement("div");
+        div.innerHTML = result.svg;
+        if (node.getAttribute("display") === "block" || 
+            node.getAttribute("mode") === "display") {
+          node.parentNode.replaceChild(div,node);
+          div.className = "MathJax_SVG_display";
+        } else {
+          node.parentNode.replaceChild(div.firstChild,node);
+        }
       }
       if (last) {
         var svg = document.createElement("svg"); svg.style.display = "none";
@@ -66,6 +79,20 @@ function processHTML(html,callback) {
       }
     }})(math[i],i == m-1));
   }
+}
+
+//
+//  Look up the MathML namespace from the <html> attributes
+//
+function getXMLNS(document) {
+  var html = document.head.parentNode;
+  for (var i = 0, m = html.attributes.length; i < m; i++) {
+    var attr = html.attributes[i];
+    if (attr.nodeName.substr(0,6) === "xmlns:" &&
+        attr.nodeValue === "http://www.w3.org/1998/Math/MathML")
+             {return attr.nodeName.substr(6)}
+  }
+  return "mml";
 }
 
 //
