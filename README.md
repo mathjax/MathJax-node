@@ -33,3 +33,6 @@ These API's can produce PNG images, but that requires the
 should be installed in the `batik` directory.  See the README file in that 
 directory for more details.
 
+##Troubleshooting
+On problems with the certificats while running npm install
+```npm config set ca ""``` can be used to continue installation.
