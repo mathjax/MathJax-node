@@ -82,7 +82,7 @@ function processHTML(html,callback) {
           node.parentNode.replaceChild(div.firstChild,node);
         }
       }
-      if (last) {callback(document.outerHTML)}
+      if (last) {callback(document.documentElement.outerHTML)}
     }})(math[i],i == m-1));
   }
 }

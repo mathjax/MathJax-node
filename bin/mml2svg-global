@@ -88,7 +88,7 @@ function processHTML(html,callback) {
         var svg = document.createElement("svg"); svg.style.display = "none";
 	svg.appendChild(document.importNode(data.state.defs,true));
         document.body.insertBefore(svg,document.body.firstChild);
-        callback(document.outerHTML);
+        callback(document.documentElement.outerHTML);
       }
     }})(math[i],i == m-1));
   }

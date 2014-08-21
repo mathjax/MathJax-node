@@ -59,7 +59,7 @@ function processHTML(html,callback) {
   mjAPI.typeset({html:document.body.innerHTML, xmlns:xmlns}, function (result) {
     document.body.innerHTML = result.html;
     document.head.appendChild(document.body.firstChild);
-    var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
+    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
 }

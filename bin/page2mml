@@ -45,7 +45,7 @@ function processHTML(html,callback) {
   var xmlns = getXMLNS(document);
   typeset({html:document.body.innerHTML, renderer:"NativeMML", xmlns:xmlns}, function (result) {
     document.body.innerHTML = result.html;
-    var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
+    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
 }

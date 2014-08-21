@@ -73,7 +73,7 @@ function processHTML(html,callback) {
       fs.writeFileSync(file,svg);
       img[i].src = file;
     }
-    var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
+    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
 }
