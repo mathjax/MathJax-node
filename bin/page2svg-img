@@ -29,24 +29,46 @@ var mjAPI = require("../lib/mj-page.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
 
-var font = "TeX";
-if (process.argv[2] === "--font") {
-  if (process.argv.length < 4) {
-    console.error("missing font name");
-    process.exit(1);
+var font = null;
+var configFile = null;
+
+while (process.argv[2] !== undefined && process.argv[2].substr(0,2) === "--") {
+  switch (process.argv[2]) {
+    case "--font":
+      font = process.argv[3];
+      if (font === "STIX") {font = "STIX-Web"}
+      process.argv.splice(2,2);
+      break;
+
+    case "--config":
+      configFile = process.argv[3];
+      process.argv.splice(2,2);
+      break;
+
+    default:
+      console.error("Unknown option '"+process.argv[2]+"'");
+      process.exit(1);
+      break;
   }
-  font = process.argv[3];
-  process.argv.splice(2,2);
-  if (font === "STIX") {font = "STIX-Web"}
 }
-mjAPI.config({MathJax: {SVG: {font: font}}});
+
+var config = {};
+if (configFile) {
+  var path = require('path');
+  config = require(path.resolve(configFile)).config || {};
+}
+
+config.SVG = config.SVG || {};
+config.SVG.font = font || config.SVG.font || "TeX";
+
+mjAPI.config({MathJax: config});
 mjAPI.start();
 
 //
 //  Produce a Usage message, if needed
 //
 if (process.argv.length !== 3) {
-  console.error("Usage: page2svg-img [--font fontname] 'svg-file-prefix' < input.html > output.html");
+  console.error("Usage: page2svg-img [--font fontname] [--config configfile] 'svg-file-prefix' < input.html > output.html");
   process.exit(1);
 }
 
