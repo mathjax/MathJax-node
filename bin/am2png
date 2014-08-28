@@ -26,24 +26,42 @@
 
 var mjAPI = require("../lib/mj-single.js");
 
-var font = "TeX";
-if (process.argv[2] === "--font") {
-  if (process.argv.length < 4) {
-    console.error("missing font name");
-    process.exit(1);
-  }
-  font = process.argv[3];
-  process.argv.splice(2,2);
-  if (font === "STIX") {font = "STIX-Web"}
-}
-mjAPI.config({MathJax: {SVG: {font: font}}});
+var argv = require("yargs")
+  .demand(1).strict()
+  .usage("Usage: am2png [options] 'math' > file.png",{
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    dpi: {
+      default: 144,
+      describe: "dpi for image"
+    },
+    font: {
+      default: "TeX",
+      describe: "web font to use"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    }
+  })
+  .argv;
+
+if (argv.font === "STIX") argv.font = "STIX-Web";
+mjAPI.config({MathJax: {SVG: {font: argv.font}}});
 mjAPI.start();
 
-if (process.argv.length !== 3) {
-  console.error("Usage: am2png [--font fontname] 'math' > file.png");
-  process.exit(1);
-}
-
-mjAPI.typeset({math:process.argv[2], format:"AsciiMath", png:true}, function (data) {
+mjAPI.typeset({
+  math: argv._[0],
+  format: "AsciiMath",
+  png:true, dpi:argv.dpi,
+  ex: argv.ex, width: argv.width,
+  linebreaks: argv.linebreaks
+}, function (data) {
   if (!data.errors) {process.stdout.write(new Buffer(data.png.slice(22),'base64'))}
 });

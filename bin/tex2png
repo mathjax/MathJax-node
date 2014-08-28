@@ -26,35 +26,46 @@
 
 var mjAPI = require("../lib/mj-single.js");
 
-var format = "TeX";
-var font = "TeX";
-while (process.argv[2].substr(0,2) === "--") {
-  switch (process.argv[2]) {
-    case "--inline":
-      format = "inline-TeX";
-      process.argv.splice(2,1);
-      break;
+var argv = require("yargs")
+  .demand(1).strict()
+  .usage("Usage: tex2png [options] 'math' > file.png",{
+    inline: {
+      boolean: true,
+      describe: "process as in-line TeX"
+    },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    dpi: {
+      default: 144,
+      describe: "dpi for image"
+    },
+    font: {
+      default: "TeX",
+      describe: "web font to use"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    }
+  })
+  .argv;
 
-    case "--font":
-      font = process.argv[3];
-      if (font === "STIX") {font = "STIX-Web"}
-      process.argv.splice(2,2);
-      break;
-
-    default:
-      console.error("Unknown option '"+process.argv[2]+"'");
-      process.exit(1);
-      break;
-  }
-}
-mjAPI.config({MathJax: {SVG: {font: font}}});
+if (argv.font === "STIX") argv.font = "STIX-Web";
+mjAPI.config({MathJax: {SVG: {font: argv.font}}});
 mjAPI.start();
 
-if (process.argv.length !== 3) {
-  console.error("Usage: tex2png [--inline] [--font fontname] 'math' > file.png");
-  process.exit(1);
-}
-
-mjAPI.typeset({math:process.argv[2], format:format, png:true}, function (data) {
+mjAPI.typeset({
+  math: argv._[0],
+  format: (argv.inline ? "inline-TeX" : "TeX"),
+  png:true, dpi:argv.dpi,
+  ex: argv.ex, width: argv.width,
+  linebreaks: argv.linebreaks
+}, function (data) {
   if (!data.errors) {process.stdout.write(new Buffer(data.png.slice(22),'base64'))}
 });

@@ -29,26 +29,64 @@ var mjAPI = require("../lib/mj-page.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
 
-var font = "TeX";
-if (process.argv[2] === "--font") {
-  if (process.argv.length < 4) {
-    console.error("missing font name");
-    process.exit(1);
-  }
-  font = process.argv[3];
-  process.argv.splice(2,2);
-  if (font === "STIX") {font = "STIX-Web"}
-}
-mjAPI.config({MathJax: {SVG: {font: font}}});
-mjAPI.start();
+var argv = require("yargs")
+  .strict()
+  .usage("Usage: page2svg [options] < input.html > output.html",{
+    preview: {
+      boolean: true,
+      describe: "make SVG into a Mathjax preview"
+    },
+    speech: {
+      boolean: true,
+      describe: "include speech text"
+    },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    nodollars: {
+      boolean: true,
+      describe: "don't use single-dollar delimiters"
+    },
+    nofontcache: {
+      boolean: true,
+      describe: "don't use <defs> and <use> tags for fonts"
+    },
+    localcache: {
+      boolean: true,
+      describe: "cache fonts for each equation separately"
+    },
+    format: {
+      default: "AsciiMath,TeX,MathML",
+      describe: "input format(s) to look for"
+    },
+    eqno: {
+      default: "none",
+      describe: "equation number style (none, AMS, or all)"
+    },
+    img: {
+       default: "",
+       describe: "make external svg images with this name prefix"
+    },
+    font: {
+      default: "TeX",
+      describe: "web font to use"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    }
+  })
+  .argv;
 
-//
-//  Produce a Usage message, if needed
-//
-if (process.argv.length !== 2) {
-  console.error("Usage: page2svg [--font fontname] < input.html > output.html");
-  process.exit(1);
-}
+argv.format = argv.format.split(/ *, */);
+if (argv.font === "STIX") argv.font = "STIX-Web";
+mjAPI.config({MathJax: {SVG: {font: argv.font}}});
+mjAPI.start();
 
 //
 //  Process an HTML file:
@@ -56,9 +94,37 @@ if (process.argv.length !== 2) {
 function processHTML(html,callback) {
   var document = jsdom(html,null,{features:{FetchExternalResources: false}});
   var xmlns = getXMLNS(document);
-  mjAPI.typeset({html:document.body.innerHTML, xmlns:xmlns}, function (result) {
+  mjAPI.typeset({
+    html: document.body.innerHTML,
+    renderer: "SVG",
+    inputs: argv.format,
+    equationNumbers: argv.eqno,
+    singleDollars: !argv.nodollars,
+    useFontCache: !argv.nofontcache,
+    useGlobalCache: !argv.localcache,
+    svgPreview: argv.preview,
+    imgSVG: (argv.img !== ""),
+    speakText: argv.speech,
+    ex: argv.ex, width: argv.width,
+    linebreaks: argv.linebreaks,
+    xmlns:xmlns
+  }, function (result) {
     document.body.innerHTML = result.html;
     document.head.appendChild(document.body.firstChild);
+    if (argv.img !== "") {
+      var img = document.getElementsByClassName("MathJax_SVG_IMG");
+      for (var i = 0, m = img.length; i < m; i++) {
+        var N = (i+1).toString(); while (N.length < 4) {N = "0"+N}
+        var file = argv.img+N+".svg";
+        var svg = [
+          '<?xml version="1.0" standalone="no"?>',
+          '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
+          new Buffer(img[i].src.replace(/^.*?,/,""),"base64").toString("utf-8")
+        ].join("\n");
+        fs.writeFileSync(file,svg);
+        img[i].src = file;
+      }
+    }
     var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });

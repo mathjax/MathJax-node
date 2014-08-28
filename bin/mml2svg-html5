@@ -29,26 +29,39 @@ var mjAPI = require("../lib/mj-single.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
 
-var font = "TeX";
-if (process.argv[2] === "--font") {
-  if (process.argv.length < 4) {
-    console.error("missing font name");
-    process.exit(1);
-  }
-  font = process.argv[3];
-  process.argv.splice(2,2);
-  if (font === "STIX") {font = "STIX-Web"}
-}
-mjAPI.config({MathJax: {SVG: {font: font}}});
-mjAPI.start();
+var argv = require("yargs")
+  .strict()
+  .usage("Usage: mml2svg-html5 [options] < input.html > output.html",{
+    localcache: {
+      boolean: true,
+      description: "don't use the global font cache"
+    },
+    speech: {
+      boolean: true,
+      describe: "include speech text"
+    },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    font: {
+      default: "TeX",
+      describe: "web font to use"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    }
+  })
+  .argv;
 
-//
-//  Produce a Usage message, if needed
-//
-if (process.argv.length !== 2) {
-  console.error("Usage: mml2svg-html5 [--font fontname] < input.html > output.html");
-  process.exit(1);
-}
+if (argv.font === "STIX") argv.font = "STIX-Web";
+mjAPI.config({MathJax: {SVG: {font: argv.font}}});
+mjAPI.start();
 
 //
 //  Process an HTML file:
@@ -69,7 +82,15 @@ function processHTML(html,callback) {
   math = [].slice.call(math,0).concat([].slice.call(mathns,0)); // combine the two lists
   var state = {};
   for (var i = 0, m = math.length; i < m; i++) {
-    var data = {math:math[i].outerHTML, format:"MathML", svg:true, state:state, xmlns:xmlns};
+    var data = {
+      math:math[i].outerHTML,
+      format:"MathML",
+      svg:true, useGlobalCache: !argv.localcache,
+      speakText: argv.speech,
+      ex: argv.ex, width: argv.width,
+      linebreaks: argv.linebreaks,
+      state:state, xmlns:xmlns
+    };
     mjAPI.typeset(data,(function (node,last) {return function (result) {
       if (result.svg) {
         var div = document.createElement("div");
@@ -82,7 +103,14 @@ function processHTML(html,callback) {
           node.parentNode.replaceChild(div.firstChild,node);
         }
       }
-      if (last) {callback(document.outerHTML)}
+      if (last) {
+        if (!argv.localcache) {
+          var svg = document.createElement("svg"); svg.style.display = "none";
+	  svg.appendChild(document.importNode(data.state.defs,true));
+          document.body.insertBefore(svg,document.body.firstChild);
+        }
+        callback(document.outerHTML);
+      }
     }})(math[i],i == m-1));
   }
 }

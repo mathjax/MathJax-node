@@ -25,17 +25,48 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-page.js").typeset;
+var mjAPI = require("../lib/mj-page.js");
 var fs = require('fs');
 var jsdom = require('jsdom').jsdom;
 
-//
-//  Produce a Usage message, if needed
-//
-if (process.argv.length !== 2) {
-  console.error("Usage: page2mml < input.html > output.html");
-  process.exit(1);
-}
+var argv = require("yargs")
+  .strict()
+  .usage("Usage: page2mml [options] < input.html > output.html",{
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    nodollars: {
+      boolean: true,
+      describe: "don't use single-dollar delimiters"
+    },
+    semantics: {
+      boolean: true,
+      describe: "add TeX or AsciiMath code in <semantics> tag"
+    },
+    format: {
+      default: "AsciiMath,TeX,MathML",
+      describe: "input format(s) to look for"
+    },
+    eqno: {
+      default: "none",
+      describe: "equation number style (none, AMS, or all)"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    }
+  })
+  .argv;
+
+argv.format = argv.format.split(/ *, */);
+
+mjAPI.config({MathJax: {menuSettings: {semantics: argv.semantics}}});
+mjAPI.start();
 
 //
 //  Process an HTML file:
@@ -43,7 +74,16 @@ if (process.argv.length !== 2) {
 function processHTML(html,callback) {
   var document = jsdom(html,null,{features:{FetchExternalResources: false}});
   var xmlns = getXMLNS(document);
-  typeset({html:document.body.innerHTML, renderer:"NativeMML", xmlns:xmlns}, function (result) {
+  mjAPI.typeset({
+    html:document.body.innerHTML,
+    renderer:"NativeMML",
+    inputs: argv.format,
+    equationNumbers: argv.eqno,
+    singleDollars: !argv.nodollars,
+    ex: argv.ex, width: argv.width,
+    linebreaks: argv.linebreaks,
+    xmlns:xmlns
+  }, function (result) {
     document.body.innerHTML = result.html;
     var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);

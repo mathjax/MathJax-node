@@ -33,28 +33,37 @@ var mjAPI = require("../lib/mj-single.js");
 var readline = require('readline');
 var fs = require('fs');
 
-var font = "TeX";
-if (process.argv[2] === "--font") {
-  if (process.argv.length < 4) {
-    console.error("missing font name");
-    process.exit(1);
-  }
-  font = process.argv[3];
-  process.argv.splice(2,2);
-  if (font === "STIX") {font = "STIX-Web"}
-}
-mjAPI.config({MathJax: {SVG: {font: font}}});
+var argv = require("yargs")
+  .demand(1).strict()
+  .usage("Usage: tex2svg-filter [options] 'SVG-file-prefix'",{
+    speech: {
+      boolean: true,
+      describe: "include speech text"
+    },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    font: {
+      default: "TeX",
+      describe: "web font to use"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    }
+  })
+  .argv;
+
+if (argv.font === "STIX") argv.font = "STIX-Web";
+mjAPI.config({MathJax: {SVG: {font: argv.font}}});
 mjAPI.start();
 
-//
-//  Produce a Usage message, if needed
-//
-if (process.argv.length !== 3) {
-  console.error("Usage: tex2svg-filter 'svg-file-prefix'");
-  process.exit(1);
-}
-
-var prefix = process.argv[2];  // the file prefix
+var prefix = argv._[0];  // the file prefix
 
 //
 //  Create interface for reading lines from stdin
@@ -73,7 +82,13 @@ var tex = [], n = 0;
 //
 //  Data passed to mj-single-svg to maintain state and produce svg images
 //
-var data = {math:"", state:{}, svg:true, img:true};
+var data = {
+  math:"", state:{},
+  svg:true, img:true,
+  ex:argv.ex, width:argv.width,
+  linebreaks: argv.linebreaks,
+  speakText: argv.speech
+};
 
 //
 //  Save an SVG file:

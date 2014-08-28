@@ -23,19 +23,45 @@
  *  limitations under the License.
  */
 
-var typeset = require("../lib/mj-single.js").typeset;
+var mjAPI = require("../lib/mj-single.js");
 
-var format = "TeX";
-if (process.argv[2] === "--inline") {
-  format = "inline-TeX";
-  process.argv.splice(2,1);
-}
+var argv = require("yargs")
+  .demand(1).strict()
+  .usage("Usage: tex2mml [options] 'math' > file.mml",{
+    inline: {
+      boolean: true,
+      describe: "process as in-line TeX"
+    },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    semantics: {
+      boolean: true,
+      describe: "add TeX code in <semantics> tag"
+    },
+    notexhints: {
+      boolean: true,
+      describe: "don't add TeX-specific classes"
+    }
+  })
+  .argv;
 
-if (process.argv.length !== 3) {
-  console.error("Usage: tex2mml [--inline] 'math' > file.mml");
-  process.exit(1);
-}
+mjAPI.config({
+  MathJax: {
+    menuSettings: {
+      semantics: argv.semantics,
+      texHints: !argv.notexhints
+    }
+  }
+});
+mjAPI.start();
 
-typeset({math:process.argv[2], format:format, mml:true}, function (data) {
+mjAPI.typeset({
+  math: argv._[0],
+  format: (argv.inline ? "inline-TeX" : "TeX"),
+  mml:true,
+  linebreaks: argv.linebreaks
+}, function (data) {
   if (!data.errors) {console.log(data.mml)}
 });
