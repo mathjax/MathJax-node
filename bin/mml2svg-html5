@@ -109,7 +109,7 @@ function processHTML(html,callback) {
 	  svg.appendChild(document.importNode(data.state.defs,true));
           document.body.insertBefore(svg,document.body.firstChild);
         }
-        callback(document.outerHTML);
+        callback(document.documentElement.outerHTML);
       }
     }})(math[i],i == m-1));
   }
@@ -136,7 +136,7 @@ function getXMLNS(document) {
 var html = [];
 process.stdin.on("readable",function (block) {
   var chunk = process.stdin.read();
-  html.push(chunk.toString('utf8'));
+  if (chunk) html.push(chunk.toString('utf8'));
 });
 process.stdin.on("end",function () {
   processHTML(html.join(""), function(html) {

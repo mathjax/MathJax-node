@@ -125,7 +125,7 @@ function processHTML(html,callback) {
         img[i].src = file;
       }
     }
-    var HTML = "<!DOCTYPE html>\n"+document.outerHTML.replace(/^(\n|\s)*/,"");
+    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
 }
@@ -151,7 +151,7 @@ function getXMLNS(document) {
 var html = [];
 process.stdin.on("readable",function (block) {
   var chunk = process.stdin.read();
-  html.push(chunk.toString('utf8'));
+  if (chunk) html.push(chunk.toString('utf8'));
 });
 process.stdin.on("end",function () {
   processHTML(html.join(""), function(html) {
