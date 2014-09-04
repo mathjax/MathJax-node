@@ -19,8 +19,8 @@
         "url": "git://github.com/mathjax/MathJax-node.git"
     },
     "dependencies": {
-       "mathjax": "git://github.com/mathjax/MathJax.git",
-       "jsdom": "*",
+       "mathjax": "git://github.com/dpvc/MathJax.git#node-package",
+       "jsdom": "1.0.x",
        "speech-rule-engine": "*",
        "yargs": "1.3.x"
     },
