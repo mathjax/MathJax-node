@@ -1,0 +1,23 @@
+# redirections from the old site
+Redirect /batik/faqs.html		http://xmlgraphics.apache.org/batik/faq.html
+Redirect /batik/batikDemo.html		http://xmlgraphics.apache.org/batik/demo.html
+Redirect /batik/toolsAndApps.html	http://xmlgraphics.apache.org/batik/tools/
+Redirect /batik/svgviewer.html		http://xmlgraphics.apache.org/batik/tools/browser.html
+Redirect /batik/svgrasterizer.html	http://xmlgraphics.apache.org/batik/tools/rasterizer.html
+Redirect /batik/ttf2svg.html		http://xmlgraphics.apache.org/batik/tools/font-converter.html
+Redirect /batik/svgpp.html		http://xmlgraphics.apache.org/batik/tools/pretty-printer.html
+Redirect /batik/architecture.html	http://xmlgraphics.apache.org/batik/using/architecture.html
+Redirect /batik/svggen.html		http://xmlgraphics.apache.org/batik/using/svg-generator.html
+Redirect /batik/domapi.html		http://xmlgraphics.apache.org/batik/using/dom-api.html
+Redirect /batik/svgcanvas.html		http://xmlgraphics.apache.org/batik/using/swing.html
+Redirect /batik/rasterizerTutorial.html	http://xmlgraphics.apache.org/batik/using/transcoder.html
+Redirect /batik/scripting.html		http://xmlgraphics.apache.org/batik/using/scripting/ecmascript.html
+Redirect /batik/scriptingFeatures.html	http://xmlgraphics.apache.org/batik/status.html
+Redirect /batik/javaScripting.html	http://xmlgraphics.apache.org/batik/using/scripting/java.html
+Redirect /batik/security.html		http://xmlgraphics.apache.org/batik/using/scripting/security.html
+Redirect /batik/extendingBatik.html	http://xmlgraphics.apache.org/batik/using/extending.html
+Redirect /batik/test.html		http://xmlgraphics.apache.org/batik/dev/test.html
+Redirect /batik/whoAreWe.html		http://xmlgraphics.apache.org/batik/contributors.html
+Redirect /batik/mailList.html		http://xmlgraphics.apache.org/batik/mailing-lists.html
+Redirect /batik/svn.html		http://xmlgraphics.apache.org/batik/download.cgi
+

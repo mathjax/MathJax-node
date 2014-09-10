@@ -1,0 +1,757 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>SVG Generator: SVGGraphics2D</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_1.1.6', '../skin/')" id="menu_1.1.6Title" class="menutitle">Scripting</div>
+<div id="menu_1.1.6" class="menuitemgroup">
+<div class="menuitem">
+<a href="../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menupage">
+<div class="menupagetitle">SVG generator</div>
+</div>
+<div class="menuitem">
+<a href="../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>SVG Generator: SVGGraphics2D</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#whatIsIt">The SVGGraphics2D class</a>
+</li>
+<li>
+<a href="#howToUse">How to use SVGGraphics2D</a>
+</li>
+<li>
+<a href="#custom">SVG Generator customization</a>
+<ul class="minitoc">
+<li>
+<a href="#Have+your+own+comment+in+the+generated+SVG+file">Have your own comment in the generated SVG file</a>
+</li>
+<li>
+<a href="#Use+embedded+SVG+Fonts+in+the+generated+SVG+file">Use embedded SVG Fonts in the generated SVG file</a>
+</li>
+<li>
+<a href="#Customizing+the+way+images+are+stored">Customizing the way images are stored</a>
+</li>
+<li>
+<a href="#Customizing+the+generated+SVG+style">Customizing the generated SVG style</a>
+</li>
+<li>
+<a href="#Extending+Paint+object+to+SVG+element+translation">Extending Paint object to SVG element translation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#view">How to view the generated SVG document</a>
+</li>
+</ul>
+</div>
+    
+<div class="figure">
+<img alt="Flow diagram illustrating that Java programs can have their graphics converted to SVG and then viewed in any SVG viewer" src="images/svggen.jpg">
+    </div>
+    
+<p>
+      As SVG is emerging as a promising graphics format for a wide range of
+      domains and applications, bridging it with Java becomes important.  This
+      page explains how Batik&rsquo;s
+      <a class="class" href="../javadoc/org/apache/batik/svggen/SVGGraphics2D.html">SVGGraphics2D</a>,
+      referred to as the SVG Generator, makes this possible.
+    </p>
+
+    
+<a name="N10021"></a><a name="whatIsIt"></a>
+<h2 class="boxed">The SVGGraphics2D class</h2>
+<div class="section">
+<p>
+        On the Java platform, all rendering goes through the
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/awt/Graphics2D.html">Graphics2D</a>
+        abstract class, which offers methods such as <span class="codefrag">drawRect</span>,
+        <span class="codefrag">fillRect</span>, and <span class="codefrag">drawString</span>. There are
+        specialized implementations of this abstract class for each type of
+        output, such as a screen or a printer.  <span class="codefrag">SVGGraphics2D</span> is
+        a new implementation of that interface that generates SVG content
+        instead of drawing to a screen or a printer.
+      </p>
+<p>
+        
+<span class="codefrag">SVGGraphics2D</span> has the following features:
+      </p>
+<ul>        
+        
+<li>
+          it allows applications to export their graphics into SVG format,
+        </li>
+        
+<li>
+          it does not require any modification of the graphics code to export
+          to SVG, and
+        </li>
+        
+<li>
+          it offers the user the ability to use the DOM API to manipulate the
+          generated document.
+        </li>
+      
+</ul>
+<div class="figure">
+<img alt="Diagram illustrating how the SVGGraphics2D inherits from Graphics2D, and uses Document to generate a DOM tree" src="images/svggenHighLevelArchi.jpg">
+      </div>
+<p>
+        The above figure shows how the generator works with the DOM API. The W3C
+        has defined an API for representing XML content with a Java object.
+        That API allows programmers to manipulate, create, and/or modify XML
+        content in memory. The DOM API contains interfaces such as
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Document.html">Document</a>,
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Element.html">Element</a>,
+        and
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Attr.html">Attr</a>,
+        which model the Java programming language equivalent of XML documents,
+        elements and attributes. 
+      </p>
+<p>
+        The generator manages a tree of DOM objects that represent the SVG
+        content corresponding to the rendering calls made on the
+        <span class="codefrag">SVGGraphics2D</span> instance. In other words, every time a
+        program invokes a rendering method, such as <span class="codefrag">fillRect</span>, on a
+        <span class="codefrag">SVGGraphics2D</span> instance, a new DOM object,
+        representing the SVG equivalent, is appended to the DOM tree.  For
+        example, a <span class="codefrag">rect</span> element will be appended after the
+        <span class="codefrag">fillRect</span> method has been invoked). 
+      </p>
+<p>
+        The programmer, using this generator, can then access the DOM tree to
+        further manipulate it or can directly write the content to an output
+        stream, as we see in the following section. 
+      </p>
+</div>
+
+    
+<a name="N1007F"></a><a name="howToUse"></a>
+<h2 class="boxed">How to use SVGGraphics2D</h2>
+<div class="section">
+<p>
+        From the figure in the previous section we can see that in order for an
+        instance of <span class="codefrag">SVGGraphics2D</span> to build the SVG content (the
+        DOM tree), an instance of a <span class="codefrag">Document</span> class is needed. The
+        DOM tree is an in-memory representation of the SVG document, which can
+        be further manipulated by the user using DOM API or be streamed
+        out by a
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/io/Writer.html">Writer</a>
+        object.
+      </p>
+<p>
+        The following example program demonstrates how to generate SVG content
+        from Java graphics.
+      </p>
+<pre class="code">import java.awt.Rectangle;
+import java.awt.Graphics2D;
+import java.awt.Color;
+import java.io.Writer;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
+
+import org.apache.batik.svggen.SVGGraphics2D;
+import org.apache.batik.dom.GenericDOMImplementation;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.DOMImplementation;
+
+public class TestSVGGen {
+
+    public void paint(Graphics2D g2d) {
+        g2d.setPaint(Color.red);
+        g2d.fill(new Rectangle(10, 10, 100, 100));
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        // Get a DOMImplementation.
+        DOMImplementation domImpl =
+            GenericDOMImplementation.getDOMImplementation();
+
+        // Create an instance of org.w3c.dom.Document.
+        String svgNS = "http://www.w3.org/2000/svg";
+        Document document = domImpl.createDocument(svgNS, "svg", null);
+
+        // Create an instance of the SVG Generator.
+        SVGGraphics2D svgGenerator = new SVGGraphics2D(document);
+
+        // Ask the test to render into the SVG Graphics2D implementation.
+        TestSVGGen test = new TestSVGGen();
+        test.paint(svgGenerator);
+
+        // Finally, stream out SVG to the standard output using
+        // UTF-8 encoding.
+        boolean useCSS = true; // we want to use CSS style attributes
+        Writer out = new OutputStreamWriter(System.out, "UTF-8");
+        svgGenerator.stream(out, useCSS);
+    }
+}</pre>
+<p>
+        We can see that generating SVG content from our <span class="codefrag">TestSVGGen</span>
+        instance is a three step process:
+      </p>
+<ol>
+        
+<li>
+          
+<p>
+            Create an instance of <span class="codefrag">org.w3c.dom.Document</span> that the
+            generator will use to build its XML content, and create an SVG generator
+            using the <span class="codefrag">Document</span> instance.
+          </p>
+          
+<pre class="code">        // Get a DOMImplementation.
+        DOMImplementation domImpl =
+            GenericDOMImplementation.getDOMImplementation();
+
+        // Create an instance of org.w3c.dom.Document.
+        String svgNS = "http://www.w3.org/2000/svg";
+        Document document = domImpl.createDocument(svgNS, "svg", null);
+
+        // Create an instance of the SVG Generator.
+        SVGGraphics2D svgGenerator = new SVGGraphics2D(document);</pre>
+        
+</li>
+        
+<li>
+          
+<p>
+            Invoke the rendering code on our SVG generator. In our example, we
+            invoke <span class="codefrag">TestSVGGen</span>&lsquo;s <span class="codefrag">paint</span> method:
+          </p>
+          
+<pre class="code">        // Ask the test to render into the SVG Graphics2D implementation.
+        TestSVGGen test = new TestSVGGen();
+        test.paint(svgGenerator);</pre>
+        
+</li>
+        
+<li>
+          
+<p>
+            Stream out the SVG content. The SVG generator can stream its content
+            into any <span class="codefrag">java.io.Writer</span>. In our example, we stream the
+            content to the standard output stream:
+          </p>
+          
+<pre class="code">        // Finally, stream out SVG to the standard output using
+        // UTF-8 encoding.
+        boolean useCSS = true; // we want to use CSS style attributes
+        Writer out = new OutputStreamWriter(System.out, "UTF-8");
+        svgGenerator.stream(out, useCSS);</pre>
+        
+</li>
+      
+</ol>
+<p>
+        SVG has
+        <a class="external" href="http://www.w3.org/TR/SVG11/styling.html#AlternativesForStyling">two
+          ways to specify styling properties</a>, such as the fill color:
+        presentation attributes (one XML attribute per property) or the CSS
+        <span class="codefrag">style</span> attribute (any number of properties in one CSS
+        inline stylesheet).  The <span class="codefrag">useCss</span> parameter allows the user
+        to control that option. 
+      </p>
+</div>
+
+    
+<a name="N100DE"></a><a name="custom"></a>
+<h2 class="boxed">SVG Generator customization</h2>
+<div class="section">
+<p>
+        In the previous section, we have just seen that the SVG generation
+        process can be customized to output SVG styling properties as 
+        presentation attributes or CSS inline stylesheets.  In this section we
+        will talk about some examples of more advanced customizations.
+      </p>
+<p>
+        Instead of creating the <span class="codefrag">SVGGraphics2D</span> just by using the
+        <span class="codefrag">Document</span> that will be used as a factory for creating the
+        SVG elements, we can use the constructor that uses an
+        <a class="class" href="../javadoc/org/apache/batik/svggen/SVGGeneratorContext.html">SVGGeneratorContext</a>
+        instance. By providing your own <span class="codefrag">SVGGeneratorContext</span>
+        instance, you will be able to do advanced customization. You will find
+        below several examples of possible customizations.
+      </p>
+<a name="N100F8"></a><a name="Have+your+own+comment+in+the+generated+SVG+file"></a>
+<h3 class="boxed">Have your own comment in the generated SVG file</h3>
+<p>
+          We begin with the simplest possible example. If you integrate the
+          Batik SVG generator in your own Java application, you may want to
+          specialize the comment generated in the XML code.
+        </p>
+<pre class="code">DOMImplementation impl =
+    GenericDOMImplementation.getDOMImplementation();
+String svgNS = "http://www.w3.org/2000/svg";
+Document myFactory = impl.createDocument(svgNS, "svg", null);
+
+SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+<strong>ctx.setComment("Generated by FooApplication with Batik SVG Generator");</strong>
+SVGGraphics2D g2d = new SVGGraphics2D(ctx, false);</pre>
+<a name="N10109"></a><a name="Use+embedded+SVG+Fonts+in+the+generated+SVG+file"></a>
+<h3 class="boxed">Use embedded SVG Fonts in the generated SVG file</h3>
+<p>
+          In order to have a self-contained SVG file that doesn't have to use
+          system fonts to be displayed, you can embed the fonts you used for
+          drawing strings in the SVG file through the SVG fonts facility.
+        </p>
+<pre class="code">DOMImplementation impl =
+    GenericDOMImplementation.getDOMImplementation();
+String svgNS = "http://www.w3.org/2000/svg";
+Document myFactory = impl.createDocument(svgNS, "svg", null);
+
+SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+<strong>ctx.setEmbeddedFontsOn(true);</strong>
+SVGGraphics2D g2d = new SVGGraphics2D(ctx, <strong>true</strong>);</pre>
+<a name="N1011D"></a><a name="Customizing+the+way+images+are+stored"></a>
+<h3 class="boxed">Customizing the way images are stored</h3>
+<p>
+          Every time you call one of the <span class="codefrag">drawImage</span> methods
+          provided by the <span class="codefrag">Graphics2D</span> interface, a default
+          representation of your image is created in a location and put in a
+          default file. For instance, a base64 encoding is created and embedded
+          in the SVG file by default. Alternatively, you can choose to have your
+          images written to separate files in a predefined directory, in one of
+          the two raster formats required by the SVG specification: JPEG or PNG.
+        </p>
+<p>
+          You can change the default behavior by explicitly providing the
+          image handler to be used by the SVG generator.  Once again, you use
+          the <span class="codefrag">SVGGeneratorContext</span> for this. In the example below,
+          all images are converted to PNG format and written to directory
+          <span class="codefrag">res/images</span>.
+        </p>
+<pre class="code">DOMImplementation impl =
+    GenericDOMImplementation.getDOMImplementation();
+String svgNS = "http://www.w3.org/2000/svg";
+Document myFactory = impl.createDocument(svgNS, "svg", null);
+
+SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+<strong>GenericImageHandler ihandler = new ImageHandlerPNGEncoder("res/images", null);
+ctx.setImageHandler(ihandler);</strong>
+SVGGraphics2D g2d = new SVGGraphics2D(ctx, false);</pre>
+<p>
+          Using the default image handlers results in a new copy of the image
+          data being written to the SVG file or an external file, for every
+          single <span class="codefrag">drawImage</span> call. If you use the same images over
+          and over again, then this may result in an SVG file containing a lot
+          of redundant data. At the price of a slight performance penalty
+          during initial generation of the SVG DOM tree, you can choose to
+          have your image data reused. For this you use a specialized image
+          handler, as shown below.
+        </p>
+<pre class="code">DOMImplementation impl =
+    GenericDOMImplementation.getDOMImplementation();
+String svgNS = "http://www.w3.org/2000/svg";
+Document myFactory = impl.createDocument(svgNS, "svg", null);
+
+SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+
+// Reuse our embedded base64-encoded image data.
+<strong>GenericImageHandler ihandler = new CachedImageHandlerBase64Encoder();
+ctx.setGenericImageHandler(ihandler);</strong>
+
+SVGGraphics2D g2d = new SVGGraphics2D(ctx, false);</pre>
+<p>
+          With the caching image handlers, it is even possible to reuse the
+          same copy of your image data across several different SVG documents.
+          Just keep a reference to the image handler, and pass it to the
+          <span class="codefrag">SVGGraphics2D</span> instance used for generating the SVG DOM
+          tree. The following simplified example shows how different SVG trees
+          might be created by separate SVG generators, efficiently storing any
+          common images just once.
+        </p>
+<pre class="code">class MySVGGenerator {
+
+    // The image handler will write all images files to "res/images".
+<strong>    private static ImageHandler ihandler =
+        new CachedImageHandlerPNGEncoder("res/images", null);</strong>
+
+    public void generateSVG(JPanel myCanvas, OutputStream outStream) {
+        DOMImplementation domImpl =
+            GenericDOMImplementation.getDOMImplementation();
+        Document myFactory = domImpl.createDocument(svgNS, "svg", null);
+        SVGGeneratorContext ctx =
+            SVGGeneratorContext.createDefault(myFactory);
+        <strong>ctx.setGenericImageHandler(ihandler);</strong>
+
+        SVGGraphics2D svgGenerator = new SVGGraphics2D(ctx, false);
+
+        // Create the SVG DOM tree.
+        myCanvas.paintComponent(svgGenerator);
+
+        Writer out = new OutputStreamWriter(outStream, "UTF-8");
+        svgGenerator.stream(out, true);
+    }
+}</pre>
+<a name="N1015A"></a><a name="Customizing+the+generated+SVG+style"></a>
+<h3 class="boxed">Customizing the generated SVG style</h3>
+<p>
+          Your needs in matter of styling may be different from the two
+          provided options (XML presentation attributes or CSS inline
+          stylesheets). For example, you may want to put the CSS properties in
+          a SVG <span class="codefrag">style</span> element section and reference them through
+          the class attribute.  In this case you will need to define a new
+          <a class="class" href="../javadoc/org/apache/batik/svggen/StyleHandler.html">StyleHandler</a>
+          as below.
+        </p>
+<pre class="code">public class StyleSheetStyleHandler implements StyleHandler {
+
+    // The CDATA section that holds the CSS stylesheet.
+    private CDATASection styleSheet;
+
+    // Build the handler with a reference to the stylesheet section.
+    public StyleSheetStyleHandler(CDATASection styleSheet) {
+        this.styleSheet = styleSheet;
+    }
+
+    public void setStyle(Element element, Map styleMap,
+                         SVGGeneratorContext generatorContext) {
+        Iterator iter = styleMap.keySet().iterator();
+
+        // Create a new class in the style sheet.
+        String id = generatorContext.getIDGenerator().generateID("C");
+        styleSheet.appendData("."+ id +" {");
+
+        // Append each key/value pair.
+        while (iter.hasNext()) {
+            String key = (String) iter.next();
+            String value = (String) styleMap.get(key);
+            styleSheet.appendData(key + ":" + value + ";");
+        }
+
+        styleSheet.appendData("}\n");
+
+        // Reference the stylesheet class on the element to be styled.
+        element.setAttributeNS(null, "class", id);
+    }
+}</pre>
+<p>
+          Then you can create and use an <span class="codefrag">SVGGraphics2D</span> with a
+          correctly configured <span class="codefrag">SVGGeneratorContext</span>.
+        </p>
+<pre class="code">
+// Configure the SVGGraphics2D for a given Document myFactory.
+SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+CDATASection styleSheet = myFactory.createCDATASection("");
+ctx.setStyleHandler(new StyleSheetStyleHandler(styleSheet));
+SVGGraphics2D g2d = new SVGGraphics2D(ctx, false);
+
+// Use the g2d to draw (e.g., component.paint(g2d)).
+
+// Add a stylesheet to the definition section.
+SVGSVGElement root = (SVGSVGElement) g2d.getRoot();
+Element defs = root.getElementById(SVGSyntax.ID_PREFIX_GENERIC_DEFS);
+Element style = myFactory.createElementNS
+    (SVGSyntax.SVG_NAMESPACE_URI, SVGSyntax.SVG_STYLE_TAG);
+style.setAttributeNS(null, SVGSyntax.SVG_TYPE_ATTRIBUTE, "text/css");
+style.appendChild(styleSheet);
+defs.appendChild(style);
+
+// Dump the root content to a given Writer myWriter.
+g2d.stream(root, myWriter);</pre>
+<a name="N1017D"></a><a name="Extending+Paint+object+to+SVG+element+translation"></a>
+<h3 class="boxed">Extending Paint object to SVG element translation</h3>
+<p>
+          The <span class="codefrag">SVGGraphics2D</span> is able to generate SVG elements for
+          generic Java 2D objects, but you sometimes have your own classes such
+          as implementations of the Java 2D
+          <a class="external" href="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/Paint.html">Paint</a>
+          interface. In this case, you will need to write an
+          <a class="class" href="../javadoc/org/apache/batik/svggen/ExtensionHandler.html">ExtensionHandler</a>
+          that you will set on your <span class="codefrag">SVGGeneratorContext</span>.
+        </p>
+<p>
+          In the following example we define the first draft of an
+          <span class="codefrag">ExtensionHandler</span> allowing to translate a Batik
+          implementation of the <span class="codefrag">Paint</span> interface named
+          <a class="class" href="../javadoc/org/apache/batik/ext/awt/LinearGradientPaint.html">LinearGradientPaint</a>. 
+        </p>
+<pre class="code">class MyExtensionHandler extends DefaultExtensionHandler {
+
+    public SVGPaintDescriptor handlePaint(Paint paint,
+                                          SVGGeneratorContext generatorCtx) {
+        if (paint instanceof LinearGradientPaint) {
+            LinearGradientPaint gradient = (LinearGradientPaint) paint;
+
+            // Create a new SVG 'linearGradient' element to represent the
+            // LinearGradientPaint being used.
+            String id = generatorCtx.getIDGenerator().generateID("gradient");
+            Document doc = generatorCtx.getDOMFactory();
+            Element grad = doc.createElementNS
+                (SVGSyntax.SVG_NAMESPACE_URI,
+                 SVGSyntax.SVG_LINEAR_GRADIENT_TAG);
+
+            // Set the relevant attributes on the 'linearGradient' element.
+            grad.setAttributeNS(null, SVGSyntax.SVG_ID_ATTRIBUTE, id);
+            grad.setAttributeNS(null, SVGSyntax.SVG_GRADIENT_UNITS_ATTRIBUTE,
+                                SVGSyntax.SVG_USER_SPACE_ON_USE_VALUE);
+            Point2D pt = gradient.getStartPoint();
+            grad.setAttributeNS(null, "x1", pt.getX());
+            grad.setAttributeNS(null, "y1", pt.getY());
+            pt = gradient.getEndPoint();
+            grad.setAttributeNS(null, "x2", pt.getX());
+            grad.setAttributeNS(null, "y2", pt.getY());
+
+            switch (gradient.getCycleMethod()) {
+            case MultipleGradientPaint.REFLECT:
+                grad.setAttributeNS
+                    (null, SVGSyntax.SVG_SPREAD_METHOD_ATTRIBUTE,
+                     SVGSyntax.SVG_REFLECT_VALUE);
+                break;
+            case MultipleGradientPaint.REPEAT:
+                grad.setAttributeNS
+                    (null, SVGSyntax.SVG_SPREAD_METHOD_ATTRIBUTE,
+                     SVGSyntax.SVG_REPEAT_VALUE);
+                break;
+            // 'pad' is the default...
+            }
+
+            // Here we should write the transform of the gradient
+            // in the transform attribute...
+
+            // Here we should write the stops of the gradients as 
+            // children elements...
+
+            return new SVGPaintDescriptor
+                ("url(#" + ref + ")", SVGSyntax.SVG_OPAQUE_VALUE, grad);
+        } else {
+            // Let the default mechanism do its job.
+            return null;
+        }
+    }
+}</pre>
+<p>
+          You should then set it on the <span class="codefrag">SVGGeneratorContext</span> by
+          using the <span class="codefrag">setExtensionHandler</span> method.
+        </p>
+<pre class="code">SVGGeneratorContext ctx = SVGGeneratorContext.createDefault(myFactory);
+ctx.setExtensionHandler(new MyExtensionHandler());
+SVGGraphics2D g2d = new SVGGraphics2D(ctx, false);</pre>
+</div>
+
+    
+<a name="N101B7"></a><a name="view"></a>
+<h2 class="boxed">How to view the generated SVG document</h2>
+<div class="section">
+<p>
+        The following code example illustrates how to view the SVG content
+        generated
+        by an <span class="codefrag">SVGGraphics2D</span> object.</p>
+<pre class="code">import java.awt.*;
+import java.awt.geom.*;
+
+import javax.swing.*;
+
+import org.apache.batik.swing.*;
+import org.apache.batik.svggen.*;
+import org.apache.batik.dom.svg.SVGDOMImplementation;
+
+import org.w3c.dom.*;
+import org.w3c.dom.svg.*;
+
+public class ViewGeneratedSVGDemo {
+
+    public static void main(String[] args) {
+        // Create an SVG document.
+        DOMImplementation impl = SVGDOMImplementation.getDOMImplementation();
+        String svgNS = SVGDOMImplementation.SVG_NAMESPACE_URI;
+        SVGDocument doc = (SVGDocument) impl.createDocument(svgNS, "svg", null);
+
+        // Create a converter for this document.
+        SVGGraphics2D g = new SVGGraphics2D(doc);
+
+        // Do some drawing.
+        Shape circle = new Ellipse2D.Double(0, 0, 50, 50);
+        g.setPaint(Color.red);
+        g.fill(circle);
+        g.translate(60, 0);
+        g.setPaint(Color.green);
+        g.fill(circle);
+        g.translate(60, 0);
+        g.setPaint(Color.blue);
+        g.fill(circle);
+        g.setSVGCanvasSize(new Dimension(180, 50));
+
+        // Populate the document root with the generated SVG content.
+        Element root = doc.getDocumentElement();
+        g.getRoot(root);
+
+        // Display the document.
+        JSVGCanvas canvas = new JSVGCanvas();
+        JFrame f = new JFrame();
+        f.getContentPane().add(canvas);
+        canvas.setSVGDocument(doc);
+        f.pack();
+        f.setVisible(true);
+    }
+}</pre>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

@@ -1,0 +1,824 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Test infrastructure</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="../using/index.html">Using Batik</a>
+</li>
+<li class="current">
+<a class="selected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Development</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../dev/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../dev/branches.html">Branches</a>
+</div>
+<div class="menuitem">
+<a href="../dev/svg12.html">SVG 1.2 support</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Test infrastructure</div>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Test infrastructure</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#infrastructure">The test infrastructure</a>
+<ul class="minitoc">
+<li>
+<a href="#High-level+interfaces">High-level interfaces</a>
+</li>
+<li>
+<a href="#Default+implementations">Default implementations</a>
+</li>
+<li>
+<a href="#XML+implementations">XML implementations</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#managingATestSuite">Managing test suites</a>
+<ul class="minitoc">
+<li>
+<a href="#Describing+a+test+suite">Describing a test suite</a>
+</li>
+<li>
+<a href="#runningATestSuite">Running a test suite</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#regard">regard: the Batik regression test suite</a>
+<ul class="minitoc">
+<li>
+<a href="#Running+regard">Running regard</a>
+</li>
+<li>
+<a href="#Rendering+accuracy+tests">Rendering accuracy tests</a>
+</li>
+<li>
+<a href="#Day+to+day+use+of+regard">Day to day use of regard</a>
+<ul class="minitoc">
+<li>
+<a href="#Initial+set+up">Initial set up</a>
+</li>
+<li>
+<a href="#Daily+usage">Daily usage</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#SVG+generator+tests">SVG generator tests</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#writingNewTests">Writing new tests</a>
+<ul class="minitoc">
+<li>
+<a href="#Adding+a+new+test+configuration">Adding a new test configuration</a>
+</li>
+<li>
+<a href="#Writing+a+new+test">Writing a new test</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<p>
+      This document describes the Batik test infrastructure whose goals 
+      are to:
+    </p>
+    
+<ul>
+      
+<li>make it easy to detect regressions,</li>
+      
+<li>make it easy to run test suites, and</li>
+      
+<li>make it easy to write new tests and add them
+        to an existing test suite.</li>
+    
+</ul>
+    
+<p>
+      The intent for the test infrastructure is that it grows
+      along with Batik and keeps monitoring the health of
+      the code base.
+    </p>
+    
+<p>
+      While the test suites in the infrastructure will be
+      run every day by build/test machines, they are also 
+      intended to help the commiters and developers get confident
+      that their code modifications did not introduce regressions.
+    </p>
+
+    
+<a name="N10026"></a><a name="infrastructure"></a>
+<h2 class="boxed">The test infrastructure</h2>
+<div class="section">
+<a name="N1002C"></a><a name="High-level+interfaces"></a>
+<h3 class="boxed">High-level interfaces</h3>
+<p>
+          The following are the high level interfaces in the infrastructure.
+        </p>
+<dl class="classes">
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/Test.html">Test</a>
+</dt>
+          
+<dd>
+            
+<p>
+              A <span class="codefrag">Test</span> is performing whatever check is needed in its
+              <span class="codefrag">run</span> method, and each run produces a
+              <span class="codefrag">TestReport</span>.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/TestReport.html">TestReport</a>
+</dt>
+          
+<dd>
+            
+<p>
+              A <span class="codefrag">TestReport</span> describes whether a <span class="codefrag">Test</span>
+              run passed or failed and provides a description of the failure in
+              terms of an error code (unique in the context of a given
+              <span class="codefrag">Test</span>) and a set of key/value pairs.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/TestSuite.html">TestSuite</a>
+</dt>
+          
+<dd>
+            
+<p>
+              A <span class="codefrag">TestSuite</span> is a test aggregation which can run a set
+              of <span class="codefrag">Test</span> instances.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/TestReportProcessor.html">TestReportProcessor</a>
+</dt>
+          
+<dd>
+            
+<p>
+              A <span class="codefrag">TestReportProcessor</span> is used to analyze a
+              <span class="codefrag">TestReport</span>.  A specific implementation can choose to
+              create graphs, send an email or write an HTML file.
+            </p>
+          
+</dd>
+        
+</dl>
+<a name="N1008A"></a><a name="Default+implementations"></a>
+<h3 class="boxed">Default implementations</h3>
+<p>
+          The test infrastructure comes with a number of default
+          implementations for the interfaces described above. 
+          Specifically:
+        </p>
+<dl class="classes">
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/AbstractTest.html">AbstractTest</a>
+</dt>
+          
+<dd>
+            
+<p>
+              This implementation of the <span class="codefrag">Test</span> interface is
+              intended to make it easier to write a &ldquo;safe&rdquo; <span class="codefrag">Test</span>
+              implementation.  See the <a href="#writingNewTests">Writing new
+                tests</a> section for a description of how to use that class.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/DefaultTestReport.html">DefaultTestReport</a>
+</dt>
+          
+<dd>
+            
+<p>
+              This class provides a simple implementation of the
+              <span class="codefrag">TestReport</span> interface that most <span class="codefrag">Test</span>
+              implementations will be able to use. See the
+              <a href="#writingNewTests">Writing new tests</a> section for
+              more details.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/DefaultTestSuite.html">DefaultTestSuite</a>
+</dt>
+          
+<dd>
+            
+<p>
+              This class provides an implementation of the 
+              <span class="codefrag">TestSuite</span> interface and makes it
+              easy to aggregate <span class="codefrag">Test</span> instances.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/SimpleTestReportProcessor.html">SimpleTestReportProcessor</a>
+</dt>
+          
+<dd>
+            
+<p>
+              This class is a sample <span class="codefrag">TestReportProcessor</span>
+              implementation that simply traces the content of a
+              <span class="codefrag">TestReport</span> to an output stream.
+            </p>
+          
+</dd>
+          
+<dt>
+<a class="class" href="../javadoc/org/apache/batik/test/TestReportMailer.html">TestReportMailer</a>
+</dt>
+          
+<dd>
+            
+<p>
+              This is another implementation of the
+              <span class="codefrag">TestReportProcessor</span> interface that emails a test
+              report to a list of destination e-mail addresses.
+            </p>
+          
+</dd>
+        
+</dl>
+<a name="N100F7"></a><a name="XML+implementations"></a>
+<h3 class="boxed">XML implementations</h3>
+<p>
+          The test infrastructure is using XML-out (and XML-in
+          too, see the <a href="#runningATestSuite">Running a test suite</a>
+          section) as a favorite way to generate test reports. The
+          <a class="class" href="../javadoc/org/apache/batik/test/XMLTestReportProcessor.html">XMLTestReportProcessor</a>
+          implementation of the <span class="codefrag">TestReportProcessor</span> interface.
+          It outputs reports in XML in a configurable directory.
+        </p>
+<p>
+          The <span class="codefrag">XMLTestReportProcessor</span> can notify an
+          <a class="class" href="../javadoc/org/apache/batik/test/XMLReportConsumer.html">XMLReportConsumer</a>
+          when it has created a new report. There is one implementation of
+          that interface that can run an XSL stylesheet on the 
+          XML report (e.g., to generate an HTML report), called
+          <a class="class" href="../javadoc/org/apache/batik/test/XSLXMLReportConsumer.html">XSLXMLReportConsumer</a>.
+          This is used by the <span class="codefrag">regard</span> rule in the Batik build to produce an
+          HTML report for the default regression test suite.
+        </p>
+</div>
+
+    
+<a name="N10121"></a><a name="managingATestSuite"></a>
+<h2 class="boxed">Managing test suites</h2>
+<div class="section">
+<p>
+        The infrastructure is designed to make it easy to create, update
+        and modify test suites. This section describes how to describe a
+        set of tests to be run and how to actually run that test suite.
+      </p>
+<a name="N1012A"></a><a name="Describing+a+test+suite"></a>
+<h3 class="boxed">Describing a test suite</h3>
+<p>
+          Test suites can be described in XML (XML-in refered to earlier
+          in this document). The general format for describing a test suite is:
+        </p>
+<pre class="code">&lt;testSuite id="testSuiteA" name="MyFavoriteTestSuite"&gt;
+  &lt;!-- Set of tests to be run --&gt;
+  &lt;test id="t1" class="myFavoriteTestClassA"/&gt;
+  &lt;test id="t2" class="myFavoriteTestClassB"/&gt;
+  &lt;test id="t3" class="myFavoriteTestClassC"/&gt;
+&lt;/testSuite&gt;</pre>
+<p>
+          Note that tests can be grouped in <span class="codefrag">testGroup</span> elements,
+          which can have their own <span class="codefrag">id</span> and <span class="codefrag">class</span>
+          attributes. This is useful because it allows developers to run
+          specific tests or test groups by specifying their IDs. In addition,
+          because the class attribute is inherited by a <span class="codefrag">test</span> element
+          from its parent, <span class="codefrag">testGroup</span>s allow the developers to
+          group tests which use the same class and specify that class on the
+          group.
+        </p>
+<p>
+          
+<span class="codefrag">Test</span> instances listed in a test suite can have arguments
+          passed to them, as defined by the test class.  These arguments are
+          passed in using <span class="codefrag">arg</span> child elements.
+        </p>
+<p>
+          The following example shows a test suite with two tests:
+        </p>
+<pre class="code">&lt;testSuite id="sampleTestSuite" name="SAMPLE TEST SUITE"&gt;
+
+  &lt;!-- ========================================================================== --&gt;
+  &lt;!-- Validates that the SVGRenderingAccuracyTest class is operating as expected --&gt;
+  &lt;!-- ========================================================================== --&gt;
+  &lt;test id="renderingAccuracyTest" class="org.apache.batik.test.svg.SVGRenderingAccuracyTestValidator"/&gt;
+
+  &lt;!-- ========================================================================== --&gt;
+  &lt;!-- Rendering regression tests                                                 --&gt;
+  &lt;!-- ========================================================================== --&gt;
+  &lt;test id="anne.svg" class="org.apache.batik.test.svg.SVGRenderingAccuracyTest"&gt;
+    &lt;arg class="java.net.URL" 
+         value="file:samples/anne.svg"/&gt;
+    &lt;arg class="java.net.URL" 
+         value="file:test-references/samples/solaris/anne.png"/&gt;
+    &lt;property name="VariationURL" 
+           class="java.net.URL" 
+           value="file:test-references/samples/variation/anne.png"/&gt;
+    &lt;property name="SaveVariation" 
+           class="java.io.File" 
+           value="test-references/samples/variation-candidate/anne.png"/&gt;
+  &lt;/test&gt;
+
+&lt;/testSuite&gt;</pre>
+<a name="N1015A"></a><a name="runningATestSuite"></a>
+<h3 class="boxed">Running a test suite</h3>
+<p>
+          Yet another XML file describes which test to run and how to process
+          the generated test reports. The general syntax is something
+          like:
+        </p>
+<pre class="code">&lt;testRun id="regard" name="Test Run Name Here"&gt;
+
+  &lt;!-- =================================== --&gt;
+  &lt;!-- Descriptions of processors that     --&gt;
+  &lt;!-- will process the results of the     --&gt;
+  &lt;!-- test suite                          --&gt;
+  &lt;!-- =================================== --&gt;
+  &lt;testReportProcessor class="myFavoriteReportProcessorA"/&gt;
+  &lt;testReportProcessor class="myFavoriteReportProcessorB"/&gt;
+
+  &lt;!-- =================================== --&gt;
+  &lt;!-- Set of test suite to run. They will --&gt;
+  &lt;!-- produce TestReports.                --&gt;
+  &lt;!-- =================================== --&gt;
+  &lt;testSuite href="http://url.to.my.first.test.suite"/&gt;
+  &lt;testSuite href="http://url.to.my.second.test.suite"/&gt;
+
+&lt;/testRun&gt;</pre>
+<p>
+          
+<span class="codefrag">testRun</span> elements can be nested. In a nutshell, you can
+          specify a set of <span class="codefrag">TestReportProcessor</span>s which should
+          process the <span class="codefrag">TestReport</span> generated by the
+          <span class="codefrag">TestSuite</span> built from the list of <span class="codefrag">Test</span>
+          instances described in the files referenced by the
+          <span class="codefrag">testSuite</span> elements.
+        </p>
+<p>
+          For example:
+        </p>
+<pre class="code">&lt;testRun name="Batik Standard Regression Test Run"&gt;
+
+  &lt;testRun name="REGARD"&gt;
+    &lt;testReportProcessor class="org.apache.batik.test.xml.XMLTestReportProcessor"&gt; 
+      &lt;arg class="org.apache.batik.test.xml.XSLXMLReportConsumer"&gt;
+        &lt;!-- Stylesheet --&gt;
+        &lt;arg class="java.lang.String" value="file:test-resources/org/apache/batik/test/svg/HTMLReport.xsl"/&gt;
+        &lt;!-- Ouput Directory --&gt;
+        &lt;arg class="java.lang.String" value="test-reports/html"/&gt;
+        &lt;!-- Output file prefix --&gt;
+        &lt;arg class="java.lang.String" value="RegardResult"/&gt;
+        &lt;!-- Output file suffix --&gt;
+        &lt;arg class="java.lang.String" value=".html"/&gt;
+      &lt;/arg&gt;
+    &lt;/testReportProcessor&gt;
+
+    &lt;testSuite href="file:test-resources/org/apache/batik/test/samplesRendering.xml"/&gt; 
+    &lt;testSuite href="file:test-resources/org/apache/batik/svggen/regsvggen.xml"/&gt;
+    &lt;testSuite href="file:test-resources/org/apache/batik/test/unitTesting.xml"/&gt; 
+  &lt;/testRun&gt;
+
+&lt;/testRun&gt;</pre>
+<p>
+          There is a rule in Batik's <span class="codefrag">build.xml</span> file to run a test
+          suite defined in an XML file as the one above. At the command line,
+          type the following, for Windows:
+        </p>
+<pre class="code">build runtestsuite path/to/my/newly/created/testSuite.xml</pre>
+<p>
+          and for Unix:
+        </p>
+<pre class="code">build.sh runtestsuite path/to/my/newly/created/testSuite.xml</pre>
+<p>
+          In addition, the <span class="codefrag">regard</span> rule runs a specific set of
+          tests by default, so that you do not need to pass any
+          <em>testRun</em> file argument.
+        </p>
+<p>
+          
+<strong><span class="codefrag">regard</span> is the project&rsquo;s safeguard against
+            regressions</strong>.</p>
+</div>
+
+    
+<a name="N101A7"></a><a name="regard"></a>
+<h2 class="boxed">regard: the Batik regression test suite</h2>
+<div class="section">
+<p>
+        The regard test suite contains all the regression tests for the Batik
+        project.  The <span class="codefrag">regard</span> tool is a specific test suite
+        description, <span class="codefrag">regard.xml</span> (which you can find in the
+        <span class="codefrag">test-resources/org/apache/batik/test</span> directory). That
+        file contains a set of test suite files which sould be run.
+      </p>
+<p>
+        The following describes how to use the regard tool and some of the
+        most important tests in the regard test suite.
+      </p>
+<a name="N101BC"></a><a name="Running+regard"></a>
+<h3 class="boxed">Running regard</h3>
+<p>
+          The regard tool lets you run either all the tests or any specific
+          test you want in the test suite. To run all the tests in the regard
+          test suite, type the following at the command line, for Windows:
+        </p>
+<pre class="code">build regard</pre>
+<p>
+          and for Unix:
+        </p>
+<pre class="code">build.sh regard</pre>
+<p>
+          To run a specific test in the test suite, type the qualified test ID
+          or any substring of that ID:
+        </p>
+<pre class="code">build.sh regard <em>id-list</em>
+</pre>
+<p>For example:</p>
+<pre class="code">build.sh regard unitTesting.ts batikFX.svg</pre>
+<p>
+          will run all the tests with an ID containing
+          <span class="codefrag">unitTesting.ts</span> (i.e., all the test selection unit
+          testing, see
+          <span class="codefrag">test-resources/org/apache/batik/gvt/unitTesting.xml</span>)
+          and the accuracy rendering test on <span class="codefrag">batikFX.svg</span> (because
+          it is the only test with <span class="codefrag">batikFX.svg</span> in its ID).
+        </p>
+<a name="N101F0"></a><a name="Rendering+accuracy+tests"></a>
+<h3 class="boxed">Rendering accuracy tests</h3>
+<p>
+          There is a <span class="codefrag">Test</span> implementation,
+          <a class="class" href="../javadoc/org/apache/batik/test/SVGRenderingAccuracyTest.html">SVGRenderingAccuracyTest</a>,
+          which checks that Batik&rsquo;s rendering of an SVG document stays accurate.
+          It compares reference images with the rendering Batik produces and
+          reports any discrepency.
+        </p>
+<p>
+          An <span class="codefrag">SVGRenderingAccuracyTest</span>&rsquo;s constructor configuration
+          is made of:
+        </p>
+<ul>
+          
+<li>the URL to the SVG it should render, and</li>
+          
+<li>the URL to a reference PNG file.</li>
+        
+</ul>
+<p>
+          The default behavior for the test is to render the SVG into a PNG
+          file and compare with the reference image. If there is no
+          difference, the test passes. Otherwise, it fails.
+        </p>
+<p>
+          In addition to this default behavior, the
+          <span class="codefrag">SVGRenderingAccuracyTest</span> can take an optional
+          configuration parameter, an image URL defined as an &ldquo;accepted&rdquo;
+          variation around the reference image. If such a variation image is
+          specified, then the test will pass if:
+        </p>
+<ul>
+          
+<li>the rasterized SVG is equal to the reference image, or</li>
+          
+<li>
+            the difference between the rasterized SVG and the reference image
+            is exactly the same as the accepted variation image.
+          </li>
+        
+</ul>
+<p>
+          Finally, to ease the process of creating &ldquo;accepted&rdquo; variation
+          images, <span class="codefrag">SVGRenderingAccuracyTest</span> can take an optional
+          file name (called <span class="codefrag">saveVariation</span>) describing where the
+          variation between the rasterized SVG and the reference image will be
+          stored in case the rasterized SVG is different from the reference
+          image and the difference is not equal to the variation image, if any
+          was defined. That way, it becomes possible to run a test, and if that
+          test fails, the developer can review the <span class="codefrag">saveVariation</span>
+          image and decide whether it is an acceptable variation or not and
+          use it in subsequent test run as the &ldquo;accepted&rdquo; variation image, which
+          will allow the test to pass if that exact same variation remains
+          constant.
+        </p>
+<a name="N1022F"></a><a name="Day+to+day+use+of+regard"></a>
+<h3 class="boxed">Day to day use of regard</h3>
+<a name="N10235"></a><a name="Initial+set+up"></a>
+<h4>Initial set up</h4>
+<p>
+            To set up the test environment the first time, you need to:
+          </p>
+<ul>
+            
+<li>
+              check out the latest version of the code, including the
+              <span class="codefrag">test-</span>* directories (sources, resources and
+              references) and the <span class="codefrag">build.xml</span> file, and
+            </li>
+            
+<li>
+              run the regard test suite once:
+              <pre class="code">build regard</pre>
+            
+</li>
+          
+</ul>
+<p>
+            This will generate an HTML test report (<span class="codefrag">report.html</span>)
+            in the
+            <tt>test-reports/<em>yyyy</em>.<em>mm</em>.<em>dd</em>-<em>HHhMMmSSs</em>/html</tt>
+            directory.  Depending on how much different text rendering is
+            between your work environment and the environment used to create
+            the reference images, you will get more or less test that will
+            fail, because of differences in the way text is rendered on various
+            platforms and because of fonts not being available on some
+            platforms. For example, a running the test on a Windows 2000
+            laptop against images generated on the Solaris platform caused 16
+            tests out of 71 to fail.
+          </p>
+<p>
+            Review the HTML report to make sure that the differences are
+            really due to text variations.  This will usually be the case and
+            you can make sure by clicking on the diff images contained in the
+            report to see them at full scale. You can you can then turn the
+            &ldquo;candidate&rdquo; variations generated by the test into &ldquo;accepted&rdquo;
+            variations by moving files from one directory to another:
+          </p>
+<pre class="code">mv test-references/samples/candidate-variations/*.png test-references/samples/accepted-variations/*.png
+mv test-references/samples/tests/candidate-variations/*.png test-references/samples/tests/accepted-variations/*.png</pre>
+<p>You can now run the test again:</p>
+<pre class="code">build regard</pre>
+<p>
+            Check the newly generated HTML report in the
+            <span class="codefrag">test-reports/html</span> directory: there should no
+            longer be any test failure.
+          </p>
+<a name="N1027B"></a><a name="Daily+usage"></a>
+<h4>Daily usage</h4>
+<p>
+            Once the intial set up has been done, you can use regard by simply
+            updating your SVN copy, including the test-references. If no
+            change occurs, your test will keep passing with your reference
+            images. If a test fails (e.g., if someone checks in a new reference
+            image from a platform different than the one you are using, you
+            will have to check if it is because of system specific reasons or
+            if there is a bigger problem.
+          </p>
+<a name="N10286"></a><a name="SVG+generator+tests"></a>
+<h3 class="boxed">SVG generator tests</h3>
+<p>
+          Regard contains over 100 tests for checking regressions on the SVG
+          generator. If you use <span class="codefrag">svggen</span> as an argument to regard,
+          all the SVG generator tests will be run (because
+          <span class="codefrag">regard.xml</span> points to
+          <span class="codefrag">test-resources/org/apache/batik/svggen/regsvggen.xml</span>,
+          which is a test suite description for the SVG generator and that
+          file&rsquo;s root <span class="codefrag">testSuite</span> element has the &ldquo;svggen&rdquo; ID).
+        </p>
+</div>
+
+    
+<a name="N1029D"></a><a name="writingNewTests"></a>
+<h2 class="boxed">Writing new tests</h2>
+<div class="section">
+<p>
+        Writing a new test involves either configuring a new test or writing a
+        new <span class="codefrag">Test</span> class. In both cases, you will need to add an
+        entry to a test suite&rsquo;s XML description. This section uses two test
+        suites as an example: the &ldquo;regard&rdquo; test suite to show how to configure
+        a new test and the &ldquo;unitTests&rdquo; test suite to show how to add a new
+        <span class="codefrag">Test</span> implementation.
+      </p>
+<a name="N102AC"></a><a name="Adding+a+new+test+configuration"></a>
+<h3 class="boxed">Adding a new test configuration</h3>
+<p>
+          Imagine that you add a cool new test case to the
+          <span class="codefrag">samples</span> directory, such as
+          <span class="codefrag">linking-viewBox.svg</span>.  In order to check for regressions
+          on that file you can add the following entry:
+        </p>
+<pre class="code">  &lt;test id="anne.svg" class="org.apache.batik.test.svg.SVGRenderingAccuracyTest"&gt;
+    &lt;arg class="java.net.URL" 
+        value="file:samples/tests/linkingViewBox.svg"/&gt;
+    &lt;arg class="java.net.URL" 
+         value="file:test-references/samples/tests/solaris/linkingViewBox.png"/&gt;
+    &lt;property name="VariationURL" 
+              class="java.net.URL" 
+              value="file:test-references/samples/tests/variation/linkingViewBox.png"/&gt;
+    &lt;property name="SaveVariation" 
+              class="java.io.File" 
+              value="test-references/samples/tests/variation-candidate/linkingViewBox.png"/&gt;
+  &lt;/test&gt;</pre>
+<p>
+          to the
+          <span class="codefrag">test-resources/org/apache/batik/test/samplesRendering.xml</span>
+          test suite description, the description of the regard test suite. If
+          you have access to the build machine where the reference images are
+          typically generated, you can check 0n the reference image in
+          <span class="codefrag">test-references/samples/tests</span>. Otherwise (and this is
+          OK), you can let the test fail the first time it is run on the
+          build/test machine and that will be a reminder for whoever is
+          responsible for that machine that a valid reference image should be
+          checked in.
+        </p>
+<a name="N102C9"></a><a name="Writing+a+new+test"></a>
+<h3 class="boxed">Writing a new test</h3>
+<p>
+          Imagine you want to validate some aspect of your code, and let's take
+          the bridge error handling as an example. You could create a new
+          class in the <span class="codefrag">test-sources</span> directory, in
+          <span class="codefrag">test-sources/org/apache/batik/bridge</span> in our example,
+          and let's call it <span class="codefrag">ErrorHandlingTest</span>.  To simplify the
+          implementation of the <span class="codefrag">Test</span> interface, you can choose
+          to derive from the <span class="codefrag">AbstractTest</span> class and generate a
+          <span class="codefrag">DefaultTestReport</span>.
+        </p>
+<p>
+          While writing the <span class="codefrag">Test</span> you may want to use your own XML
+          file with just your test, for example:
+        </p>
+<pre class="code">  &lt;testReportProcessor class="org.apache.batik.test.SimpleTestReportProcessor"/&gt; 
+
+  &lt;test class="org.apache.batik.bridge.ErrorHandlingTest"&gt;
+    &lt;!-- Expected error code --&gt;
+    &lt;arg class="java.lang.String" value="expected.error.code"/&gt;
+    &lt;!-- Input SVG that this test manipulates to generate error conditions --&gt;
+    &lt;arg class="java.net.URL" value="file:test-resources/org/apache/batik/bridge/ErrorHandlingBase.svg"/&gt;
+    &lt;!-- Id of the element to test --&gt;
+    &lt;arg class="java.lang.String value="rectangle6"/&gt;
+    &lt;!-- Attribute to test --&gt;
+    &lt;arg class="java.lang.String value="x"/&gt;
+    &lt;!-- Value to test on the attribute --&gt;
+    &lt;arg class="java.lang.String value="abcd"/&gt;
+  &lt;/test&gt;</pre>
+<p>
+          This is just an example and does not pretend to be the right way to go
+          about implementing or specifying this specific type of test. Once done
+          with tuning the test, one or multiple configurations for the test can
+          be added to the relevant test suite&rsquo;s XML description. In some cases,
+          it will be interesting to create a separate test suite.
+        </p>
+</div>
+
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

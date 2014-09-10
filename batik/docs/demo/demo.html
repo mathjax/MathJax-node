@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Batik demo</title>
+    <style type="text/css">
+      body, table {
+        font-family: sans-serif;
+        font-size: 12px;
+      }
+      #data {
+        background: #ffe;
+        border: 1px solid #cca;
+        border-collapse: collapse;
+      }
+      #data td, #data th {
+        padding: 4px;
+      }
+      #data th {
+        text-align: left;
+        background: #cca;
+      }
+      #layout {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="layout">
+      <tr>
+        <td>
+          <applet id="chart" code="AppletDemo.class" width="400" height="300"
+                  mayscript="mayscript"
+                  archive="batik-all.jar,xml-apis-dom3.jar">
+            Your browser doesn't seem to support Java applets, which is required
+            for this demo.
+          </applet>
+        </td>
+        <td>
+          <table id="data">
+            <tr>
+              <th>Expense</th><th>Amount</th>
+            </tr>
+            <tr>
+              <td>Shoe</th>
+              <td><input id="ShoeBar" type="text" value="10"></td>
+            </tr>
+            <tr>
+              <td>Car</th>
+              <td><input id="CarBar" type="text" value="20"></td>
+            </tr>
+            <tr>
+              <td>Travel</th>
+              <td><input id="TravelBar" type="text" value="10"></td>
+            </tr>
+            <tr>
+              <td>Computer</th>
+              <td><input id="ComputerBar" type="text" value="60"></td>
+            </tr>
+          </table>
+          <p>
+            <button onclick="update()">Update chart</button>
+          </p>
+        </td>
+      </tr>
+    </div>
+    <script>
+      var chart = document.getElementById("chart");
+
+      function update() {
+        updateBar("ShoeBar");
+        updateBar("CarBar");
+        updateBar("TravelBar");
+        updateBar("ComputerBar");
+      }
+
+      function updateBar(name) {
+        var value = Number(document.getElementById(name).value);
+        if (!isNaN(value) && value >= 0) {
+          chart.updateBar(name, value);
+        }
+      }
+    </script>
+  </body>
+</html>

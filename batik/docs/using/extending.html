@@ -1,0 +1,1065 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Extending Batik</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_1.1.6', '../skin/')" id="menu_1.1.6Title" class="menutitle">Scripting</div>
+<div id="menu_1.1.6" class="menuitemgroup">
+<div class="menuitem">
+<a href="../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Extending Batik</div>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Extending Batik</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#customXMLTags">Custom XML elements</a>
+<ul class="minitoc">
+<li>
+<a href="#domExtension">Writing a Batik DOM extension</a>
+</li>
+<li>
+<a href="#bridgeExtension">Writing a Batik bridge extension</a>
+<ul class="minitoc">
+<li>
+<a href="#graphicsNodeBridge">GraphicsNodeBridge</a>
+</li>
+<li>
+<a href="#filterPrimitiveBridge">FilterPrimitiveBridge</a>
+</li>
+<li>
+<a href="#paintBridge">PaintBridge</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#imageTagFormats">New image file formats</a>
+<ul class="minitoc">
+<li>
+<a href="#RegistryEntry">RegistryEntry</a>
+</li>
+<li>
+<a href="#Helper+classes">Helper classes</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#urlProtocols">New URL protocols</a>
+</li>
+<li>
+<a href="#interpreters">Additional script interpreters</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      This page provides an overview of the built in extension mechanisms of
+      Batik.  As an open source project, people can of course make any
+      extension they feel is interesting, however Batik has been
+      designed with several forms of extension in mind.
+    </p>
+
+    
+<p>
+      In general, extensions are added through the Service
+      Provider Interface mechanism as described in the 
+      <a class="external" href="http://java.sun.com/j2se/1.3/docs/guide/jar/jar.html#Service Provider">jar
+        file documentation</a>.  This allows for the extension of Batik
+      simply by adding a new jar file(s) to the class path, and thus no
+      modification of the Batik source is required!
+    </p>
+    
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+      If you feel that the Batik team has overlooked an
+      important area for extension please let your feelings be
+      known on the mailing lists.
+    </div>
+</div>
+
+    
+<a name="N1001E"></a><a name="customXMLTags"></a>
+<h2 class="boxed">Custom XML elements</h2>
+<div class="section">
+<p>
+        First one must ask what it means to support custom 
+        XML elements?  There are three basic options Batik considers:
+      </p>
+<dl>
+        
+<dt>Having your elements appear in the DOM tree</dt>
+        
+<dd>
+          
+<p>
+            As long as your custom elements are well formed
+            XML they will appear in the SVG DOM tree.  When rendering Batik
+            will skip branches of the tree that use elements it doesn&rsquo;t know
+            about (so even if standard SVG elements are child nodes they will
+            not be displayed).  Note that you must make use of XML namespaces
+            for your personal elements even if you are not planning on
+            validating the XML.
+          </p>
+          
+<p>
+            This can be useful if you want to add extra pieces of
+            data into the standard SVG drawing.  These might be
+            annotations, or other application specific data.  In
+            general this wouldn&rsquo;t be particularly useful with
+            squiggle (the SVG browser) or the rasterizer, but
+            might be very useful if you were writing a custom
+            browser, rasterizer, or pre/post processing tools.
+          </p>
+        
+</dd>
+
+        
+<dt>Adding functionality to your custom element DOM objects</dt>
+        
+<dd>
+          
+<p>
+            If you need your elements to use a custom element subclass
+            in the DOM tree (for behavioral or performance reasons) then you
+            need to provide an <a href="#domExtension">extension to the Batik
+              DOM</a>.
+          </p>
+          
+<p>
+            Doing this gives you the opportunity to override the standard
+            methods on DOM elements, or to provide additional methods to
+            your DOM elements.  For example, you may wish to add specialized
+            get and set methods for attributes on your custom elements, so
+            that they can be manipulated more easily than just using the
+            string-based <span class="codefrag">getAttribute</span> and
+            <span class="codefrag">setAttribute</span> methods provided by DOM Core.
+          </p>
+        
+</dd>
+  
+        
+<dt>Having your custom elements be rendered</dt>
+        
+<dd>
+          
+<p>
+            Probably the most common reason to develop custom elements is to
+            add new rendering primitives to the SVG language.  In this case
+            you must provide an <a href="#bridgeExtension">extension to the
+              Batik bridge</a>.  The bridge extension is resposible
+            for constructing the class(es) that will handle the rendering of
+            the new primitive in Batik.
+          </p>
+          
+<p>
+            In most cases it will also be necessary to write a DOM
+            extension to make the element behave like other SVG elements
+            (most notably for support of styling).
+          </p>
+        
+</dd>
+      
+</dl>
+<a name="N1005C"></a><a name="domExtension"></a>
+<h3 class="boxed">Writing a Batik DOM extension</h3>
+<p>
+          The ability to extend the elements used in the SVG DOM tree allows
+          users to provide implementations for nodes that can be used in
+          place of Batik&rsquo;s default implementation of a node.  This may be
+          done for a variety of reasons, but is most commonly done to
+          extend the behavior of standard node calls (such as
+          to include styling in attribute lookup), or to
+          implement the DOM interface for an element.
+        </p>
+<p>
+          The key class for building the DOM tree is
+          <a class="class" href="../javadoc/org/apache/batik/dom/ExtensibleSVGDOMImplementation.html">org.apache.batik.dom.ExtensibleSVGDOMImplementation</a>.
+          When an instance of this class is constructed it searches for
+          instances of the
+          <a class="class" href="../javadoc/org/apache/batik/dom/svg/DomExtension.html">org.apache.batik.dom.svg.DomExtension</a>
+          Service Provider Interface.  It then calls the
+          <span class="codefrag">registerTags</span> method, passing itself as the only
+          parameter.  This method typically would typically call
+          <span class="codefrag">registerCustomElementFactory</span> for each element that
+          it wishes to handle.
+        </p>
+<p>
+          With Batik the most likely reason to extend a node is to provide
+          proper CSS styling of the node attributes.  To this end Batik
+          provides a class you can extend:
+          <a class="class" href="../javadoc/org/apache/batik/extension/PrefixableStylableExtensionElement.html">org.apache.batik.extension.PrefixableStylableExtensionElement</a>.
+          If you derive a new DOM class from this class you are only
+          required to implement three methods: <span class="codefrag">getLocalName</span>,
+          <span class="codefrag">getNamespaceURI</span>, and <span class="codefrag">newNode</span> 
+          (plus constructors).  If all you want is proper style support
+          (commonly the case) then you are done implementing your element
+          at this point.
+        </p>
+<p>
+          The distribution comes with a number of examples:
+        </p>
+<ul>
+          
+<li>
+<span class="codefrag">org.apache.batik.extension.svg.BatikStarElement</span>
+</li>
+          
+<li>
+<span class="codefrag">org.apache.batik.extension.svg.BatikRegularPolygonElement</span>
+</li>
+          
+<li>
+<span class="codefrag">org.apache.batik.extension.svg.BatikHistogramNormalizationElement</span>
+</li>
+          
+<li>
+<span class="codefrag">org.apache.batik.extension.svg.SolidColorElement</span>
+</li>
+          
+<li>
+<span class="codefrag">org.apache.batik.extension.svg.ColorSwitchElement</span>
+</li>
+        
+</ul>
+<p>
+          Included with these examples is 
+          <span class="codefrag">org.apache.batik.extension.svg.BatikDomExtension</span>,
+          which is the required instance of <span class="codefrag">DomExtension</span>
+          used to register the elements with the
+          <span class="codefrag">ExtensibleSVGDOMImplementation</span>.
+        </p>
+<p>
+          If your new element requires new &ldquo;presentation attributes&rdquo;
+          (XML attributes that can be modified through CSS, or, depending 
+          on your viewpoint, the other way around&mdash;CSS properties that 
+          can be specified using XML attributes), you will also need to
+          extend the CSS engine.  This can be done by registering a
+          custom CSS value factory.  Both of the color examples do
+          this (see <span class="codefrag">BatikDomExtension</span>).
+        </p>
+<a name="N100B6"></a><a name="bridgeExtension"></a>
+<h3 class="boxed">Writing a Batik bridge extension</h3>
+<p>
+          Before you write a bridge extension it may be useful to
+          understand what role the bridge package plays in
+          Batik. The bridge package is responsible for creating and
+          maintaining elements in the Graphics Vector Toolkit (GVT)
+          tree based on the corresponding element in the SVG DOM. This
+          is done because, for a variety of reasons, the SVG DOM is not
+          well suited for rendering, thus the GVT tree is used for all
+          rendering and transcoding operations.
+        </p>
+<p>
+          The key class for managing this link is the
+          <a class="class" href="../javadoc/org/apache/batik/bridge/BridgeContext.html">BridgeContext</a>.
+          This class maintains an association between a element name
+          with namespace and a particular bridge instance that will
+          handle it. The work of constructing the proper entity or
+          entities in the GVT tree is then deferred to the
+          <a class="class" href="../javadoc/org/apache/batik/bridge/Bridge.html">Bridge</a>
+          registered for a particular element. If no bridge is
+          regiestered nothing is done.
+        </p>
+<p>
+          New associations can be added by implementors of the
+          <a class="class" href="../javadoc/org/apache/batik/bridge/BridgeExtension.html">BridgeExtension</a>
+          Service Provider Interface. This interface has a number
+          of methods that provide information about the particular
+          extension being registered (including contact information,
+          and the list of implemented extensions). It also has a
+          <span class="codefrag">registerTags</span> method which is responsible for
+          registering the bridge instances with a
+          <span class="codefrag">BridgeContext</span>. All the built-in
+          bridges are bundled together with a
+          <span class="codefrag">BridgeExtension</span> (the
+          <a class="class" href="../javadoc/org/apache/batik/bridge/SVGBridgeExtension.html">org.apache.batik.bridge.SVGBridgeExtension</a>
+          class), as are the example extensions
+          (<a class="class" href="../javadoc/org/apache/batik/extension/svg/BatikBridgeExtension.html">org.apache.batik.extension.svg</a>),
+          so these are both good places to start.
+        </p>
+<p>
+          The <span class="codefrag">Bridge</span> interface itself is very simple. 
+          It only includes methods to get the namespace and local 
+          name of the element the bridge is responsible for.  This
+          interface is then extended for each of the major
+          concepts present in SVG:
+        </p>
+<dl>
+          
+<dt>
+<a href="#graphicsNodeBridge">GraphicsNodeBridge</a>
+</dt>
+          
+<dd>
+            
+<p>
+              These are probably the most common SVG elements, as
+              they represent graphic elements in the &ldquo;visible&rdquo; SVG tree.
+              These are the elements most other bridges modify in some way
+              (by clipping, masking, filtering, etc).
+            </p>
+            
+<p>
+              
+<em>Example SVG elements:</em>
+              <span class="codefrag">svg</span>, <span class="codefrag">g</span>, <span class="codefrag">path</span>,
+              <span class="codefrag">rect</span>.
+            </p>
+            
+<p>
+              
+<em>Example extension bridges:</em>
+              <span class="codefrag">BatikRegularPolygonElementBridge</span>,
+              <span class="codefrag">BatikStarElementBridge</span>.
+            </p>
+          
+</dd>
+          
+<dt>FilterBridge</dt> 
+          
+<dd>
+            
+<p>
+              This handles the SVG <span class="codefrag">filter</span> element.  If you
+              wanted to implement a new element that could be
+              referenced from the <span class="codefrag">filter</span> attribute on an SVG
+              graphics node then you would need to subclass this
+              bridge. However, adding new types of filters to the
+              existing SVG <span class="codefrag">filter</span> element is accomplished via the
+              FilterPrimitiveBridge.
+            </p>
+            
+<p>
+              
+<em>Example SVG element:</em> <span class="codefrag">filter</span>
+            
+</p>
+          
+</dd>
+          
+<dt>
+<a href="#filterPrimitiveBridge">FilterPrimitiveBridge</a>
+</dt> 
+          
+<dd>
+            
+<p>
+              This constructs an element in the filter chain
+              applied to an SVG graphics node.
+            </p>
+            
+<p>
+              
+<em>Example SVG elements:</em>
+              <span class="codefrag">feBlend</span>, <span class="codefrag">feCompose</span>,
+              <span class="codefrag">feGaussianBlur</span>.
+            </p>
+            
+<p>
+              
+<em>Example extension bridge:</em>
+              <span class="codefrag">BatikHistogramNormalizationElementBridge</span>
+            
+</p>
+          
+</dd>
+          
+<dt>
+<a href="#paintBridge">PaintBridge</a>
+</dt>
+          
+<dd>
+            
+<p>
+              This constructs a Java
+              <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/awt/Paint.html">Paint</a>
+              object to be used in filling or stroking graphic elements.
+            </p>
+            
+<p>
+              
+<em>Example SVG elements:</em>
+              <span class="codefrag">gradient</span>, <span class="codefrag">pattern</span>.
+            </p>
+            
+<p>
+              
+<em>Example extension bridge:</em>
+              <span class="codefrag">ColorSwitchBridge</span>.
+            </p>
+          
+</dd>
+          
+<dt>ClipBridge</dt>
+          
+<dd>
+            
+<p>
+              This constructs a
+              <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/renderable/ClipRable.html">ClipRable</a>
+              to apply to a graphics node.  This provides a path that data
+              is clipped to.
+            </p>
+            
+<p>
+              
+<em>Example SVG element:</em> <span class="codefrag">clipPath</span>.
+            </p>
+          
+</dd>
+          
+<dt>MarkerBridge</dt> 
+          
+<dd>
+            
+<p>
+              This constructs a
+              <a class="class" href="../javadoc/org/apache/batik/gvt/Marker.html">Marker</a>
+              for annotating the path of a graphics node.
+            </p>
+            
+<p>
+              
+<em>Example SVG element:</em> <span class="codefrag">marker</span>.
+            </p>
+          
+</dd>
+          
+<dt>MaskBridge</dt>
+          
+<dd>
+            
+<p>
+              This constructs a mask filter to apply to a graphics
+              node.  Mask filters typically modify the alpha channel of the
+              graphics node output to make portions fully or partially
+              transparent that wouldn&rsquo;t be otherwise.
+            </p>
+            
+<p>
+              
+<em>Example SVG element:</em> <span class="codefrag">mask</span>.
+            </p>
+          
+</dd>
+        
+</dl>
+<p>
+          Extension writers are free to work with any of the
+          above bridges, however the three most common are
+          likely to be the <span class="codefrag">GraphicsNodeBridge</span>, the
+          <span class="codefrag">FilterPrimitiveBridge</span>, and the 
+          <span class="codefrag">PaintBridge</span> (each of which has example
+          extensions available for inspection).  Each of these interfaces
+          has several very useful subclasses that handle much of the
+          common behavior among elements.
+        </p>
+<p>
+          In some simple cases it is possible to provide only an
+          extension to the bridge and achieve your desired effect,
+          however in most cases you will find that for your
+          element to behave like a normal SVG element (for
+          example, to support styling) you will need to provide
+          a DOM extension as well.
+        </p>
+<a name="N101CB"></a><a name="graphicsNodeBridge"></a>
+<h4>GraphicsNodeBridge</h4>
+<p>
+            The graphics node bridge is oriented around
+            constructing a new
+            <a class="class" href="../javadoc/org/apache/batik/gvt/GraphicsNode.html">GraphicsNode</a>
+            in the GVT tree. The <span class="codefrag">GraphicsNode</span> is the basic
+            object that makes up the GVT tree.  Each
+            <span class="codefrag">GraphicsNode</span> has a <span class="codefrag">paint</span> method that
+            is responsible for painting the object (including considering
+            clipping, masking, filtering, and opacity for the
+            node).
+          </p>
+<p> 
+            If you want to you can implement the
+            <a class="class" href="../javadoc/org/apache/batik/bridge/GraphicsNodeBridge.html">GraphicsNodeBridge</a>
+            interface directly, or you can subclass the
+            <a class="class" href="../javadoc/org/apache/batik/bridge/AbstractGraphicsNodeBridge.html">AbstractGraphicsNodeBridge</a>
+            class.  This gives you the most flexibility since you can
+            construct your new subclass of <span class="codefrag">GraphicsNode</span>, where
+            you can implement the paint method to do essentially anything
+            you want.  This is quite involved, however, and the steps
+            necessary to create a full <span class="codefrag">GraphicsNodeBridge</span>
+            are not detailed here.
+          </p>
+<p>
+            However, if you just want to generate a custom
+            filled or stroked shape the easiest way is to
+            subclass one of the following two classes.  In this
+            case you are essentially only responsible for
+            constructing a standard Java
+            <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/awt/Shape.html">Shape</a>
+            object to describe the desired area to operate on:
+          </p>
+<dl>
+            
+<dt>SVGShapeElementBridge</dt>
+            
+<dd>
+              
+<p>
+                Subclasses of this class only need to implement
+                <span class="codefrag">buildShape</span>, <span class="codefrag">getNamespaceURI</span>,
+                and <span class="codefrag">getLocalName</span>.  <span class="codefrag">buildShape</span>
+                generally constructs a <span class="codefrag">Shape</span> object and sets it
+                on the provided <span class="codefrag">shapeNode</span> object, however it
+                may adjust other features of the given shape node.
+              </p>
+            
+</dd>
+            
+<dt>SVGDecoratedShapeElementBridge</dt>
+            
+<dd>
+              
+<p>
+                This is very similar to <span class="codefrag">SVGShapeElementBridge</span>,
+                except that it also handles the standard marker properties.
+                Markers will be placed at the end of each segment of
+                the path that describes the shape.
+              </p>
+            
+</dd>
+          
+</dl>
+<p>
+            If you decide that you need to implement a new subclass
+            of <span class="codefrag">GraphicsNode</span> it is strongly suggested that
+            you extend
+            <a class="class" href="../javadoc/org/apache/batik/gvt/AbstractGraphicsNode.html">AbstractGraphicsNode</a>,
+            as this class does much of the work to behave like other
+            rendered elements in SVG (like clipping, filtering and
+            masking).  In this case you implement the
+            <span class="codefrag">primitivePaint</span> method instead of the
+            <span class="codefrag">paint</span> method.
+          </p>
+<a name="N10239"></a><a name="filterPrimitiveBridge"></a>
+<h4>FilterPrimitiveBridge</h4>
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/bridge/FilterPrimitiveBridge.html">FilterPrimitiveBridge</a>
+            is concerned with the construction of individual elements of the
+            filter chain.  Unlike graphics nodes, which generally just
+            draw new objects on top of the destination, filters take
+            existing image data and modify it to apply effects.
+          </p>
+<p>
+            This part of GVT rendering is based on the Java2D
+            <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/awt/image/renderable/RenderableImage.html">java.awt.image.renderable.RenderableImage</a>
+            and <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/awt/image/renderable/RenderedImage.html">java.awt.image.RenderedImage</a>
+            interfaces. These provide a convenient framework to handle
+            image processing (an inherently resolution dependent
+            operation) in the resolution independent system defined by
+            SVG.
+          </p>
+<p>
+            The <span class="codefrag">org.apache.batik.ext.awt.image</span> package
+            hierarchy contains a large set of generally useful extensions
+            to the core JDK classes and methods, that help to implement
+            SVG-related graphics operations.
+          </p>
+<p>
+            Note that the <span class="codefrag">FilterPrimitiveBridge</span> is invoked 
+            once for each reference to the <span class="codefrag">filter</span> element that
+            the filter primitive is part of.  So if a filter effect is used
+            a half dozen times the <span class="codefrag">createFilter</span> method will be
+            called a half dozen times, even though the element may only
+            appear once in the file. This means that it is safe for the
+            filters returned to be &ldquo;fixed&rdquo; for a particular
+            <span class="codefrag">GraphicsNode</span> being filtered.
+          </p>
+<p>
+            You will notice that Batik uses extended versions of
+            the standard <span class="codefrag">RenderableImage</span> and <span class="codefrag">RenderedImage</span> 
+            interfaces to provide additional information about
+            surrounding requirements for operations as well as a few
+            convenience methods.  These interfaces are called:
+            <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/renderable/Filter.html">org.apache.batik.ext.awt.image.renderable.Filter</a>
+            and
+            <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/rendered/CacheableRed.html">org.apache.batik.ext.awt.image.rendered.CacheableRed</a>.
+            Batik contains simple wrapper classes that can take the default
+            JDK <span class="codefrag">RenderableImage</span> and <span class="codefrag">RenderedImage</span>
+            interfaces.  Within the codebase the naming convention &ldquo;Red&rdquo; for
+            classes implementing <span class="codefrag">RenderedImage</span> and &ldquo;Rable&rdquo; for classes 
+            implementing <span class="codefrag">RenderableImage</span> is commonly
+            used (&ldquo;Red&rdquo; is to be pronounced like the color, and
+            &ldquo;Rable&rdquo; is to be pronounced like &ldquo;horrible&rdquo; with a
+            silent &ldquo;h&rdquo;).
+          </p>
+<p>
+            The <span class="codefrag">FilterPrimitiveBridge</span> has only
+            one method, <span class="codefrag">createFilter</span>, that must 
+            construct an instance of <span class="codefrag">Filter</span> to perform 
+            the required operation.  This is still a fairly complex task 
+            given the general need to support accessing the various
+            standard sources of image data.  To this end there is
+            a provided subclass,
+            <a class="class" href="../javadoc/org/apache/batik/bridge/AbstractSVGFilterPrimitiveElementBridge.html">AbstractSVGFilterPrimitiveElementBridge</a>,
+            that provides convenience methods to handle many common tasks.
+          </p>
+<p>
+            Generally the bulk of the work in writing a filter
+            extension is the writing of the concrete <span class="codefrag">Filter</span>
+            class, not tying it into the GVT tree.  Batik does contain
+            several base classes that make this processes a bit
+            easier:
+            <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/renderable/AbstractRable.html">org.apache.batik.ext.awt.image.renderable.AbstractRable</a>,
+            <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/rendered/AbstractRed.html">org.apache.batik.ext.awt.image.rendered.AbstractRed</a>,
+            and
+            <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/rendered/AbstractTiledRed.html">org.apache.batik.ext.awt.image.rendered.AbstractTiledRed</a>,
+            <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/rendered/TiledRed.html">TiledRed</a>
+            ties into the Batik tile cache (use this with caution as it is a
+            complex area of the Batik code).
+          </p>
+<p>
+            The <span class="codefrag">org.apache.batik.ext.awt.image.rendered</span>
+            and <span class="codefrag">org.apache.batik.ext.awt.image.renderable</span>
+            packages contain quite a number of fairly general examples
+            covering most common cases, please refer to them for more detail.
+          </p>
+<a name="N102BD"></a><a name="paintBridge"></a>
+<h4>PaintBridge</h4>
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/bridge/PaintBridge.html">PaintBridge</a>
+            constructs an instance of <span class="codefrag">java.awt.Paint</span> to be used
+            to fill or stroke shapes/text (part of the paint server
+            architecture of SVG).
+          </p>
+<p>
+            Like the filter primitive bridge, the <span class="codefrag">PaintBridge</span> 
+            is invoked for each reference to the paint.  This makes
+            it possible to customize the <span class="codefrag">Paint</span> returned for the
+            particular element to be painted.
+          </p>
+<p>
+            This is how gradients and patterns are implemented
+            in Batik, so it is possible to construct rather
+            complex paint effects through this mechanism.
+          </p>
+<p>
+            For paints you are mostly on your own, because unlike
+            the other cases there aren&rsquo;t any really generally useful
+            base classes to derive off, the closest is the
+            <a class="class" href="../javadoc/org/apache/batik/bridge/AbstractSVGGradientElementBridge.html">AbstractSVGGradientElementBridge</a>,
+            which is used to handle most of the radial and linear gradient
+            attributes.  
+          </p>
+<p>
+            The existing gradient paint implementations are in the
+            <span class="codefrag">org.apache.batik.ext.awt</span>, and the pattern
+            implementation is in <span class="codefrag">org.apache.batik.gvt</span> since it
+            requires access to GVT internals.
+          </p>
+</div>
+
+    
+<a name="N102EE"></a><a name="imageTagFormats"></a>
+<h2 class="boxed">New image file formats</h2>
+<div class="section">
+<p> 
+        When Batik encounters an <span class="codefrag">image</span> element and it
+        determines the element does not reference an SVG file, it defers
+        the loading of the referenced image to
+        <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/spi/ImageTagRegistry.html">org.apache.batik.ext.awt.image.spi.ImageTagRegistry</a>. 
+        This class maintains a list of
+        <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/spi/RegistryEntry.html">RegistryEntry</a>s,
+        generally one for each format.
+      </p>
+<p>
+        Since the formats supported natively by Batik are also
+        implemented through this mechanism. The 
+        <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/codec/jpeg/JPEGRegistryEntry.html">JPEGRegistryEntry</a>
+        and
+        <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/codec/png/PNGRegistryEntry.html">PNGRegistryEntry</a>
+        classes should be used as good references for extensions.
+      </p>
+<a name="N10311"></a><a name="RegistryEntry"></a>
+<h3 class="boxed">RegistryEntry</h3>
+<p>
+          There are currently two flavors of <span class="codefrag">RegistryEntry</span>:
+        </p>
+<dl>
+          
+<dt>URLRegistryEntry</dt>
+          
+<dd>
+            
+<p>
+              A
+              <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/spi/URLRegistryEntry.html">URLRegistryEntry</a>
+              takes a
+              <a class="class" href="../javadoc/org/apache/batik/util/ParsedURL.html">ParsedURL</a>
+              and tries to decide if the URL is intended for it.  This group
+              of entries is mostly intended to handle alternate network
+              protocols.  It can also be useful for interfacing with
+              libraries that want a URL instead of a stream.
+            </p>
+          
+</dd>
+          
+<dt>StreamRegistryEntry</dt>
+          
+<dd>
+            
+<p>
+              A
+              <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/spi/StreamRegistryEntry.html">StreamRegistryEntry</a>
+              works with a markable
+              <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html">InputStream</a>. 
+              This is the preferred form of registry entry as it generally
+              avoids opening a potentially expensive connection multiple
+              times, instead it opens the stream once and relies on mark and
+              reset to allow entries to check the stream.
+            </p>
+          
+</dd>
+        
+</dl>
+<a name="N10347"></a><a name="Helper+classes"></a>
+<h3 class="boxed">Helper classes</h3>
+<p> 
+          There exists quite a number of classes to assist in
+          implementing a <span class="codefrag">RegistryEntry</span>.  It is strongly
+          recommended that you review these classes and make use
+          of them where appropriate.  They will likely save you
+          time and improve the integration with Batik.
+        </p>
+<dl>
+          
+<dt>MagicNumberRegistryEntry</dt>
+          
+<dd>
+            
+<p>
+              
+<a class="class" href="../javadoc/org/apache/batik/ext/awt/image/spi/MagicNumberRegistryEntry.html">MagicNumberRegistryEntry</a>
+              is an abstract class that can handle the
+              <span class="codefrag">isCompatibleStream</span> method for formats that 
+              make use of &ldquo;magic numbers.&rdquo;  Magic numbers are a well 
+              known sequence of bytes at a well known offset in the
+              file, that are commonly used to identify image file formats.
+            </p>
+          
+</dd>
+          
+<dt>RedRable</dt>
+          
+<dd>
+            
+<p>
+              
+<a class="class" href="../javadoc/org/apache/batik/ext/awt/image/renderable/RedRable.html">RedRable</a>
+              takes any <span class="codefrag">java.awt.image.RenderedImage</span> and wraps it
+              into a <span class="codefrag">Filter</span> (Batik&rsquo;s subinterface of
+              <span class="codefrag">RenderableImage</span>).  This is very useful for
+              <em>single resolution</em> file formats.  
+            </p>
+          
+</dd>
+          
+<dt>DeferRable</dt>
+          
+<dd>
+            
+<p>
+              
+<a class="class" href="../javadoc/org/apache/batik/ext/awt/image/renderable/DeferRable.html">DeferRable</a>
+              allows one to load the image in a background
+              thread, rather than hold up the construction of the
+              GVT tree while reading the image (useful since
+              reading the image is generally I/O bound, so it
+              makes a good background task).  This is used by most of
+              the current image readers.
+            </p>
+          
+</dd>
+          
+<dt>AbstractRable</dt>
+          
+<dd>
+            
+<p>
+              
+<a class="class" href="../javadoc/org/apache/batik/ext/awt/image/renderable/AbstractRable.html">AbstractRable</a>
+              is an abstract base class that makes it relatively
+              easy to implement the Filter interface.
+            </p>
+          
+</dd>
+          
+<dt>AbstractRed</dt>
+          
+<dd>
+            
+<p>
+              
+<a class="class" href="../javadoc/org/apache/batik/ext/awt/image/rendered/AbstractRed.html">AbstractRed</a>
+              is an abstract base class that makes it relatively
+              easy to implement the
+              <a class="class" href="../javadoc/org/apache/batik/ext/awt/image/rendered/CacheableRed.html">CacheableRed</a>
+              interface (Batik's subclass of <span class="codefrag">RenderedImage</span>).
+            </p>
+          
+</dd>
+        
+</dl>
+</div>
+
+    
+<a name="N103B5"></a><a name="urlProtocols"></a>
+<h2 class="boxed">New URL protocols</h2>
+<div class="section">
+<p> 
+        For a variety of reasons (not the least of which is the
+        heavy use of the <span class="codefrag">data:</span> URL protocol in SVG), several
+        parts of Batik use a
+        <a class="class" href="../javadoc/org/apache/batik/util/ParsedURL.html">ParsedURL</a>
+        instead of the JDK&rsquo;s
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/net/URL.html">java.net.URL</a>
+        class.
+      </p>
+<p>
+        
+<span class="codefrag">ParsedURL</span> offers a few advantages over the JDK&rsquo;s 
+        <span class="codefrag">URL</span> class. First, it is designed to make minimal use of
+        exceptions, so it is possible to use it to parse a malformed 
+        URL and get &ldquo;the good parts&rdquo;.  Second, it is extensible, so 
+        support for new URL protocols can be added, even those that 
+        change the normal parsing rules for URLs (such as our friend the 
+        <span class="codefrag">data:</span> protocol).  Third, it can automatically check a
+        when a stream can be opened for common compression types and decode
+        them for you (this behavior can also be bypassed if needed).
+      </p>
+<p>
+        The service class is
+        <a class="class" href="../javadoc/org/apache/batik/util/ParsedURLProtocolHandler.html">org.apache.batik.util.ParsedURLProtocolHandler</a>.
+        This interface consists of three methods: one returns the protocol
+        to be handled, one is for parsing an absolute URL string and
+        one is for parsing relative URL strings. Both the parsing
+        methods return an object of type
+        <a class="class" href="../javadoc/org/apache/batik/util/ParsedURLData.html">ParsedURLData</a>
+        (the instance may of course be a subclass of
+        <span class="codefrag">ParsedURLData</span>).
+      </p>
+<p>
+        The <span class="codefrag">ParsedURLData</span> class holds all the data and 
+        implements all the stream handling commands for the 
+        <span class="codefrag">ParsedURL</span> class. This allows
+        <span class="codefrag">ParsedURLProtocolHandler</span>s to return custom subclasses
+        for particular protocols.
+      </p>
+</div>
+
+    
+<a name="N103F4"></a><a name="interpreters"></a>
+<h2 class="boxed">Additional script interpreters</h2>
+<div class="section">
+<p>
+        While conforming SVG browsers need support only ECMAScript as a scripting
+        language, Batik can support any scripting language given the right glue
+        to connect it to the rest of the system.
+      </p>
+<p>
+        Script interpreters are also handled via the Service Provider Interface,
+        The interface that needs to be implemented to expose a new interpreter
+        to Batik is
+        <a class="class" href="../javadoc/org/apache/batik/script/InterpreterFactory.html">InterpreterFactory</a>.
+        This class has two methods: <span class="codefrag">getMimeType</span>, which returns
+        a string that specifies what script type this intepreter handles
+        (specifically, what the <span class="codefrag">type</span> attribute of
+        <span class="codefrag">script</span> elements must be for them to be handled by this
+        intepreter), and <span class="codefrag">createInterpreter</span>, which creates an
+        instance of the
+        <a class="class" href="../javadoc/org/apache/batik/script/Interpreter.html">Interpreter</a>
+        interface.
+      </p>
+<p>
+        Batik comes with implementations of <span class="codefrag">Interpreter</span> and
+        <span class="codefrag">IntepreterFactory</span> to support TCL and Python script in
+        SVG documents, if the Jacl and Jython distributions are installed,
+        respectively.  See the classes in the
+        <span class="codefrag">org.apache.batik.script.jacl</span> and
+        <span class="codefrag">org.apache.batik.script.jython</span> packages to guidance
+        on how to implement the interpreter interfaces, and the
+        <a href="../install.html">installation notes</a> on what jar files are
+        needed for TCL and Python support.
+      </p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

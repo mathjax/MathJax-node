@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>SVG Font Converter</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li class="current">
+<a class="selected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Tools</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../tools/index.html">About the tools</a>
+</div>
+<div class="menuitem">
+<a href="../tools/browser.html">Browser</a>
+</div>
+<div class="menuitem">
+<a href="../tools/rasterizer.html">Rasterizer</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Font converter</div>
+</div>
+<div class="menuitem">
+<a href="../tools/pretty-printer.html">Pretty printer</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>SVG Font Converter</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#running">Running the font converter</a>
+</li>
+<li>
+<a href="#use-cases">Use cases</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      The TrueType Font to SVG (<span class="codefrag">ttf2svg</span>) application lets you
+      convert a range of characters from a TrueType Font into the SVG font
+      format.
+    </p>
+
+    
+<a name="N10017"></a><a name="running"></a>
+<h2 class="boxed">Running the font converter</h2>
+<div class="section">
+<p>
+        If you are using the Batik binary distribution, type the following at
+        the command line:
+      </p>
+<pre class="code">java -jar batik-ttf2svg.jar <em>OPTIONS</em>
+</pre>
+<p>
+        If you are using the Batik source distribution, type the following at
+        the command line:
+      </p>
+<pre class="code">build ttf2svg <em>OPTIONS</em>
+</pre>
+<p>
+        In both cases, the options are the same:
+      </p>
+<pre class="code">
+<em>ttf-path</em> <em>[</em><strong>-l</strong> <em>range-begin] [</em><strong>-h</strong> <em>range-end] [</em><strong>-ascii</strong><em>] [</em><strong>-id</strong> <em>id] [</em><strong>-o</strong> <em>output-path] [</em><strong>-testcard</strong><em>]</em>
+</pre>
+<p>
+        where:
+      </p>
+<dl class="options">
+        
+<dt>
+<em>ttf-path</em>
+</dt>
+        
+<dd>
+          
+<p>specifies the TrueType Font file containing the characters to be
+            converted,</p>
+        
+</dd>
+        
+<dt>
+<strong>-l</strong> <em>range-begin</em> <strong>-h</strong> <em>range-end</em>
+</dt>
+        
+<dd>
+          
+<p>specifies the range of characters (by codepoint, in decimal) to be
+            converted,</p>
+        
+</dd>
+        
+<dt>
+<strong>-ascii</strong>
+</dt>
+        
+<dd>
+          
+<p>forces usage of the ASCII character map in the font, instead of the
+            Unicode character map,</p>
+        
+</dd>
+        
+<dt>
+<strong>-id</strong> <em>id</em>
+</dt>
+        
+<dd>
+          
+<p>specifies the value for the <span class="codefrag">id</span> attribute of the generated
+            <span class="codefrag">font</span> element,</p>
+        
+</dd>
+        
+<dt>
+<strong>-o</strong> <em>output-path</em>
+</dt>
+        
+<dd>
+          
+<p>specifies the pathname of the output SVG document containing the
+            generated SVG font, and</p>
+        
+</dd>
+        
+<dt>
+<strong>-testcard</strong>
+</dt>
+        
+<dd>
+          
+<p>specifies that a sequence of SVG <span class="codefrag">text</span> elements should be
+            appended to the output SVG file to test the characters in the SVG
+            font, providing an easy way to validate that generated SVG
+            font visually.</p>
+        
+</dd>
+      
+</dl>
+<p>
+        For example:
+      </p>
+<pre class="code">java -jar batik-ttf2svg.jar /usr/home/myFont.ttf -l 48 -h 57 -id MySVGFont -o mySVGFont.svg -testcard</pre>
+<p>
+        will convert characters 48 to 57, i.e., <span class="codefrag">'0'</span> to
+        <span class="codefrag">'9'</span>, in the <span class="codefrag">myFont.ttf</span> file into their SVG
+        equivalent in the <span class="codefrag">mySVGFont.svg</span> file, appending a test 
+        card so that the font can be visualized.
+      </p>
+</div> 
+
+    
+<a name="useCases" id="useCases"></a>
+
+    <a name="N100CB"></a><a name="use-cases"></a>
+<h2 class="boxed">Use cases</h2>
+<div class="section">
+<p>
+        The TrueType Font converter application is helpful to be able to embed
+        font definitions in SVG files. This will ensure that the SVG document
+        will look exactly the same on all platform by not relying on system
+        fonts.
+      </p>
+<p>
+        Note that users of the tool should make sure that they have the right
+        to embed the font before embedding it in an SVG file and should refer
+        to the font license for information. Note that TrueType Font files
+        contain a flag that defines the &ldquo;embeddability&rdquo; of a font and there are
+        tools for checking that flag.
+      </p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

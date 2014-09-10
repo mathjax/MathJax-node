@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Batik Swing components</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_1.1.6', '../skin/')" id="menu_1.1.6Title" class="menutitle">Scripting</div>
+<div id="menu_1.1.6" class="menuitemgroup">
+<div class="menuitem">
+<a href="../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Swing components</div>
+</div>
+<div class="menuitem">
+<a href="../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Batik Swing components</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#creatingJSVGCanvas">Creating a JSVGCanvas</a>
+</li>
+<li>
+<a href="#eventhandling">Handling events</a>
+</li>
+<li>
+<a href="#interactor">Adding an Interactor</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      The goal of the Batik Swing component module is to provide a Swing
+      component that can used to display SVG documents.
+      With the
+      <a class="class" href="../javadoc/org/apache/batik/swing/JSVGCanvas.html">JSVGCanvas</a>
+      class, you can easily display an SVG document (from a URI or a DOM tree)
+      and allow the user to manipulate it, such as rotating, zooming, panning,
+      selecting text or activating hyperlinks. First this document explains how
+      to create a <span class="codefrag">JSVGCanvas</span> and integrate it in to a Swing
+      application. Then, it descibes some advanced features such as the listener
+      mechanism used to track all events that occurred while displaying or
+      manipulating an SVG document.
+    </p>
+
+    
+<a name="N1001C"></a><a name="creatingJSVGCanvas"></a>
+<h2 class="boxed">Creating a JSVGCanvas</h2>
+<div class="section">
+<p>
+        The following example illustrates how to create a
+        <span class="codefrag">JSVGCanvas</span>, which is a Swing component that follows the
+        Swing design rule. This means that the component is not thread safe and
+        all operations on the component or the document it is displaying must
+        be performed as described in
+        <a class="external" href="http://java.sun.com/docs/books/tutorial/uiswing/overview/threads.html">the
+          Swing tutorial</a>. The <span class="codefrag">JSVGCanvas</span> is also a
+        <a class="external" href="http://java.sun.com/products/javabeans/">JavaBean</a>, so it
+        can be used in visual application builders.
+      </p>
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+        If you try this example, do not forget to set your
+        <span class="codefrag">CLASSPATH</span> so that it contains the Batik classes and
+        resources, as well as Xerces (<span class="codefrag">lib/xerces_2_5_0.jar</span>)
+        and the XML APIs jars (<span class="codefrag">lib/xml-apis.jar</span> and
+        <span class="codefrag">lib/xml-apis-ext.jar</span>).
+      </div>
+</div>
+<pre class="code">import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+
+import javax.swing.*;
+
+import org.apache.batik.swing.JSVGCanvas;
+import org.apache.batik.swing.gvt.GVTTreeRendererAdapter;
+import org.apache.batik.swing.gvt.GVTTreeRendererEvent;
+import org.apache.batik.swing.svg.SVGDocumentLoaderAdapter;
+import org.apache.batik.swing.svg.SVGDocumentLoaderEvent;
+import org.apache.batik.swing.svg.GVTTreeBuilderAdapter;
+import org.apache.batik.swing.svg.GVTTreeBuilderEvent;
+
+public class SVGApplication {
+
+    public static void main(String[] args) {
+        // Create a new JFrame.
+        JFrame f = new JFrame("Batik");
+        SVGApplication app = new SVGApplication(f);
+
+        // Add components to the frame.
+        f.getContentPane().add(app.createComponents());
+
+        // Display the frame.
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        f.setSize(400, 400);
+        f.setVisible(true);
+    }
+    
+    // The frame.
+    protected JFrame frame;
+
+    // The "Load" button, which displays up a file chooser upon clicking.
+    protected JButton button = new JButton("Load...");
+
+    // The status label.
+    protected JLabel label = new JLabel();
+
+    // The SVG canvas.
+    protected JSVGCanvas svgCanvas = new JSVGCanvas();
+
+    public SVGApplication(JFrame f) {
+        frame = f;
+    }
+
+    public JComponent createComponents() {
+        // Create a panel and add the button, status label and the SVG canvas.
+        final JPanel panel = new JPanel(new BorderLayout());
+
+        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        p.add(button);
+        p.add(label);
+
+        panel.add("North", p);
+        panel.add("Center", svgCanvas);
+
+        // Set the button action.
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ae) {
+                JFileChooser fc = new JFileChooser(".");
+                int choice = fc.showOpenDialog(panel);
+                if (choice == JFileChooser.APPROVE_OPTION) {
+                    File f = fc.getSelectedFile();
+                    try {
+                        svgCanvas.setURI(f.toURL().toString());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        // Set the JSVGCanvas listeners.
+        svgCanvas.addSVGDocumentLoaderListener(new SVGDocumentLoaderAdapter() {
+            public void documentLoadingStarted(SVGDocumentLoaderEvent e) {
+                label.setText("Document Loading...");
+            }
+            public void documentLoadingCompleted(SVGDocumentLoaderEvent e) {
+                label.setText("Document Loaded.");
+            }
+        });
+
+        svgCanvas.addGVTTreeBuilderListener(new GVTTreeBuilderAdapter() {
+            public void gvtBuildStarted(GVTTreeBuilderEvent e) {
+                label.setText("Build Started...");
+            }
+            public void gvtBuildCompleted(GVTTreeBuilderEvent e) {
+                label.setText("Build Done.");
+                frame.pack();
+            }
+        });
+
+        svgCanvas.addGVTTreeRendererListener(new GVTTreeRendererAdapter() {
+            public void gvtRenderingPrepare(GVTTreeRendererEvent e) {
+                label.setText("Rendering Started...");
+            }
+            public void gvtRenderingCompleted(GVTTreeRendererEvent e) {
+                label.setText("");
+            }
+        });
+
+        return panel;
+    }
+}</pre>
+<div class="figure">
+<img alt="Screenshot of the example SVGApplication program" src="images/svgapplication.png">
+      </div>
+</div>
+
+    
+<a name="N1004E"></a><a name="eventhandling"></a>
+<h2 class="boxed">Handling events</h2>
+<div class="section">
+<p>
+        Each time you set a URI or an SVG DOM tree to be displayed in a
+        <span class="codefrag">JSVGCanvas</span> (using the <span class="codefrag">setURI</span> or
+        <span class="codefrag">setSVGDocument</span> method), the specified document is first
+        parsed (in case of a URI), built, rendered and optionally updated. The
+        proper way to be notified of these different phases is to implement a
+        listener and attach it to the component. There are five types
+        of listener:
+      </p>
+<dl>
+        
+<dt>
+<span class="codefrag">SVGDocumentLoaderListener</span>
+</dt>
+        
+<dd>
+          
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/swing/svg/SVGDocumentLoaderListener">SVGDocumentLoaderListener</a>
+            provides a set of methods that can be used to track
+            <a class="class" href="../javadoc/org/apache/batik/swing/svg/SVGDocumentLoaderEvent">SVGDocumentLoaderEvent</a>
+            events. It describes the loading phase: contructing an SVG
+            DOM tree using an SVG file.
+          </p>
+        
+</dd>
+        
+<dt>
+<span class="codefrag">GVTTreeBuilderListener</span>
+</dt>
+        
+<dd>
+          
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/swing/svg/GVTTreeBuilderListener">GVTTreeBuilderListener</a>
+            provides a set of methods that can be used to track
+            <a class="class" href="../javadoc/org/apache/batik/swing/svg/GVTTreeBuilderEvent">GVTTreeBuilderEvent</a>
+            events. It describes the building phase: contructing a GVT
+            (Graphics Vector Toolkit) tree using an SVG DOM tree. The GVT tree
+            will then be used to render the document.
+          </p>
+        
+</dd>
+        
+<dt>
+<span class="codefrag">SVGLoadEventDispatcherListener</span>
+</dt>
+        
+<dd>
+          
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/swing/svg/SVGLoadEventDispatcherListener">SVGLoadEventDispatcherListener</a>
+            provides a set of methods that can be used to track
+            <a class="class" href="../javadoc/org/apache/batik/swing/svg/SVGLoadEventDispatcherEvent">SVGLoadEventDispatcherEvent</a>
+            events. It describes the DOM <span class="codefrag">SVGLoad</span> event dispatch phase.
+          </p>
+          
+<p>
+            This event is triggered only in dynamic documents.
+          </p>
+        
+</dd>
+        
+<dt>
+<span class="codefrag">GVTTreeRendererListener</span>
+</dt>
+        
+<dd>
+          
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/swing/gvt/GVTTreeRendererListener.html">GVTTreeRendererListener</a>
+            provides a set of methods that can be used to track
+            <a class="class" href="../javadoc/org/apache/batik/swing/gvt/GVTTreeRendererEvent.html">GVTTreeRendererEvent</a>
+            events. It describes the rendering phase: constructing an image using
+            a GVT tree.
+          </p>
+          
+<p>
+            In dynamic documents this event is fired only once for the initial rendering.
+          </p>
+        
+</dd>
+        
+<dt>
+<span class="codefrag">UpdateManagerListener</span>
+</dt>
+        
+<dd>
+          
+<p>
+            The
+            <a class="class" href="../javadoc/org/apache/batik/bridge/UpdateManagerListener">UpdateManagerListener</a>
+            provides a set of methods that can be used to track
+            <a class="class" href="../javadoc/org/apache/batik/bridge/UpdateManagerEvent">UpdateManagerEvent</a>
+            events. It describes the running phase: the update manager is
+            started and then it can be suspended, resumed or stopped, and
+            graphics updates can be tracked.
+          </p>
+          
+<p>
+            This event is triggered only in dynamic documents.
+          </p>
+        
+</dd>
+      
+</dl>
+<p>
+        These listeners give a complete description of the different steps of
+        the five phases (including error states). Adapter classes are available
+        to ease the creation of new listener implementation&mdash;<a class="class" href="../javadoc/org/apache/batik/swing/svg/SVGDocumentLoaderAdapter.html">SVGDocumentLoaderAdapter</a>,
+        <a class="class" href="../javadoc/org/apache/batik/swing/svg/GVTTreeBuilderListenerAdapter.html">GVTTreeBuilderListenerAdapter</a>,
+        <a class="class" href="../javadoc/org/apache/batik/swing/svg/SVGLoadEventDispatcherAdapter.html">SVGLoadEventDispatcherAdapter</a>,
+        <a class="class" href="../javadoc/org/apache/batik/swing/gvt/GVTTreeRendererAdapter.html">GVTTreeRendererAdapter</a>
+        and
+        <a class="class" href="../javadoc/org/apache/batik/bridge/UpdateManagerAdapter.html">UpdateManagerAdapter</a>,
+      </p>
+<p>
+        For static documents, you can assume that the JSVGCanvas has completed
+        its job (parsing, building and rendering) when the
+        <span class="codefrag">gvtRenderingCompleted</span> method call is called, following a
+        <span class="codefrag">setURI</span> or a <span class="codefrag">setSVGDocument</span> method call.
+      </p>
+<p>
+        In the case of dynamic documents, the end of the computation (parsing,
+        building, SVGLoad dispatch, initial rendering and updates) is marked
+        by a call to the <span class="codefrag">updateManagerStopped</span> method.
+      </p>
+</div>
+
+    
+<a name="N10102"></a><a name="interactor"></a>
+<h2 class="boxed">Adding an Interactor</h2>
+<div class="section">
+<p>
+        The <span class="codefrag">JSVGCanvas</span> provides a set of build-in interactors that
+        let the users manipulate the displayed document, including ones for
+        zooming, panning and rotating. Interactors catch user input to the
+        <span class="codefrag">JSVGCanvas</span> component and translate them into behaviour.
+        If you want to add new behaviors to the <span class="codefrag">JSVGCanvas</span>, you
+        can implement the
+        <a class="class" href="../javadoc/org/apache/batik/swing/gvt/Interactor.html">Interactor</a>
+        interface. Then, you can register this new interactor to the component
+        by adding an element to the <span class="codefrag">List</span> returned by the
+        <span class="codefrag">getInteractors()</span> method of the canvas.
+      </p>
+</div>
+
+    <!--
+    <section id="jsvgscrollpane">
+      <title>Using the JSVGScrollPane component</title>
+      <p>
+
+      </p>
+    </section>
+    -->
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

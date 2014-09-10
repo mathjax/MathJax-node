@@ -1,0 +1,874 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Squiggle, the SVG Browser</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li class="current">
+<a class="selected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Tools</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../tools/index.html">About the tools</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Browser</div>
+</div>
+<div class="menuitem">
+<a href="../tools/rasterizer.html">Rasterizer</a>
+</div>
+<div class="menuitem">
+<a href="../tools/font-converter.html">Font converter</a>
+</div>
+<div class="menuitem">
+<a href="../tools/pretty-printer.html">Pretty printer</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Squiggle, the SVG Browser</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#downloading">Downloading the browser</a>
+</li>
+<li>
+<a href="#starting">Starting the browser</a>
+<ul class="minitoc">
+<li>
+<a href="#starting-binary">Starting the browser for the binary distribution</a>
+</li>
+<li>
+<a href="#starting-source">Starting the browser for the source distribution</a>
+</li>
+<li>
+<a href="#screenshot">Squiggle screenshot</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#viewing">Viewing SVG documents</a>
+<ul class="minitoc">
+<li>
+<a href="#localFile">Opening a local SVG file</a>
+</li>
+<li>
+<a href="#urlFile">Opening an SVG file from the web</a>
+</li>
+<li>
+<a href="#locationBar">Using the location bar text field to view an SVG file</a>
+</li>
+<li>
+<a href="#browsing">Browsing SVG files</a>
+</li>
+<li>
+<a href="#viewingMultiple">Viewing multiple SVG files</a>
+</li>
+<li>
+<a href="#reloading">Reloading an SVG document</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#exportAndPrint">Exporting and printing SVG documents</a>
+</li>
+<li>
+<a href="#inspecting">Inspecting the SVG source</a>
+<ul class="minitoc">
+<li>
+<a href="#viewingSource">Viewing the source</a>
+</li>
+<li>
+<a href="#viewingTree">Viewing the document tree</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#configuring">Configuring Squiggle</a>
+</li>
+<li>
+<a href="#zooming">Navigating SVG documents: zooming, panning, rotating, transform and thumbnail</a>
+<ul class="minitoc">
+<li>
+<a href="#zoomInOut">Zooming in and out</a>
+</li>
+<li>
+<a href="#panning">Panning a document</a>
+</li>
+<li>
+<a href="#rotating">Rotating a document</a>
+</li>
+<li>
+<a href="#transform">Using the Transform dialog</a>
+</li>
+<li>
+<a href="#thumbnail">Thumbnail</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<p>
+      This page describes the main features of Squiggle, the SVG browser that
+      comes with Batik.
+    </p>
+
+    
+<a name="N10014"></a><a name="downloading"></a>
+<h2 class="boxed">Downloading the browser</h2>
+<div class="section">
+<p>
+        Refer to the <a href="../download.cgi">download page</a> to find out
+        how to download Batik.  Refer to the
+        <a href="../install.html">installation page</a> for
+        instructions on how to install the Batik download on your system.
+      </p>
+</div>
+
+    
+<a name="N10026"></a><a name="starting"></a>
+<h2 class="boxed">Starting the browser</h2>
+<div class="section">
+<p>
+        The method for starting the browser depends on the distribution of Batik
+        that you chose to download. The following describes how to start the
+        browser for each distribution (binary and source).
+      </p>
+<a name="N1002F"></a><a name="starting-binary"></a>
+<h3 class="boxed">Starting the browser for the binary distribution</h3>
+<p>
+          If you downloaded the <a href="../install.html#distributions">binary
+            distribution</a> of Batik, you should have a file called
+          <span class="codefrag">batik-1.6.zip</span> (or similar), which, when expanded,
+          created a <span class="codefrag">batik-squiggle.jar</span> file. To start the browser,
+          type the following on the command line:
+        </p>
+<pre class="code">cd <em>installation-directory</em>
+java -jar batik-squiggle.jar</pre>
+<p>You can pass options on the command line:</p>
+<pre class="code">java -jar batik-squiggle.jar <em>[</em><strong>-font-size</strong> <em>font-size] [URIs]</em>
+</pre>
+<p>where:</p>
+<dl class="options">
+          
+<dt>
+<strong>-font-size</strong> <em>font-size</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the font size to use in windows and menus, and</p>
+          
+</dd>
+          
+<dt>
+<em>[URIs]</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the URIs for the SVG documents the browser should open
+              when it starts.</p>
+          
+</dd>
+        
+</dl>
+<p>For example:</p>
+<pre class="code">java -jar batik-squiggle.jar -font-size 10</pre>
+<p>starts the browser with a small widget text font size, and:</p>
+<pre class="code">java -jar batik-squiggle.jar -font-size 10 samples/batikLogo.svg</pre>
+<p>starts the browser with the <span class="codefrag">batikLogo.svg</span> file open and
+          uses a small widget text font size.</p>
+<p>
+          If you are using Mac OS X, and you have generated the Squiggle
+          application bundle, you can use its icon to start the browser.
+          This is the preferred way to start the browser under Mac OS X,
+          as it ensures better integration with the operating system
+          (a nicer looking menu and dock icon).
+        </p>
+<a name="N1008D"></a><a name="starting-source"></a>
+<h3 class="boxed">Starting the browser for the source distribution</h3>
+<p>
+          If you downloaded the <a href="../install.html#distributions">source
+            distribution</a> of Batik, you should have a zip file
+          called <span class="codefrag">batik-src-1.6.zip</span> (or similar) that expanded into
+          a directory called <span class="codefrag">xml-batik</span> or
+          <span class="codefrag">batik-version</span>.  In that directory, you can find
+          build scripts for the platform you are running on. For example, there
+          is a <span class="codefrag">build.bat</span> script for users of the Windows platform
+          and there is a <span class="codefrag">build.sh</span> script for UNIX users.
+        </p>
+<p>
+          To start the browser you should:
+        </p>
+<ul>
+          
+<li>
+            Make sure that your <span class="codefrag">JAVA_HOME</span> environment variable is
+            set to your JDK installation directory
+          </li>
+          
+<li>
+            Open a command line window and change to the <span class="codefrag">xml-batik</span>
+            or <span class="codefrag">batik-version</span> directory where the Batik
+            distribution was expanded
+          </li>
+          
+<li>
+            
+<p>
+              For Windows, type the following at the command prompt:
+            </p>
+            
+<pre class="code">build squiggle</pre>
+            
+<p>
+              and for Unix and Mac OS X:
+            </p>
+            
+<pre class="code">./build.sh squiggle</pre>
+            
+<p>This will start the browser.</p>
+          
+</li>
+        
+</ul>
+<p>You can pass options to the browser as follows, for Windows:</p>
+<pre class="code">build squiggle <em>[</em><strong>-font-size</strong> <em>font-size] [URIs]</em>
+</pre>
+<p>and for Unix:</p>
+<pre class="code">./build.sh squiggle <em>[</em><strong>-font-size</strong> <em>font-size] [URIs]</em>
+</pre>
+<p>
+          Refer to <a href="#starting-binary">&ldquo;Starting the browser for the
+            binary distribution&rdquo;</a> for an explanation of these options.
+        </p>
+<p>
+          Note that the number of files that can be opened on Windows from the
+          command line is limited because batch files take at most 9
+          parameters.
+        </p>
+<a name="N100FD"></a><a name="screenshot"></a>
+<h3 class="boxed">Squiggle screenshot</h3>
+<p>
+          The following image shows the result of starting the browser, from the
+          binary or source distribution, with the <span class="codefrag">-font-size 10
+            samples/batikFX.svg</span> options.
+        </p>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the batikFX.svg sample" src="images/svgviewerDefaultRegular.png">
+        </div>
+</div>
+
+    
+<a name="N10112"></a><a name="viewing"></a>
+<h2 class="boxed">Viewing SVG documents</h2>
+<div class="section">
+<p>
+        The browser has several features to view and browse SVG documents:
+      </p>
+<ul>
+        
+<li>
+<a href="#localFile">Opening a local SVG file</a>
+</li>
+        
+<li>
+<a href="#urlFile">Opening an SVG file from the web</a>
+</li>
+        
+<li>
+<a href="#locationBar">Using the location text field to view an SVG file</a>
+</li>
+        
+<li>
+<a href="#browsing">Browsing SVG files</a>
+</li>
+        
+<li>
+<a href="#viewingMultiple">Viewing multiple SVG files</a>
+</li>
+      
+</ul>
+<a name="N10137"></a><a name="localFile"></a>
+<h3 class="boxed">Opening a local SVG file</h3>
+<p>
+          In situations where you want to open SVG files locally on the machine
+          where you are running Squiggle, you can use <strong>File&rarr;Open
+            File</strong> menu item to open that file, or use the
+          <strong>Ctrl-F</strong> key accelerator. Doing so brings up a file
+          chooser that lets you select the file you want to view.
+        </p>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the 'File&rarr;Open' menu and file chooser" src="images/svgviewerFileOpen.png">
+        </div>
+<a name="N1014E"></a><a name="urlFile"></a>
+<h3 class="boxed">Opening an SVG file from the web</h3>
+<p>
+          There are many situations where the SVG content you want to view is
+          not local to the machine where Squiggle is running. In that case, you
+          can use the <strong>File&rarr;Open Location</strong> menu item, or
+          use the <strong>Ctrl-A</strong> key accelerator to open that page.
+          Doing so brings up a dialog box where you can type in the URL for the
+          file you want to view.
+        </p>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the 'File&rarr;Open Location' menu and window" src="images/svgviewerOpenPage.png">
+        </div>
+<a name="N10165"></a><a name="locationBar"></a>
+<h3 class="boxed">Using the location bar text field to view an SVG file</h3>
+<p>
+          When you know the URL of the document you want to view,
+          you can enter it directly in the location bar text field
+          at the top of Squiggle, the same way you can enter a URL
+          in an HTML browser.
+        </p>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the location bar" src="images/svgviewerLocationBar.png">
+        </div>
+<a name="N10176"></a><a name="browsing"></a>
+<h3 class="boxed">Browsing SVG files</h3>
+<p>
+          As with HTML content, it is common to navigate back and forth between
+          SVG files (remember that SVG files contain hyperlinks, just like HTML
+          does) and, as described later in this document, it is possible to
+          <a href="#zoomInOut">zoom</a> into SVG documents,
+          <a href="#panning">pan</a> and <a href="#rotating">rotate</a>.
+        </p>
+<div class="figure">
+<img alt="Screnshot of Squiggle showing the 'Go' menu" src="images/svgviewerBrowsing.png">
+        </div>
+<p>
+          Squiggle offers multiple features to help you browse SVG files:
+        </p>
+<dl>
+          
+<dt>Navigating between files</dt>
+          
+<dd>
+            
+<p>
+              The <strong>Go&rarr;Back</strong> menu item (or the
+              <strong>Ctrl-left arrow</strong> keyboard accelerator) and the
+              <strong>Go&rarr;Forward</strong> menu item (or the
+              <strong>Ctrl-right arrow</strong> keyboard accelerator) let you
+              move to the previous and next visited SVG documents.
+            </p>
+          
+</dd>
+          
+<dt>History</dt>
+          
+<dd>
+            
+<p>
+              The <strong>Go</strong> menu also contains a list of previously
+              viewed SVG documents, which gives you a way to randomly access any
+              document you have already visited.
+            </p>
+          
+</dd>
+          
+<dt>Navigating between views</dt>
+          
+<dd>
+            
+<p>
+              The <strong>View&rarr;Previous Transform</strong> menu item
+              (<strong>Ctrl-K</strong>) and the <strong>View&rarr;Next
+                Transform</strong> menu item (<strong>Ctrl-L</strong>) let you go
+              to the previous or next view of the document.  This is useful when,
+              for example, you <a href="#panning">pan</a> or
+              <a href="#rotating">rotate</a> the document and want to go back to
+              the previous view you had of the document (i.e., before you panned
+              or rotated it).
+            </p>
+          
+</dd>
+        
+</dl>
+<a name="N101D7"></a><a name="viewingMultiple"></a>
+<h3 class="boxed">Viewing multiple SVG files</h3>
+<div class="figure">
+<img alt="Screenshot of Squiggle with two windows open" src="images/svgviewerMultipleFiles.png">
+        </div>
+<p>
+          Squiggle can display multiple files simultaneously in different
+          windows. To view a new file in a separate window, simply select the
+          <strong>File&rarr;New Window</strong> menu item or use the
+          <strong>Ctrl-N</strong> keyboard accelerator.
+        </p>
+<a name="N101EE"></a><a name="reloading"></a>
+<h3 class="boxed">Reloading an SVG document</h3>
+<p>
+          When working on an SVG document, you may want the browser to reprocess
+          a document that you have modified. The <strong>File&rarr;Reload
+            Document</strong> menu item or the <strong>Ctrl-R</strong> keyboard
+          accelerator will cause the document to be reprocessed by the browser.
+        </p>
+</div>
+
+    
+<a name="N101FF"></a><a name="exportAndPrint"></a>
+<h2 class="boxed">Exporting and printing SVG documents</h2>
+<div class="section">
+<p>
+        The <strong>File&rarr;Print</strong> menu item or
+        <strong>Ctrl-P</strong> will print the currently displayed SVG document.
+      </p>
+<p>
+        The <strong>File&rarr;Export As</strong> menu item offers the option
+        to export the currently displayed SVG document to various raster
+        formats. Currently, the browser supports the
+        <abbr title="Portable Network Graphics">PNG</abbr>,
+        <abbr title="Joint Photographic Expert Group">JPEG</abbr> and
+        <abbr title="Tagged Image File Format">TIFF</abbr> formats.
+      </p>
+</div>
+
+    
+<a name="N10221"></a><a name="inspecting"></a>
+<h2 class="boxed">Inspecting the SVG source</h2>
+<div class="section">
+<p>
+        The browser offers two ways to inspect the source of an SVG document:
+        <a href="#viewingSource">viewing the plain source</a> or
+        <a href="#viewingTree">viewing the document tree</a>. Both are explained
+        below.
+      </p>
+<a name="N10232"></a><a name="viewingSource"></a>
+<h3 class="boxed">Viewing the source</h3>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the 'View&rarr;View Source' menu item and the source window" src="images/svgviewerViewSource.png">
+        </div>
+<p>
+          When the browser displays an SVG file, you can select the
+          <strong>View&rarr;View Source...</strong> menu item or use the
+          <strong>Ctrl-U</strong> keyboard accelerator to view the source code.
+        </p>
+<a name="N10249"></a><a name="viewingTree"></a>
+<h3 class="boxed">Viewing the document tree</h3>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the 'View&rarr;DOM Viewer...' menu item and the DOM viewer window" src="images/svgviewerViewTree.png">
+        </div>
+<p>
+          When the browser displays an SVG file, you can select the
+          <strong>View&rarr;DOM Viewer...</strong> menu item or use the
+          <strong>Ctrl-D</strong> keyboard accelerator to open a window that
+          shows the SVG document in the form of a tree. The window lets you
+          navigate the tree, select individual elements, such as a path
+          elements, and view the attributes and CSS values that apply to these
+          elements.  While the View Source window shows the SVG source as it
+          was when it was loaded, the DOM Viewer window reflects the current
+          state of the document, including any modifications that have occurred
+          due to script.
+        </p>
+</div>
+
+    
+<a name="N10261"></a><a name="configuring"></a>
+<h2 class="boxed">Configuring Squiggle</h2>
+<div class="section">
+<p>
+        The <strong>Edit&rarr;Preferences</strong> menu item or
+        <strong>Ctrl-G</strong> brings up the dialog box shown in the following
+        figure.
+      </p>
+<div class="figure">
+<img alt="Screenshot of Squiggle with the Preferences window open" src="images/svgviewerPreferences.png">
+        </div>
+<p>
+        This dialog contains several types of options, which can be selected
+        with the left-hand side list. For each type of option, a panel lets you
+        configure various browser parameters:
+      </p>
+<dl>
+        
+<dt>General panel</dt>
+        
+<dd>
+          
+<p>
+            This panel lets you choose some optional behavior:
+          </p>
+          
+<dl>
+            
+<dt>Enable double buffering</dt>
+            
+<dd>
+              When on, the browser uses additional memory resources
+              which improves the quality of effects such as zooming and panning.
+            </dd>
+            
+<dt>Show Rendering</dt>
+            
+<dd>
+              When on, the browser will update the canvas while processing an
+              SVG document. This turns on progressive rendering.
+            </dd>
+            
+<dt>Automatically resize window to document size</dt>
+            
+<dd>
+              When on, the browser window is resized to fit any newly loaded
+              document.
+            </dd>
+            
+<dt>Animation rate limiting</dt>
+            
+<dd>
+              This set of radio buttons determines how often animation
+              updates are performed.  This can be set as a maximum percentage
+              of CPU time to use, a maximum number of frames per second, or
+              to perform as many updates as possible (unlimited).
+            </dd>
+            
+<dt>Print debugging information to console</dt>
+            
+<dd>
+              When on, some debug messages will be printed to the standard
+              output. This is will likely interest only developers.
+            </dd>
+            
+<dt>Use a validating XML parser</dt>
+            
+<dd>
+              When on, the XML parser used to load documents will be in
+              validating mode.  This means that the document will be validated
+              against the DTD when it is loaded, and external DTD subsets
+              will be fetched.
+            </dd>
+          
+</dl>
+        
+</dd>
+
+        
+<dt>Security panel</dt>
+        
+<dd>
+          
+<p>
+            This panel has options relating to the script and resource
+            access in documents.
+          </p>
+        
+</dd>
+
+        
+<dt>Language panel</dt>
+        
+<dd>
+          
+<p>
+            This is the panel shown in the above figure. That panel lets you
+            select your languages. The user language can be used in SVG documents
+            to choose between alternate contents. For example, open the
+            <span class="codefrag">samples/moonPhases.svg</span> example. Then, change the user
+            language to French and <a href="#reloading">reload</a> the document
+            (<strong>Ctrl-R</strong>).  You will see that the text is now
+            displayed in French. You can do the same with Japanese and the text
+            will be shown in Japanese.
+          </p>
+        
+</dd>
+
+        
+<dt>Stylesheet panel</dt>
+        
+<dd>
+          This panel lets you specify a user stylesheet which can override some
+          of the default settings in viewed SVG documents. This might be useful
+          if you want, for example, to override the font size used in text
+          elements.
+        </dd>
+
+        
+<dt>Network panel</dt>
+        
+<dd>
+          
+<p>
+            This panel lets you configure the proxy server to use if you are
+            working from behind a firewall.
+          </p>
+        
+</dd>
+      
+</dl>
+</div>
+
+    
+<a name="N102D9"></a><a name="zooming"></a>
+<h2 class="boxed">Navigating SVG documents: zooming, panning, rotating, transform and thumbnail</h2>
+<div class="section">
+<p>
+        The Batik browser offers multiple way to navigate SVG documents:
+      </p>
+<ul>
+        
+<li>
+<a href="#zoomInOut">Zooming in and out</a>
+</li>
+        
+<li>
+<a href="#panning">Panning</a>
+</li>
+        
+<li>
+<a href="#rotating">Rotating</a>
+</li>
+        
+<li>
+<a href="#transform">Arbitrary transforms</a>
+</li>
+        
+<li>
+<a href="#thumbnail">Thumbnail</a>
+</li>
+      
+</ul>
+<a name="N102FE"></a><a name="zoomInOut"></a>
+<h3 class="boxed">Zooming in and out</h3>
+<p>
+          There are several methods to zoom in or out an SVG document:
+        </p>
+<ul>
+          
+<li>
+            You can select the <strong>View&rarr;Zoom In</strong> or
+            <strong>View&rarr;Zoom Out</strong> menu item.
+          </li>
+          
+<li>
+            You can <strong>click</strong> on the <strong>Zoom In/Out</strong>
+            tool bar buttons (the ones that show a magnifying glass with
+            <strong>+/-</strong> signs).
+          </li>
+          
+<li>
+            You can use the <strong>Ctrl+I</strong> and <strong>Ctrl+O</strong>
+            keyboard accelerators.
+          </li>
+          
+<li>
+            If the mouse is over the document in the display area, you can press
+            the <strong>Ctrl key</strong> then <strong>click the left mouse
+              button and drag</strong> to select the area of interest in the
+            document.  This can only be used to zoom into a document.
+          </li>
+          
+<li>
+            If the mouse is over the document in the display area, you can press
+            the <strong>Shift key</strong> then <strong>click the right mouse
+              button and drag</strong> it. This is called the <em>real time</em>
+            zoom and can be used both for zooming in and out.
+          </li>
+        
+</ul>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the Zoom In and Zoom Out menu items and tool bar buttons" src="images/svgviewerZoomin.png">
+        </div>
+<div class="figure">
+<img alt="Screenshot of Squiggle zooming to an area of interest" src="images/svgviewerAOI.png">
+        </div>
+<a name="panning" id="panning"></a><a name="N1034F"></a><a name="panning"></a>
+<h3 class="boxed">Panning a document</h3>
+<p>
+          Some documents are too big to fit into the browser, especially when
+          you <a href="#zoomInOut">zoom</a> in with a large zoom factor. In
+          these circumstances, it is useful to be able to move around the
+          document and pan to view different parts of the documents. Again,
+          there are multiple ways to do this:
+        </p>
+<ul>
+          
+<li>
+            With the mouse cursor over the SVG document, <strong>press the Shift
+              key</strong> and then <strong>click and drag the left mouse
+              button</strong> to a new location. When you release the mouse, the
+            document will be translated to the new mouse location.
+          </li>
+          
+<li>
+            If you have the <a href="#thumbnail">thumbnail</a> open, you can
+            select the marker showing the current area of interest and move it
+            to the desired location.
+          </li>
+        
+</ul>
+<div class="figure">
+<img alt="Screenshot of Squiggle illustrating the panning gesture" src="images/svgviewerPan.png">
+        </div>
+<a name="N10377"></a><a name="rotating"></a>
+<h3 class="boxed">Rotating a document</h3>
+<p>
+          It is sometimes useful to be able to rotate a document (maps for
+          example). You can do this in the Batik browser by first pressing the
+          <strong>Ctrl key</strong> and then <strong>clicking and dragging
+            the right mouse button</strong> to a new location. The browser will
+          dynamically rotate the image as you move your cursor. When you are
+          satisfied with that angle, you can release the mouse button and the
+          document will be displayed with that new angle.
+        </p>
+<a name="N10387"></a><a name="transform"></a>
+<h3 class="boxed">Using the Transform dialog</h3>
+<p>
+          While the mouse and keyboard interactions give interactive way to
+          navigate an SVG document, it is sometimes desirable to be able to
+          define precisely the amount of <a href="#zoomInOut">zoom</a>,
+          <a href="#panning">pan</a> or <a href="#rotating">rotation</a>
+          desired. The Transform dialog, available through the
+          <strong>View&rarr;Transform</strong> menu (<strong>Ctrl-E</strong>)
+          offers that feature.
+        </p>
+<a name="N103A3"></a><a name="thumbnail"></a>
+<h3 class="boxed">Thumbnail</h3>
+<p>
+          Panning in the document window can be difficult after you have zoomed
+          into a document because you cannot see the whole document. Panning on
+          large documents (or with a large zoom factor) is made easy by the
+          thumbnail that you can bring up through the
+          <strong>View&rarr;Thumbnail</strong> menu item or
+          the <strong>Ctrl-Y</strong> keyboard accelerator. The thumbnail shows
+          a rectangular marker that represents the &ldquo;Area of Interest&rdquo;, i.e.,
+          the region currently displayed in the window (the visible portion of
+          the document). You can <strong>drag out a rectangular marker with the
+            left mouse button pushed down</strong> to select a new area of
+          interest which will then be shown in the main window.
+        </p>
+<div class="figure">
+<img alt="Screenshot of Squiggle showing the Thumbnail window" src="images/svgviewerThumbnail.png">
+        </div>
+</div>
+
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

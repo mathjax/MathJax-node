@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Scripting with ECMAScript</title>
+<link type="text/css" href="../../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../../skin/profile.css" rel="stylesheet">
+<script src="../../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.1.6', '../../skin/')" id="menu_selected_1.1.6Title" class="menutitle" style="background-image: url('../../skin/images/chapter_open.gif');">Scripting</div>
+<div id="menu_selected_1.1.6" class="selectedmenuitemgroup" style="display: block;">
+<div class="menupage">
+<div class="menupagetitle">Scripting with ECMAScript</div>
+</div>
+<div class="menuitem">
+<a href="../../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Scripting with ECMAScript</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#scriptingBasics">Scripting basics</a>
+</li>
+<li>
+<a href="#rhinoFeatures">Using Rhino features</a>
+</li>
+<li>
+<a href="#customizingRhino">Customizing the Rhino interpreter</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      This page is a brief introduction to scripting SVG documents with
+      ECMAScript, and how Batik&rsquo;s ECMAScript environment can be extended.
+    </p>
+        
+    
+<a name="N10014"></a><a name="scriptingBasics"></a>
+<h2 class="boxed">Scripting basics</h2>
+<div class="section">
+<p>
+        As the ECMAScript language (the standardised version of JavaScript)
+        is one of the most popular scripting languages, and as the SVG
+        specification states that an SVG conforming implementation must
+        support it, SVG documents processed by Batik support scripting
+        with ECMAScript using Mozilla&rsquo;s ECMAScript interpreter,
+        <a class="external" href="http://www.mozilla.org/rhino/">Rhino</a>.
+      </p>
+<p>
+        There are two places in an SVG file where you can put scripts. 
+      </p>
+<p>  
+        The first one is in the <span class="codefrag">script</span>
+        element, where you can place any code, including function
+        definitions, to be executed just before the document
+        <span class="codefrag">SVGLoad</span> event is fired.
+      </p>
+<pre class="code">&lt;svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"&gt;
+  &lt;script type="text/ecmascript"&gt;
+    // ECMAScript code to be executed 
+  &lt;/script&gt;
+
+  &lt;!-- Remainder of the document... --&gt;
+&lt;/svg&gt;</pre>
+<p>
+        You can also attach script to respond to user or document
+        events using attributes on SVG elements. As shown in the
+        previous example, the scripting language must be set on
+        the <span class="codefrag">script</span> element. However, for event handling
+        the default language type <span class="codefrag">text/ecmascript</span>
+        is assumed. If you want to change it you can use
+        the <span class="codefrag">contentScriptType</span> attribute on the
+        <span class="codefrag">svg</span> element.
+      </p>
+<p>
+        The event attribute can contain any script code to execute when the
+        event reaches the element (as described by the
+        <a class="external" href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow">DOM event flow</a>)
+        in either the bubbling or at-target phases.  The following example
+        will change the <span class="codefrag">rect</span> to be filled in blue when it is
+        clicked.
+      </p>
+<pre class="code">&lt;svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"&gt;
+  &lt;rect x="0" y="0" width="10" height="10"
+        onclick="evt.target.setAttribute('fill', 'blue')"/&gt;
+&lt;/svg&gt;</pre>
+<p>
+        Note that inside the event attribute script, there is a variable
+        called <span class="codefrag">evt</span> that is a reference to the
+        <a class="external" href="http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-Event">Event</a>
+        object that represents the event that is being handled.
+      </p>
+<p>
+        For more information on using scripting in SVG you can have a look at:
+      </p>
+<ul>
+        
+<li>
+          the <a class="external" href="http://www.w3.org/TR/SVG11/script.html">scripting
+            chapter of the SVG specification</a>, for advanced information on
+          scripting in SVG, and
+        </li>
+        
+<li>
+          the <a class="external" href="http://www.ecma.ch/ecma1/stand/ecma-262.htm">ECMAScript
+            specification</a>, for advanced information on the ECMAScript
+          language.
+        </li>
+      
+</ul>
+</div>
+        
+    
+<a name="N1006E"></a><a name="rhinoFeatures"></a>
+<h2 class="boxed">Using Rhino features</h2>
+<div class="section">
+<p>
+        Rhino has a number of features beyond those supported by standard
+        ECMAScript interpreters, and these can be used with Batik.  One
+        useful feature is that ECMAScript code can use Java classes and
+        objects, and not just the standard ECMAScript primitive types and
+        host objects exposed by Batik.
+      </p>
+<p>
+        To create an instance of a Java class from ECMAScript, you first need
+        to import the package in which it resides.  This is done using the
+        <span class="codefrag">importPackage</span> global function that Rhino provides.
+        For example, to import the <span class="codefrag">javax.swing.JFrame</span> class,
+        you use:
+      </p>
+<pre class="code">importPackage(Packages.javax.swing);</pre>
+<p>
+        This then exposes a global property for each class in the
+        <span class="codefrag">javax.swing</span> package that you can use to create a new
+        object of this class, similar to a <span class="codefrag">import javax.swing.*;</span>
+        statement in Java.  We can use the exposed <span class="codefrag">JFrame</span>
+        property to create a new instance of this class:
+      </p>
+<pre class="code">var frame = new JFrame("My test frame");</pre>
+<p>
+        Note how an ECMAScript string value is passed as the parameter to
+        <span class="codefrag">JFrame</span>&rsquo;s constructor.  Rhino will attempt to convert
+        ECMAScript values into appropriate Java primitive types or objects
+        to make underlying constructor or method calls.  In this instance,
+        the ECMAScript string value is converted into a
+        <span class="codefrag">java.lang.String</span> object to be passed to the constructor.
+      </p>
+<p>
+        Now that we have a reference to this Java object, we can call any
+        method on it as we usually would from Java code.  The following
+        complete example demonstrates this, where clicking the green
+        circle will pop up a frame:
+      </p>
+<pre class="code">&lt;svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"&gt;
+  &lt;circle cx="50" cy="50" r="50" fill="green" onclick="showFrame()"/&gt;
+  &lt;script type="text/ecmascript"&gt;
+    importPackage(Packages.javax.swing);
+
+    function showFrame() {
+      var frame = new JFrame("My test frame");
+      var label = new JLabel("Hello from Java objects created in ECMAScript!");
+      label.setHorizontalAlignment(SwingConstants.CENTER);
+      frame.getContentPane().add(label);
+      frame.setSize(400, 100);
+      frame.setVisible(true);
+      frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }
+  &lt;/script&gt;
+&lt;/svg&gt;</pre>
+<p>
+        For more information on scripting Java classes from ECMAScript code,
+        see Rhino's
+        <a class="external" href="http://www.mozilla.org/rhino/ScriptingJava.html">Scripting
+          Java</a> document.
+      </p>
+</div>
+
+    
+<a name="N100AC"></a><a name="customizingRhino"></a>
+<h2 class="boxed">Customizing the Rhino interpreter</h2>
+<div class="section">
+<p>
+        A useful example of customization of the Rhino interpreter comes from
+        the fact that the ECMAScript specification doesn&rsquo;t provide any
+        predefined I/O facilities to interact with the console. However, it is
+        very common for ECMAScript compatible languages to provide a function
+        named <span class="codefrag">print</span> to output messages to the console. We will
+        describe here an example of cutomization of the Batik Rhino
+        interpreter to add such functionality to it. 
+      </p>
+<p>
+        You should first subclass the default Batik ECMAScript interpreter to
+        add the functionality to it as below.
+      </p>
+<pre class="code">import org.apache.batik.script.rhino.RhinoInterpreter;
+
+import java.net.URL;
+
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Function;
+import org.mozilla.javascript.Scriptable;
+import org.mozilla.javascript.ScriptableObject;
+import org.mozilla.javascript.PropertyException;
+
+public class ExtendedRhinoInterpreter extends RhinoInterpreter {
+
+    public ExtendedRhinoInterpreter(URL documentURL) {
+        super(documentURL);
+
+        // Array of functions to put in the global object.
+        final String[] names = { "print" }
+        try {
+            // Add the functions to the global object.
+            getGlobalObject().defineFunctionProperties
+                (names, ExtendedRhinoInterpreter.class,
+                 ScriptableObject.DONTENUM);
+        } catch (PropertyException e) {
+            throw new Error(e);
+        }
+    }
+    
+    public static void print(Context cx, Scriptable thisObj,
+                             Object[] args, Function funObj) {
+        for (int i = 0; i &lt; args.length; i++) {
+            if (i &gt; 0) {
+                System.out.print(" ");
+            }
+	    
+            // Convert the ECMAScript value into a string form.
+            String s = Context.toString(args[i]);
+            System.out.print(s);
+        }
+        System.out.println();
+    }
+}</pre>
+<p>
+        Now, you need to tell to Batik to use this interpreter instead of the
+        default one.  For that, you must first define a factory to create
+        instances of your interpreter.
+      </p>
+<pre class="code">import org.apache.batik.script.Interpreter;
+import org.apache.batik.script.rhino.RhinoInterpreterFactory;
+
+public class ExtendedRhinoInterpreterFactory extends RhinoInterpreterFactory {
+
+    public Interpreter createInterpreter(URL documentURL, boolean isSVG12) {
+        return new ExtendedRhinoInterpreter(documentURL);
+    }
+}</pre>
+<p>
+        Then, you must build an
+        <a class="class" href="../../javadoc/org/apache/batik/script/InterpreterPool.html">IntepreterPool</a> 
+        that will use this factory, and then set the pool on the
+        <a class="class" href="../../javadoc/org/apache/batik/bridge/BridgeContext.html">BridgeContext</a>
+        of your application.
+      </p>
+<pre class="code">org.apache.batik.bridge.BridgeContext ctx = ...;
+org.apache.batik.script.InterpreterPool pool =
+    new org.apache.batik.script.InterpreterPool();
+InterpreterFactory f = new ExtendedRhinoInterpreterFactory();
+
+// Register the interpreter factory for all four MIME types that
+// Batik normally supports for ECMAScript.
+pool.putInterpreterFactory("text/ecmascript", f);
+pool.putInterpreterFactory("text/javascript", f);
+pool.putInterpreterFactory("application/ecmascript", f);
+pool.putInterpreterFactory("application/javascript", f);
+ctx.setIntepreterPool(pool);</pre>
+<p>
+        For example if you are using the Batik SVG browser application you
+        should be able to use the previous piece of code on a subclass of the
+        <a class="class" href="../../javadoc/org/apache/batik/swing/JSVGCanvas.html">JSVGCanvas</a>
+        class in the <span class="codefrag">createBridgeContext()</span> method.
+      </p>
+<p>
+        For further information on working with Rhino, consult the
+        <a class="external" href="http://www.mozilla.org/rhino/">Rhino website</a>.
+      </p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>SVG Pretty Printer</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li class="current">
+<a class="selected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Tools</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../tools/index.html">About the tools</a>
+</div>
+<div class="menuitem">
+<a href="../tools/browser.html">Browser</a>
+</div>
+<div class="menuitem">
+<a href="../tools/rasterizer.html">Rasterizer</a>
+</div>
+<div class="menuitem">
+<a href="../tools/font-converter.html">Font converter</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Pretty printer</div>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>SVG Pretty Printer</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#downloading">Downloading the pretty printer</a>
+</li>
+<li>
+<a href="#using">Pretty printing an SVG file</a>
+<ul class="minitoc">
+<li>
+<a href="#using-binary">Using the binary distribution</a>
+</li>
+<li>
+<a href="#using-source">Using the source distribution</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+    
+<p>
+      This page describes the features of the SVG pretty printer utility that
+      comes with the Batik distribution.  The SVG pretty printer is a utility
+      that can format SVG files.  The tool formats an SVG document according to
+      the arguments passed on the command line.
+    </p>
+
+    
+<a name="N10014"></a><a name="downloading"></a>
+<h2 class="boxed">Downloading the pretty printer</h2>
+<div class="section">
+<p>
+        Refer to the <a href="../install.html">install page</a> and the
+        <a href="../download.cgi">download page</a> to find out what to
+        download and how to download it. Remember that you can get either the
+        source or binary distribution.
+      </p>
+</div>
+
+    
+<a name="N10026"></a><a name="using"></a>
+<h2 class="boxed">Pretty printing an SVG file</h2>
+<div class="section">
+<p>
+        The method for starting the pretty-printer depends on the distribution
+        of Batik that you chose to download. The following describes how to
+        run the pretty printer for each distribution.
+      </p>
+<a name="N1002F"></a><a name="using-binary"></a>
+<h3 class="boxed">Using the binary distribution</h3>
+<p>
+          If you downloaded the binary distribution of Batik, you should have
+          a file called <span class="codefrag">batik-1.6.zip</span> (or similar), and, after
+          expanding that file, a jar file called <span class="codefrag">batik-svgpp.jar</span>. 
+          To start the pretty printer, open a console, change to the directory
+          where you expanded the distribution (and where
+          <span class="codefrag">batik-svgpp.jar</span> is located) and simply type the following
+          at the command prompt:
+        </p>
+<pre class="code">java -jar batik-svgpp.jar <em>[OPTIONS] FILES</em>
+</pre>
+<p>For example, if you type:</p>
+<p>
+<span class="codefrag">java -jar batik-svgpp.jar samples/batikFX.svg</span>
+</p>
+<p>you will see the indented document written to standard output.</p>
+<p>For the options:</p>
+<dl class="options">
+          
+<dt>
+<strong>-newline cr</strong><em>|</em><strong>cr-lf</strong><em>|</em><strong>lf</strong>
+</dt>
+          
+<dd>
+            
+<p>specifies the newline character(s) generated in the printed
+              document, the default being <span class="codefrag">lf</span> (Unix-style
+              newlines),</p>
+          
+</dd>
+          
+<dt>
+<strong>-tab-width</strong> <em>number</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the tabulation width, the default being 4,</p>
+          
+</dd>
+          
+<dt>
+<strong>-doc-width</strong> <em>number</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the maximum number of columns for the whole document,
+              the default being 80,</p>
+          
+</dd>
+          
+<dt>
+<strong>-no-format</strong>
+</dt>
+          
+<dd>
+            
+<p>specifies that the current indentation should be preserved,
+              useful for performing doctype or newline substitutions,</p>
+          
+</dd>
+          
+<dt>
+<strong>-xml-decl</strong> <em>string</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the XML declaration,</p>
+          
+</dd>
+          
+<dt>
+<strong>-doctype change</strong><em>|</em><strong>remove</strong>
+</dt>
+          
+<dd>
+            
+<p>specifies whether the doctype should be changed or removed,</p>
+          
+</dd>
+          
+<dt>
+<strong>-publid-id</strong> <em>string</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the public ID to in the doctype declaration, when
+              <span class="codefrag">-doctype change</span> is specified, and</p>
+          
+</dd>
+          
+<dt>
+<strong>-system-id</strong> <em>string</em>
+</dt>
+          
+<dd>
+            
+<p>specifies the system ID to in the doctype declaration, when
+              <span class="codefrag">-doctype change</span> is specified.</p>
+          
+</dd>
+        
+</dl>
+<p>For example:</p>
+<pre class="code">java -jar batik-svgpp.jar -tab-width 2 -newline cr-lf src.svg dest.svg</pre>
+<p>
+          will format <span class="codefrag">src.svg</span> and write it to
+          <span class="codefrag">dest.svg</span> using a tabulation width of 2 and Windows-style
+          newlines, and:
+        </p>
+<pre class="code">java -jar batik-svgpp.jar -no-format -doctype change -public-id "-//W3C//DTD SVG 1.1//EN" <strong class="cont">\</strong>
+     -system-id "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" src.svg dest.svg</pre>
+<p>
+          will format <span class="codefrag">src.svg</span> and write it to
+          <span class="codefrag">dest.svg</span> unchanged, except for the doctype public and
+          system IDs, which will be replaced by those specified.
+        </p>
+<a name="N100EE"></a><a name="using-source"></a>
+<h3 class="boxed">Using the source distribution</h3>
+<p>
+          If you downloaded the source distribution of Batik, you will have a
+          zip or tar file that expanded into a directory called
+          <span class="codefrag">xml-batik</span> or <span class="codefrag">batik-version</span>. In that
+          directory, you can find build scripts for the platform you are running
+          on. For example, there is a <span class="codefrag">build.bat</span> script for users of
+          the Windows platform and there is a <span class="codefrag">build.sh</span> script for
+          UNIX users.
+        </p>
+<p>
+          To start the pretty printer you should:
+        </p>
+<ul>
+          
+<li>
+            
+<p>Make sure that your <span class="codefrag">JAVA_HOME</span> environment
+              variable is set to your JDK installation directory.</p>
+          
+</li>
+          
+<li>
+            
+<p>Open a command line window and go to the <span class="codefrag">xml-batik</span>
+              or <span class="codefrag">batik-version</span> directory where the Batik
+              distribution was expanded.</p>
+          
+</li>
+          
+<li>
+            
+<p>For windows, type the following at the command prompt:</p>
+            
+<pre class="code">build svgpp</pre>
+            
+<p>and for Unix:</p>
+            
+<pre class="code">./build.sh svgpp</pre>
+            
+<p>This will print out a help message for the pretty printer.</p>
+          
+</li>
+        
+</ul>
+<p>You can pass options to the rasterizer as follows, for Windows:</p>
+<pre class="code">build svgpp <em>[OPTIONS] FILES</em>
+</pre>
+<p>and for Unix:</p>
+<pre class="code">./build.sh svgpp <em>[OPTIONS] FILES</em>
+</pre>
+<p>Refer to <a href="#using-binary">&ldquo;Using the binary distribution&rdquo;</a>
+          for an explanation of these options.</p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

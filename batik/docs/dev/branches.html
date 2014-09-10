@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Subversion repository branches</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="../using/index.html">Using Batik</a>
+</li>
+<li class="current">
+<a class="selected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Development</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../dev/index.html">Index</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Branches</div>
+</div>
+<div class="menuitem">
+<a href="../dev/svg12.html">SVG 1.2 support</a>
+</div>
+<div class="menuitem">
+<a href="../dev/test.html">Test infrastructure</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Subversion repository branches</h1>
+    
+<p>
+      This page contains information on the current work that is being done
+      in Batik&rsquo;s Subversion repository.  There are currently three main branches
+      in use in the repository:
+    </p>
+    
+<dl>
+      
+<dt>trunk</dt>
+      
+<dd>
+        
+<p>
+          The
+          <a class="external" href="http://svn.apache.org/repos/asf/xmlgraphics/batik/trunk">trunk</a>
+          is the main development branch.  All bug fixes and most new
+          non-experimental features are checked in to this branch.  While it is
+          the bleeding edge of the available Batik code, it is generally stable
+          enough to use.  For more information on SVG 1.2 features that are
+          supported by the trunk, see the
+          <a href="../dev/svg12.html">SVG 1.2 support</a> page.
+        </p>
+      
+</dd>
+      
+<dt>webapi</dt>
+      
+<dd>
+        
+<p>
+          The
+          <a class="external" href="http://svn.apache.org/repos/asf/xmlgraphics/batik/branches/webapi">webapi</a>
+          branch is where some experimental support for some of the work being
+          produced by the <a class="external" href="http://www.w3.org/2006/webapi/">Web API
+            WG</a> (specifically, support for
+          <a class="external" href="http://www.w3.org/TR/XMLHttpRequest">XMLHttpRequest</a> and
+          the <a class="external" href="http://www.w3.org/TR/Window">Window object</a>).  When
+          the specifications and the implementation mature enough, the
+          code will be folded back into the trunk.
+        </p>
+      
+</dd>
+      
+<dt>svg11</dt>
+      
+<dd>
+        
+<p>
+          The
+          <a class="external" href="http://svn.apache.org/repos/asf/xmlgraphics/batik/branches/svg11">svg11</a>
+          branch contains the code that was the trunk before the old svg12
+          branch became the trunk.  Bug fixes that are made on the trunk are
+          also ported to the svg11 branch.  This branch will be deprecated at
+          some point in the future.
+        </p>
+      
+</dd>
+    
+</dl>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

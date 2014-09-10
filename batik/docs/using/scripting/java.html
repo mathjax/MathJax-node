@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Scripting With Java</title>
+<link type="text/css" href="../../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../../skin/profile.css" rel="stylesheet">
+<script src="../../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.1.6', '../../skin/')" id="menu_selected_1.1.6Title" class="menutitle" style="background-image: url('../../skin/images/chapter_open.gif');">Scripting</div>
+<div id="menu_selected_1.1.6" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Scripting with Java</div>
+</div>
+<div class="menuitem">
+<a href="../../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Scripting With Java</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#Swing">How to manipulate a document in a JSVGCanvas</a>
+</li>
+<li>
+<a href="#Threads">Writing thread-safe code</a>
+</li>
+<li>
+<a href="#SVGDOM">Using the SVG DOM</a>
+</li>
+<li>
+<a href="#javaInDocument">Referencing Java code from a document</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      This page explains how to manipulate the DOM tree of an SVG
+      document from a Java program.
+    </p>
+
+    
+<a name="N10014"></a><a name="Swing"></a>
+<h2 class="boxed">How to manipulate a document in a JSVGCanvas</h2>
+<div class="section">
+<p>
+        The follow code template demonstrates how to manipulate an SVG
+        document displayed in a
+        <a class="class" href="../../javadoc/org/apache/batik/swing/JSVGCanvas.html">JSVGCanvas</a>
+        directly from a Java program.
+      </p>
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+        You don&rsquo;t have to worry about graphics updates; after each event
+        listener invocation the canvas is updated if needed.
+      </div>
+</div>
+<pre class="code">import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+
+import org.apache.batik.swing.JSVGCanvas;
+import org.apache.batik.swing.svg.SVGLoadEventDispatcherAdapter;
+import org.apache.batik.swing.svg.SVGLoadEventDispatcherEvent;
+import org.apache.batik.script.Window;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.events.Event;
+import org.w3c.dom.events.EventListener;
+import org.w3c.dom.events.EventTarget;
+
+public class SVGApplication {
+
+    public static void main(String[] args) {
+        new SVGApplication();
+    }
+
+    JFrame frame;
+    JSVGCanvas canvas;
+    Document document;
+    Window window;
+
+    public SVGApplication() {
+        frame = new JFrame();
+        canvas = new JSVGCanvas();
+        // Forces the canvas to always be dynamic even if the current
+        // document does not contain scripting or animation.
+        canvas.setDocumentState(JSVGCanvas.ALWAYS_DYNAMIC);
+        canvas.addSVGLoadEventDispatcherListener
+            (new SVGLoadEventDispatcherAdapter() {
+                    public void svgLoadEventDispatchStarted
+                        (SVGLoadEventDispatcherEvent e) {
+                        // At this time the document is available...
+                        document = canvas.getSVGDocument();
+                        // ...and the window object too.
+                        window = canvas.getUpdateManager().
+                            getScriptingEnvironment().createWindow();
+                        // Registers the listeners on the document
+                        // just before the SVGLoad event is
+                        // dispatched.
+                        registerListeners();
+                        // It is time to pack the frame.
+                        frame.pack();
+                    }
+                });
+        
+        frame.addWindowListener(new WindowAdapter() {
+                public void windowOpened(WindowEvent e) {
+                    // The canvas is ready to load the base document
+                    // now, from the AWT thread.
+                    canvas.setURI("doc.svg");
+                }
+            });
+
+        frame.getContentPane().add(canvas);
+        frame.setSize(800, 600);
+        frame.show();
+    }
+
+    public void registerListeners() {
+        // Gets an element from the loaded document.
+        Element elt = document.getElementById("elt-id");
+        EventTarget t = (EventTarget)elt;
+
+        // Adds a 'onload' listener
+        t.addEventListener("SVGLoad", new OnLoadAction(), false);
+
+        // Adds a 'onclick' listener
+        t.addEventListener("click", new OnClickAction(), false);
+    }
+
+    public class OnLoadAction implements EventListener {
+        public void handleEvent(Event evt) {
+            // Perform some actions here...
+            
+            // ...for example start an animation loop:
+            window.setInterval(new Animation(), 50);
+        }
+    }
+
+    public class OnClickAction implements EventListener {
+        public void handleEvent(Event evt) {
+            // Perform some actions here...
+
+            // ...for example schedule an action for later:
+            window.setTimeout(new DelayedTask(), 500);
+        }
+    }
+
+    public class Animation implements Runnable {
+        public void run() {
+            // Insert animation code here...
+        }
+    }
+
+    public class DelayedTask implements Runnable {
+        public void run() {
+            // Perform some actions here...
+
+            // ...for example displays an alert dialog:
+            window.alert("Delayed Action invoked!");
+        }
+    }
+}
+</pre>
+</div>
+  
+    
+<a name="N1002A"></a><a name="Threads"></a>
+<h2 class="boxed">Writing thread-safe code</h2>
+<div class="section">
+<p>
+        The DOM listeners registered on the SVG document are called from
+        the canvas update thread. To avoid race conditions, do not manipulate
+        the DOM tree from another thread.
+      </p>
+<p>
+        The way to switch from an external thread to the canvas update
+        thread is to use the following code:
+      </p>
+<pre class="code">// Returns immediately
+canvas.getUpdateManager().getUpdateRunnableQueue().
+    invokeLater(new Runnable() {
+        public void run() {
+            // Insert some actions on the DOM here
+        }
+    });</pre>
+<p>or:</p>
+<pre class="code">// Waits until the Runnable is invoked
+canvas.getUpdateManager().getUpdateRunnableQueue().
+    invokeAndWait(new Runnable() {
+        public void run() {
+            // Insert some actions on the DOM here
+        }
+    });</pre>
+<p>
+        Like with event listeners, when a
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/Runnable.html">Runnable</a>
+        is invoked from the update thread, the graphics are updated.
+      </p>
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+        It is very dangerous to call <span class="codefrag">invokeAndWait</span> from the
+        Swing event thread.  This is the only thread that can be
+        used to interact with Swing components.  In some cases
+        DOM calls may need to query the canvas for information
+        (such as actual Swing component size, etc).  If this
+        happens you will get a thread deadlock.  You should
+        only make invokeAndWait calls from &ldquo;third party&rdquo; threads.
+      </div>
+</div>
+</div>
+
+    
+<a name="N10050"></a><a name="SVGDOM"></a>
+<h2 class="boxed">Using the SVG DOM</h2>
+<div class="section">
+<p>
+        Batik provides a fairly complete implementation of the
+        SVG DOM.  The SVG DOM provides all the functionality most 
+        applications require.  In particular, the DOM implements
+        DOM Events, including mutation and UI Events.  As an example,
+        DOM events allow you to get notified when the cursor moves over
+        elements of interest:
+      </p>
+<pre class="code">// Element of Interest.
+Element theElem = ...;
+((EventTarget) theElem).addEventListener("mouseover", mouseOverListener, true);</pre>
+<p>
+        where <span class="codefrag">mouseOverListener</span> implements the
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/events/EventListener.html">org.w3c.dom.events.EventListener</a>
+        interface.  This interface consists of the method:
+      </p>
+<pre class="code">void handleEvent(Event evt);</pre>
+<p>
+        This is called whenever the event occurs with the
+        element it is registered on.  It is worth reviewing the
+        DOM Events specification as there are many useful features
+        to this interface that are not immediately obvious.
+      </p>
+<p>
+        It is also worth looking at the DOM interfaces defined
+        by the SVG specification as they provide a large number
+        of useful methods, in particular those of
+        <a class="class" href="../../javadoc/org/w3c/dom/svg/SVGLocatable.html">SVGLocatable</a>:
+      </p>
+<pre class="code">// Returns Bounding box of SVG Element.
+public SVGRect   getBBox (  );
+// Returns the transformation matrix to the screen.
+public SVGMatrix getScreenCTM (  );
+// Returns the transformation matrix to the given element.
+public SVGMatrix getTransformToElement ( SVGElement element )
+                throws SVGException;</pre>
+<p>
+        In particular, <span class="codefrag">getScreenCTM</span> is very useful for
+        taking the <span class="codefrag">clientX</span> and <span class="codefrag">clientY</span> attributes of
+        the DOM
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/events/UIEvent.html">UIEvent</a>
+        and mapping them to the coordinate system of an element in the SVG
+        document:
+      </p>
+<pre class="code">SVGMatrix mat  = elem.getScreenCTM();
+SVGMatrix imat = mat.inverse();
+SVGPoint  cPt  = document.getRootElement().createSVGPoint();
+cPt.setX(uiEvt.getClientX());
+cPt.setY(uiEvt.getClientY());
+cPt = cPt.matrixTransform(imat);</pre>
+</div>
+
+    
+<a name="N10091"></a><a name="javaInDocument"></a>
+<h2 class="boxed">Referencing Java code from a document</h2>
+<div class="section">
+<p>
+        Batik implements the Java bindings for SVG, and thus allows Java
+        code to be referenced from <span class="codefrag">script</span> elements.
+        This feature is available to any application of Batik that uses
+        the bridge module (for example the Swing component and the
+        transcoders).
+      </p>
+<p>
+        In order to use this extension, the <span class="codefrag">type</span> attribute
+        of a <span class="codefrag">script</span> element must be set to
+        <span class="codefrag">application/java-archive</span>. In addition, the
+        <span class="codefrag">xlink:href</span> attribute must be the URI of a jar file
+        that contains the code to run.
+      </p>
+<p>
+        The manifest of this jar file must contains an entry of the form:
+      </p>
+<pre class="code">SVG-Handler-Class: <em>classname</em>
+</pre>
+<p>
+        where <em>classname</em> must be the name of a class that
+        implements the
+        <a class="class" href="../../javadoc/org/w3c/dom/svg/EventListenerInitializer.html">org.w3c.dom.svg.EventListenerInitializer</a>
+        interface.  Just before the document <span class="codefrag">SVGLoad</span> event
+        is fired, an instance of this class is created, and this instance has
+        its <span class="codefrag">initializeEventListeners</span> method invoked.  Note that
+        there is no way to specify Java handlers in event attributes on
+        SVG elements, so having the <span class="codefrag">initializeEventListeners</span>
+        call <span class="codefrag">addEventListener</span> on a node is the only way to
+        attach a Java listener from within the document.
+      </p>
+<p>
+        The class specified by <span class="codefrag">SVG-Handler-Class</span> can be contained
+        directly in the jar file, but it is also possible for it to be
+        contained in a jar file added to the classpath using the
+        <span class="codefrag">Class-Path</span> entry of the manifest.
+      </p>
+</div>
+
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

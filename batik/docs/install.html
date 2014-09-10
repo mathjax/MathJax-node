@@ -1,0 +1,639 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Installing Batik</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li class="current">
+<a class="selected" href="index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', 'skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Project</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="license.html">License</a>
+</div>
+<div class="menuitem">
+<a href="download.cgi">Download</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Installation notes</div>
+</div>
+<div class="menuitem">
+<a href="status.html">Status</a>
+</div>
+<div class="menuitem">
+<a href="demo.html">Demo</a>
+</div>
+<div class="menuitem">
+<a href="faq.html">FAQs</a>
+</div>
+<div class="menuitem">
+<a href="mailing-lists.html">Mailing lists</a>
+</div>
+<div class="menuitem">
+<a href="contributors.html">Contributors</a>
+</div>
+<div class="menuitem">
+<a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=specific&bug_status=__open__&product=Batik">Bug database</a>
+</div>
+<div class="menuitem">
+<a href="uses.html">Projects using Batik</a>
+</div>
+<div class="menuitem">
+<a href="http://www.apache.org/foundation/sponsorship.html">ASF sponsorship program</a>
+</div>
+<div class="menuitem">
+<a href="http://www.apache.org/foundation/thanks.html">ASF thanks</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', 'skin/')" id="menu_1.2Title" class="menutitle">Resources</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div onclick="SwitchMenu('menu_1.2.1', 'skin/')" id="menu_1.2.1Title" class="menutitle">Specifications</div>
+<div id="menu_1.2.1" class="menuitemgroup">
+<div onclick="SwitchMenu('menu_1.2.1.1', 'skin/')" id="menu_1.2.1.1Title" class="menutitle">For SVG 1.1</div>
+<div id="menu_1.2.1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVG11/">SVG 1.1</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/REC-CSS2/">CSS Level 2</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Core/">DOM Level 2 Core</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Events/">DOM Level 2 Events</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Style/">DOM Level 2 Style</a>
+</div>
+<div class="menuitem">
+<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript 3rd ed.</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/">SMIL Animation</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2.1.2', 'skin/')" id="menu_1.2.1.2Title" class="menutitle">For SVG 1.2</div>
+<div id="menu_1.2.1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVGMobile12/">SVG Tiny 1.2 (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVG12/">SVG Full 1.2 (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-Core/">DOM Level 3 Core</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-Events/">DOM Level 3 Events (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-XPath/">DOM Level 3 XPath (note)</a>
+</div>
+</div>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/xmlgraphics-batik/FrontPage">Batik wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.svg.org/">SVG wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://groups.yahoo.com/group/svg-developers/">SVG Developers mailing list</a>
+</div>
+<div class="menuitem">
+<a href="http://lists.w3.org/Archives/Public/www-svg/">W3C SVG mailing list</a>
+</div>
+<div class="menuitem">
+<a href="http://svg.jibbering.com/">#svg IRC channel</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Installing Batik</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#systemRequirements">System requirements</a>
+</li>
+<li>
+<a href="#distributions">Choosing a distribution to download</a>
+</li>
+<li>
+<a href="#optionalComponents">Optional components</a>
+</li>
+<li>
+<a href="#dependencyGraph">Jar file dependency graph</a>
+</li>
+<li>
+<a href="#verify">Verify releases</a>
+</li>
+</ul>
+</div>
+    
+<a name="N10010"></a><a name="systemRequirements"></a>
+<h2 class="boxed">System requirements</h2>
+<div class="section">
+<p>
+        Batik requires the following to be already installed in your system:
+      </p>
+<dl>
+        
+<dt>Java Runtime Environment</dt>
+        
+<dd>
+          
+<p>
+            A Java 1.3 or above compatible runtime environment must be present.
+            Note that to support the following features a Java 1.4 or above
+            JRE is required:
+          </p>
+          
+<ul>
+            
+<li>
+              SVG 1.2 <a href="dev/svg12.html#other">mouse wheel events</a>
+            
+</li>
+          
+</ul>
+        
+</dd>
+      
+</dl>
+</div>
+
+    
+<a name="N10030"></a><a name="distributions"></a>
+<h2 class="boxed">Choosing a distribution to download</h2>
+<div class="section">
+<p>
+        To install Batik, you will need to go to the
+        <a href="download.cgi">download page</a> and download one or more ZIP
+        file containing the distribution of your choice. It is good practice to
+        <a href="#verify">verify the integrity</a> of the distribution files,
+        especially if you are using one of our mirror sites. Here are the
+        various components you will find in the download area and their intended
+        use:
+      </p>
+<ul>
+        
+<li>
+          
+<p>
+            
+<strong>batik-</strong><em>version</em><strong>.zip</strong> (e.g.,
+            <span class="codefrag">batik-1.6.zip</span>)
+          </p>
+          
+<p>
+            The <em>binary distribution</em> contains compiled executable JAR
+            files that let you get started with Batik easily. This is the
+            recommended distribution if you want to look at Batik&rsquo;s features,
+            or you want to experiment with SVG and see the fun things you can
+            do with Batik. The binary distribution comes with a set of sample
+            SVG files.
+          </p>
+        
+</li>
+
+        
+<li>
+          
+<p>
+            
+<strong>batik-src-</strong><em>version</em><strong>.zip</strong> 
+            (e.g., <span class="codefrag">batik-src-1.6.zip</span>)
+          </p>
+          
+<p>
+            The <em>source distribution</em> contains a complete snapshot of the
+            Batik source code, documentation, regression tools and utilities as
+            well as the script for building Batik. That distribution is a
+            snapshot of the SVN repository. This is the recommended distribution
+            for developers who want to dive into the code and understand how
+            Batik can be integrated in their applications or how Batik can be
+            extended.
+          </p>
+        
+</li>
+
+        
+<li>
+          
+<p>
+            
+<strong>batik-docs-</strong><em>version</em><strong>.zip</strong>
+            (e.g., <span class="codefrag">batik-docs-1.6.zip</span>)
+          </p>
+          
+<p>
+            The <em>documentation bundle</em> contains a copy of 
+            the Javadoc for the Batik source code.
+          </p>
+        
+</li>
+      
+</ul>
+<p>
+        We make nightly copies of the source tree available from the
+        <a class="external" href="http://svn.apache.org/builds/xml-batik">Apache
+          build</a> server. These builds represent the current state of
+        development and may or may not be as stable as releases.
+        There are two types of distributions provided:
+      </p>
+<ul>
+        
+<li>
+          
+<p>
+            
+<strong>batik-svn-</strong><em>date</em><strong>.zip</strong>
+            (e.g., <span class="codefrag">batik-svn-06-03-29.zip</span>)
+          </p>
+          
+<p>
+            This contains a complete copy of the Subversion repository trunk,
+            including support for running <a href="dev/test.html">regard</a>,
+            Batik&rsquo;s regression testing utility.  In particular this includes all
+            the reference images for testing.  Developers are encouraged to get
+            these or better use <a href="download.html#svn">Subversion</a>
+            directly.
+          </p>
+        
+</li>
+        
+<li>
+          
+<p>
+            
+<strong>batik-src-</strong><em>date</em><strong>.zip</strong>
+            (e.g., <span class="codefrag">batik-src-06-03-29.zip</span>)
+          </p>
+          
+<p>
+            This contains all the source code and libraries needed to
+            build and run Batik from source, but does not include the
+            testing facilities.
+          </p>
+        
+</li>
+      
+</ul>
+<p>
+        Older releases are available from the
+        <a class="external" href="http://archive.apache.org/dist/xmlgraphics/batik">Apache archives</a>.
+        However, we strongly recommend using the current release of Batik.
+      </p>
+<p>In all cases, the user should:</p>
+<ul>
+        
+<li>
+          Make sure a Java Development Kit (JDK) is installed on the computer
+          where Batik will be installed. See the
+          <a href="#systemRequirements">system requirements</a>.  Make sure
+          that the <span class="codefrag">java</span> runtime is in the <span class="codefrag">PATH</span>
+          environment variable.
+        </li>
+        
+<li>
+          Select the directory where he/she wants to download the distribution.
+        </li>
+        
+<li>
+          Download the desired distribution from the
+          <a href="download.cgi">download page</a>.
+        </li> 
+        
+<li>
+          Download the associated PGP signature (.asc) and KEYS file
+          (preferable) or MD5 hash (.md5).  This must be done directly from the
+          <a class="external" href="http://www.apache.org/dist/xmlgraphics/batik">Apache
+            download</a> area to mean anything.
+        </li>
+        
+<li>
+          Open a console and go to the directory where the distribution was
+          downloaded.
+        </li>
+        
+<li>
+          
+<a href="#verify">Verify the integrity</a> of the distribution.
+        </li>
+        
+<li>
+          
+<p>
+            Unpack the distribution with Java&rsquo;s JAR utility:
+          </p>
+          
+<pre class="code">jar xvf &lt;distribution&gt;</pre>
+          
+<p>
+            For example, if you have downloaded batik-1.6.zip into
+            /home/IamHere, type the following at the command prompt:
+          </p>
+          
+<pre class="code">cd /home/IamHere
+jar xvf batik-1.6.zip</pre>
+          
+<p>
+            
+<strong>IMPORTANT:</strong> UNIX users, do not use the
+            <span class="codefrag">unzip</span> utility to unpack the various Batik zip files,
+            as this would not set the directories access rights properly.
+          </p>
+        
+</li>
+        
+<li>
+          
+<p>
+            If you are using Mac OS X, you can now generate an application
+            bundle for Squiggle, Batik's SVG browser:
+          </p>
+          
+<pre class="code">sh lib/make-squiggle-app.sh</pre>
+          
+<p>
+            After running this script, a Finder window will be opened where
+            you can find the generated Squiggle application bundle.  Drag
+            this to your Applications folder to install it.
+          </p>
+        
+</li>
+        
+<li>
+          Now you can follow the instructions specific to the application you
+          want to use.  For example, see the <a href="tools/browser.html">SVG
+            Browser</a> page or the <a href="tools/rasterizer.html">SVG
+            Rasterizer</a> page for an explanation on how to use these tools.
+        </li>
+      
+</ul>
+</div>
+
+    
+<a name="N10128"></a><a name="optionalComponents"></a>
+<h2 class="boxed">Optional components</h2>
+<div class="section">
+<p>
+        By default, the Batik source distribution comes with the
+        <a class="external" href="http://www.mozilla.org/rhino/">Mozilla Rhino</a> JavaScript
+        Engine (<span class="codefrag">js.jar</span>).
+      </p>
+<p>
+        To enable other scripting languages support, you will only need to
+        install the correct jar files in <span class="codefrag">lib</span> directory of Batik and
+        recompile your distribution.
+      </p>
+<ul>
+        
+<li>
+          For Python, you need to download Jython distribution at
+          <a class="external" href="http://www.jython.org/">http://www.jython.org/</a>.  Then
+          you put the <span class="codefrag">jython.jar</span> file in the Batik <span class="codefrag">lib</span>
+          directory.
+        </li>
+        
+<li>
+          For Tcl, you need to download Jacl &amp; TclBlend distribution at
+          <a class="external" href="http://dev.scriptics.com/software/java/">http://dev.scriptics.com/software/java/</a>.
+          Then you put the <span class="codefrag">jacl.jar</span> and <span class="codefrag">tcljava.jar</span>
+          files in the Batik <span class="codefrag">lib</span> directory.
+        </li>
+      
+</ul>
+<p>
+        Conversely, you can remove the <span class="codefrag">js.jar</span> of the Batik
+        <span class="codefrag">lib</span> directory to remove JavaScript support and have a
+        smaller distribution.
+      </p>
+</div>
+
+    
+<a name="N10168"></a><a name="dependencyGraph"></a>
+<h2 class="boxed">Jar file dependency graph</h2>
+<div class="section">
+<p>
+        The Batik distribution comes with many jar files.  Not all of them are
+        needed in every case (although the provided applications tend to use
+        most of them).  The following is a diagram showing the dependencies
+        between the various jar files in the Batik binary distribution (it also
+        shows the major package interdependencies for source developers).
+      </p>
+<p>
+        Jar files in white boxes are library jar files that Batik includes from
+        external sources.  The light blue boxes correspond to library jar files
+        (those found in the <span class="codefrag">lib</span> directory of a binary distribution)
+        built from Batik source code.  The dark blue boxes represent the
+        application jar files.
+      </p>
+<p>
+        When boxes touch, the box on top depends on the box below it (there is
+        no horizontal touching).  Arrows also indicate dependencies (the source
+        of the arrow depends on the destination). In some cases a thick
+        underline with an arrow is used to indicate that a large number of jar
+        files share a common dependency, this however does not indicate any
+        dependency between the jar files underlined.
+      </p>
+<div class="figure">
+<img alt="Batik jar file dependency graph" src="jarDependImg.png"></div>
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+        Some jar file names are shortened for clarity.  All <span class="codefrag">batik</span>
+        package references are short for <span class="codefrag">org.apache.batik</span>.
+      </div>
+</div>
+<p>
+        It is worth pointing out that a determined/clever programmer may be able
+        to pare down some of these dependencies.  For example the
+        <span class="codefrag">batik-dom.jar</span> depends on <span class="codefrag">xerces.jar</span> because of
+        the <span class="codefrag">SAXDocumentFactory</span> class in
+        <span class="codefrag">org.apache.batik.dom.util</span>.  If you didn&rsquo;t need to parse XML
+        it would be possible to ignore or break this dependency and still use
+        the <span class="codefrag">batik-dom.jar</span> file for its DOM implementation.
+      </p>
+</div>
+    
+    
+<a name="N1019C"></a><a name="verify"></a>
+<h2 class="boxed">Verify releases</h2>
+<div class="section">
+<p>
+        It is essential that you verify the integrity of the downloaded files
+        using the PGP or MD5 signatures.
+      </p>
+<p>
+        The PGP signatures can be verified using PGP or GPG.  First download the
+        <a class="external" href="http://www.apache.org/dist/xmlgraphics/batik/KEYS">KEYS</a> as well as
+        the <span class="codefrag">asc</span> signature file for the particular distribution you
+        choose.  Make sure you get these files from the
+        <a class="external" href="http://www.apache.org/dist/xmlgraphics/batik/">main distribution
+          directory</a>, rather than from a mirror. Then verify the signatures
+        using:
+      </p>
+<pre class="code">pgpk -a KEYS
+pgpv batik-1.6.zip.asc</pre>
+<p>
+<em>or</em>
+</p>
+<pre class="code">pgp -ka KEYS
+pgp batik-1.6.zip.asc</pre>
+<em>or</em>
+<br>
+<pre class="code">gpg --import KEYS
+pgp batik-1.6.zip.asc</pre>
+<p>
+<em>or</em>
+</p>
+<pre class="code">gpg --import KEYS
+gpg --verify batik-1.6.zip.asc</pre>
+<p>
+        Alternatively, you can verify the MD5 signature on the files.  A UNIX
+        program called <span class="codefrag">md5</span> or <span class="codefrag">md5sum</span> is included in
+        many UNIX distributions.  It is also available as part of
+        <a class="external" href="http://www.gnu.org/software/textutils/textutils.html">GNU
+          Textutils</a>.  Windows users can get binary md5 programs
+        from <a class="external" href="http://www.fourmilab.ch/md5/">here</a>,
+        <a class="external" href="http://www.pc-tools.net/win32/freeware/console/">here</a>,
+        or <a class="external" href="http://www.slavasoft.com/fsum/">here</a>.
+      </p>
+<p>
+        We recommend using PGP signatures as they can provide a much higher
+        level of assurance compared with MD5.
+      </p>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

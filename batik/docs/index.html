@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Batik SVG Toolkit</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li class="current">
+<a class="selected" href="index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', 'skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Project</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menupage">
+<div class="menupagetitle">Overview</div>
+</div>
+<div class="menuitem">
+<a href="license.html">License</a>
+</div>
+<div class="menuitem">
+<a href="download.cgi">Download</a>
+</div>
+<div class="menuitem">
+<a href="install.html">Installation notes</a>
+</div>
+<div class="menuitem">
+<a href="status.html">Status</a>
+</div>
+<div class="menuitem">
+<a href="demo.html">Demo</a>
+</div>
+<div class="menuitem">
+<a href="faq.html">FAQs</a>
+</div>
+<div class="menuitem">
+<a href="mailing-lists.html">Mailing lists</a>
+</div>
+<div class="menuitem">
+<a href="contributors.html">Contributors</a>
+</div>
+<div class="menuitem">
+<a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=specific&bug_status=__open__&product=Batik">Bug database</a>
+</div>
+<div class="menuitem">
+<a href="uses.html">Projects using Batik</a>
+</div>
+<div class="menuitem">
+<a href="http://www.apache.org/foundation/sponsorship.html">ASF sponsorship program</a>
+</div>
+<div class="menuitem">
+<a href="http://www.apache.org/foundation/thanks.html">ASF thanks</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', 'skin/')" id="menu_1.2Title" class="menutitle">Resources</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div onclick="SwitchMenu('menu_1.2.1', 'skin/')" id="menu_1.2.1Title" class="menutitle">Specifications</div>
+<div id="menu_1.2.1" class="menuitemgroup">
+<div onclick="SwitchMenu('menu_1.2.1.1', 'skin/')" id="menu_1.2.1.1Title" class="menutitle">For SVG 1.1</div>
+<div id="menu_1.2.1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVG11/">SVG 1.1</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/REC-CSS2/">CSS Level 2</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Core/">DOM Level 2 Core</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Events/">DOM Level 2 Events</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Style/">DOM Level 2 Style</a>
+</div>
+<div class="menuitem">
+<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript 3rd ed.</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/">SMIL Animation</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2.1.2', 'skin/')" id="menu_1.2.1.2Title" class="menutitle">For SVG 1.2</div>
+<div id="menu_1.2.1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVGMobile12/">SVG Tiny 1.2 (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVG12/">SVG Full 1.2 (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-Core/">DOM Level 3 Core</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-Events/">DOM Level 3 Events (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-XPath/">DOM Level 3 XPath (note)</a>
+</div>
+</div>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/xmlgraphics-batik/FrontPage">Batik wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.svg.org/">SVG wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://groups.yahoo.com/group/svg-developers/">SVG Developers mailing list</a>
+</div>
+<div class="menuitem">
+<a href="http://lists.w3.org/Archives/Public/www-svg/">W3C SVG mailing list</a>
+</div>
+<div class="menuitem">
+<a href="http://svg.jibbering.com/">#svg IRC channel</a>
+</div>
+</div>
+<div id="credit">
+<hr>
+<a href="http://forrest.apache.org/"><img border="0" title="Built with Apache Forrest" alt="Built with Apache Forrest - logo" src="images/built-with-forrest-button.png" style="width: 88px;height: 31px;"></a>
+</div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Batik SVG Toolkit</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#overview">Overview</a>
+</li>
+<li>
+<a href="#uses">What Batik can be used for</a>
+</li>
+<li>
+<a href="#spec">The SVG specification</a>
+</li>
+<li>
+<a href="#status">Implementation status</a>
+</li>
+<li>
+<a href="#download">Download Batik</a>
+</li>
+</ul>
+</div>
+    
+<a name="N10011"></a><a name="overview"></a>
+<h2 class="boxed">Overview</h2>
+<div class="section">
+<p>
+        Batik is a Java-based toolkit for applications or applets that want to
+        use images in the <a class="external" href="http://www.w3.org/TR/SVG11/">Scalable Vector
+          Graphics (SVG)</a> format for various purposes, such as display,
+        generation or manipulation.
+      </p>
+<p>
+        The project&rsquo;s ambition is to give developers a set of 
+        <a href="using/architecture.html#coreComponents">core modules</a> that can be
+        used together or individually to support specific SVG solutions.
+        Examples of <a href="using/index.html">modules</a> are the
+        <a href="using/parsers.html">SVG Parser</a>, the
+        <a href="using/svg-generator.html">SVG Generator</a> and the
+        <a href="using/dom-api.html">SVG DOM</a>. Another ambition for the Batik
+        project is to make it highly
+        <a href="using/extending.html">extensible</a>&mdash;for example, Batik
+        allows the developer to handle custom SVG elements. Even though the goal
+        of the project is to provide a set of core modules, one of the
+        deliverables is a full fledged <a href="tools/browser.html">SVG
+          browser</a> implementation which validates the various modules and
+        their inter-operability. 
+      </p>
+</div>
+
+    
+<a name="N1003E"></a><a name="uses"></a>
+<h2 class="boxed">What Batik can be used for</h2>
+<div class="section">
+<p>
+        
+<img alt="Batik use cases" class="floating" src="images/batikUses.jpg">
+        With Batik, you can manipulate SVG documents anywhere Java is
+        available. You can also use the various
+        <a href="using/index.html">Batik modules</a> to
+        <a href="using/svg-generator.html">generate</a>, 
+        <a href="using/dom-api.html">manipulate</a> and
+        <a href="using/transcoder.html">transcode</a> SVG images in your
+        applications or applets.
+      </p>
+<p>
+        Batik makes it easy for Java based applications or applets to 
+        deal with SVG content. For example, using Batik&rsquo;s 
+        <a href="using/svg-generator.html">SVG generator module</a>, 
+        a Java application or applet can very easily export its
+        graphics into the SVG format. Using Batik&rsquo;s
+        <a href="using/swing.html">SVG viewing component</a>, an application or
+        applet can very easily integrate SVG viewing and interaction
+        capabilities.  Another possibility is to use Batik&rsquo;s modules to convert
+        SVG to various formats, such as raster images
+        (<abbr title="Joint Photographic Expert Group">JPEG</abbr>,
+        <abbr title="Portable Network Graphics">PNG</abbr> or
+        <abbr title="Tagged Image File Format">TIFF</abbr>) or
+        other vector formats (<abbr title="Encapsulated PostScript">EPS</abbr> or
+        <abbr title="Portable Document Format">PDF</abbr>, the latter two due
+        to the transcoders provided by
+        <a href="http://xmlgraphics.apache.org/fop/">Apache FOP</a>).
+      </p>
+<p>
+        The Batik toolkit includes the following:
+      </p>
+<p>
+<b>Modules</b>
+</p>
+<ul>
+        <!--li>A <a href="site:css">CSS engine</a></li-->
+        
+<li>An <a href="using/dom-api.html">SVG DOM implementation</a>
+</li>
+        
+<li>A set of <a href="using/parsers.html">SVG microsyntax parsers</a>
+</li>
+        
+<li>A <a href="using/scripting/ecmascript.html">scripting module</a>
+</li>
+        
+<li>A <a href="using/svg-generator.html">generator</a> that creates an SVG document from Java2D calls</li>
+        
+<li>A <a href="using/swing.html">Swing SVG component</a>
+</li>
+        
+<li>A <a href="using/transcoder.html">transcoder module</a>
+</li>
+      
+</ul>
+<p>
+<b>Tools and applications</b>
+</p>
+<ul>
+        
+<li>Squiggle, an <a href="tools/browser.html">SVG browser</a>
+</li>
+        
+<li>An <a href="tools/rasterizer.html">SVG rasterizer</a>
+</li>
+        
+<li>A <a href="tools/font-converter.html">
+            <abbr title="TrueType Font">TTF</abbr> to SVG converter</a>
+</li>
+        
+<li>A <a href="tools/pretty-printer.html">pretty printer</a> for SVG
+            source files</li>
+      
+</ul>
+<p>
+        See <a href="uses.html">examples of projects and products using
+          Batik</a> for real-life example of how Batik is already integrated in
+        projects and products.
+      </p>
+</div>
+
+    
+<a name="N100DC"></a><a name="spec"></a>
+<h2 class="boxed">The SVG specification</h2>
+<div class="section">
+<p>
+        Scalable Vector Graphics, SVG, is a <a class="external" href="http://www.w3.org/">W3C</a>
+        Recommendation. It defines an XML grammar for rich 2D graphics
+        which includes features such as transparency, arbitrary geometry, filter
+        effects (shadows, lighting effects, etc.), scripting and animation.
+      </p>
+<p>
+        The SVG specification states:
+      </p>
+<p class="quote">
+        This specification defines the features and syntax for Scalable Vector
+        Graphics (SVG).  SVG is a language for describing two-dimensional
+        graphics in XML [<a class="external" href="http://www.w3.org/TR/REC-xml">XML10</a>]. SVG
+        allows for three types of graphic objects: vector graphic shapes (e.g.,
+        paths consisting of straight lines and curves), images and text.
+        Graphical objects can be grouped, styled, transformed and composited
+        into previously rendered objects. The feature set includes nested
+        transformations, clipping paths, alpha masks, filter effects and
+        template objects.
+      </p>
+<p>
+        SVG documents can be interactive and dynamic. Animations can be defined
+        and triggered either declaratively (i.e., by embedding SVG animation
+        elements in SVG content) or via scripting.
+      </p>
+</div>
+
+    
+<a name="N100F8"></a><a name="status"></a>
+<h2 class="boxed">Implementation status</h2>
+<div class="section">
+<p>
+        The latest revision of Batik, release 1.7beta1, is a conformant
+        <a class="external" href="http://www.w3.org/TR/SVG11/conform.html#ConformingSVGViewers">static
+          SVG implementation</a> and supports
+        <a class="external" href="http://www.w3.org/TR/SVG11/interact.html">interactivity</a>,
+        <a class="external" href="http://www.w3.org/TR/SVG11/linking.html">linking</a> and 
+        <a class="external" href="http://www.w3.org/TR/SVG11/script.html">scripting</a> features
+        of the SVG specification.  This release supports a nearly complete
+        implementation of declarative
+        <a class="external" href="http://www.w3.org/TR/SVG11/animate.html">animation</a>, too.
+      </p>
+<p>
+        See the <a href="status.html">status</a> page for a detailed description
+        of the set of SVG features Batik supports.
+      </p>
+</div>
+ 
+    
+<a name="N1011D"></a><a name="download"></a>
+<h2 class="boxed">Download Batik</h2>
+<div class="section">
+<p>
+        You can get the Batik distribution, source and binary, from the
+        <a href="download.cgi">download page</a>.
+      </p>
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+        All other libraries needed by Batik are included in the distribution.
+        As a consequence the Batik archive is quite big, but after you have
+        downloaded it, you will not need anything else.
+      </div>
+</div>
+<a name="SecurityWarning"></a>
+<div class="warning">
+<div class="label">Security warning</div>
+<div class="content">
+        
+<p>
+          This is a warning that a script security issue was reported in
+          the Batik Squiggle browser. Squiggle uses the Rhino scripting
+          engine and some features of that engine can be leveraged by
+          malicious scripts to gain access to otherwise protected
+          resources (like the file system).  This issue was fixed in the
+          1.5.1 release of Batik.  If you are using a version of Batik older than
+          1.5.1, you should upgrade.
+        </p>
+      
+</div>
+</div>
+</div>
+
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<div id="logos"></div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

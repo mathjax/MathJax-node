@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Batik Demo</title>
+<link type="text/css" href="skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="skin/print.css" rel="stylesheet">
+<link type="text/css" href="skin/profile.css" rel="stylesheet">
+<script src="skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li class="current">
+<a class="selected" href="index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="tools/index.html">Tools and applications</a>
+</li>
+<li>
+<a class="unselected" href="using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', 'skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('skin/images/chapter_open.gif');">Project</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="index.html">Overview</a>
+</div>
+<div class="menuitem">
+<a href="license.html">License</a>
+</div>
+<div class="menuitem">
+<a href="download.cgi">Download</a>
+</div>
+<div class="menuitem">
+<a href="install.html">Installation notes</a>
+</div>
+<div class="menuitem">
+<a href="status.html">Status</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Demo</div>
+</div>
+<div class="menuitem">
+<a href="faq.html">FAQs</a>
+</div>
+<div class="menuitem">
+<a href="mailing-lists.html">Mailing lists</a>
+</div>
+<div class="menuitem">
+<a href="contributors.html">Contributors</a>
+</div>
+<div class="menuitem">
+<a href="http://issues.apache.org/bugzilla/buglist.cgi?query_format=specific&bug_status=__open__&product=Batik">Bug database</a>
+</div>
+<div class="menuitem">
+<a href="uses.html">Projects using Batik</a>
+</div>
+<div class="menuitem">
+<a href="http://www.apache.org/foundation/sponsorship.html">ASF sponsorship program</a>
+</div>
+<div class="menuitem">
+<a href="http://www.apache.org/foundation/thanks.html">ASF thanks</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2', 'skin/')" id="menu_1.2Title" class="menutitle">Resources</div>
+<div id="menu_1.2" class="menuitemgroup">
+<div onclick="SwitchMenu('menu_1.2.1', 'skin/')" id="menu_1.2.1Title" class="menutitle">Specifications</div>
+<div id="menu_1.2.1" class="menuitemgroup">
+<div onclick="SwitchMenu('menu_1.2.1.1', 'skin/')" id="menu_1.2.1.1Title" class="menutitle">For SVG 1.1</div>
+<div id="menu_1.2.1.1" class="menuitemgroup">
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVG11/">SVG 1.1</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/REC-CSS2/">CSS Level 2</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Core/">DOM Level 2 Core</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Events/">DOM Level 2 Events</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-2-Style/">DOM Level 2 Style</a>
+</div>
+<div class="menuitem">
+<a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript 3rd ed.</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/2001/REC-smil-animation-20010904/">SMIL Animation</a>
+</div>
+</div>
+<div onclick="SwitchMenu('menu_1.2.1.2', 'skin/')" id="menu_1.2.1.2Title" class="menutitle">For SVG 1.2</div>
+<div id="menu_1.2.1.2" class="menuitemgroup">
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVGMobile12/">SVG Tiny 1.2 (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/SVG12/">SVG Full 1.2 (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-Core/">DOM Level 3 Core</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-Events/">DOM Level 3 Events (draft)</a>
+</div>
+<div class="menuitem">
+<a href="http://www.w3.org/TR/DOM-Level-3-XPath/">DOM Level 3 XPath (note)</a>
+</div>
+</div>
+</div>
+<div class="menuitem">
+<a href="http://wiki.apache.org/xmlgraphics-batik/FrontPage">Batik wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://wiki.svg.org/">SVG wiki</a>
+</div>
+<div class="menuitem">
+<a href="http://groups.yahoo.com/group/svg-developers/">SVG Developers mailing list</a>
+</div>
+<div class="menuitem">
+<a href="http://lists.w3.org/Archives/Public/www-svg/">W3C SVG mailing list</a>
+</div>
+<div class="menuitem">
+<a href="http://svg.jibbering.com/">#svg IRC channel</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Batik Demo</h1>
+    
+<p>
+      This page demonstrates the use of Batik&rsquo;s
+      <a href="using/swing.html">JSVGCanvas</a> swing component in a Java applet.
+    </p>
+
+    
+<a name="layout"></a>
+<table class="ForrestTable" cellspacing="1" cellpadding="4" id="layout">
+      
+<tr>
+        
+<td colspan="1" rowspan="1">
+          <a name="chart"></a><applet archive="batik-awt-util.jar,                            batik-bridge.jar,                            batik-css.jar,                            batik-dom.jar,                            batik-ext.jar,                            batik-gvt.jar,                            batik-parser.jar,                            batik-svg-dom.jar,                            batik-script.jar,                            batik-swing.jar,                            batik-util.jar,                            batik-xml.jar,                            xml-apis-dom3.jar" code="AppletDemo.class" codebase="demo/" height="300" mayscript="mayscript" width="400" id="chart">
+            [Your browser doesn&rsquo;t seem to support Java applets, which is required
+            for this demo.]
+          </applet>
+        </td>
+        <td colspan="1" rowspan="1">
+          <a name="data"></a>
+<table class="ForrestTable" cellspacing="1" cellpadding="4" id="data">
+            
+<tr>
+              
+<th colspan="1" rowspan="1">Expense</th><th colspan="1" rowspan="1">Amount</th>
+            
+</tr>
+            
+<tr>
+              
+<td colspan="1" rowspan="1">Shoe</td>
+              <td colspan="1" rowspan="1"><a name="ShoeBar"></a><input type="text" value="10" id="ShoeBar"></td>
+            
+</tr>
+            
+<tr>
+              
+<td colspan="1" rowspan="1">Car</td>
+              <td colspan="1" rowspan="1"><a name="CarBar"></a><input type="text" value="20" id="CarBar"></td>
+            
+</tr>
+            
+<tr>
+              
+<td colspan="1" rowspan="1">Travel</td>
+              <td colspan="1" rowspan="1"><a name="TravelBar"></a><input type="text" value="10" id="TravelBar"></td>
+            
+</tr>
+            
+<tr>
+              
+<td colspan="1" rowspan="1">Computer</td>
+              <td colspan="1" rowspan="1"><a name="ComputerBar"></a><input type="text" value="60" id="ComputerBar"></td>
+            
+</tr>
+          
+</table>
+          
+<p>
+            
+<button onclick="update()">Update chart</button>
+          
+</p>
+        
+</td>
+      
+</tr>
+    
+</table>
+
+    
+<script>
+      var chart;
+
+      function get(id) {
+        var e = document.getElementById(id);
+        // This loop just gets around the problem of IE returning the 'a'
+        // element looked up by name, rather than the desired element by id.
+        while (e.nodeType != 1 || e.getAttribute("id") != id) {
+          e = e.nextSibling;
+        }
+        return e;
+      }
+
+      function update() {
+        chart = get("chart");
+        updateBar("ShoeBar");
+        updateBar("CarBar");
+        updateBar("TravelBar");
+        updateBar("ComputerBar");
+      }
+
+      function updateBar(name) {
+        var input = get(name);
+        var value = Number(input.value);
+        if (!isNaN(value) && value >= 0) {
+          chart.updateBar(name, value);
+        }
+      }
+    </script>
+
+    
+<p>
+      The applet (<a href="demo/AppletDemo.java">view source</a>) displays
+      the
+      <a class="external" href="http://svn.apache.org/repos/asf/xmlgraphics/batik/trunk/samples/barChart.svg">barChart.svg</a>
+      sample from the Batik distribution using a <span class="codefrag">JSVGCanvas</span>.
+      Script in the web page then interacts with the applet, by calling the
+      <span class="codefrag">updateBar</span> method of the applet object when the
+      <b>Update chart</b> button is pressed.  This method modifies the
+      SVG document being displayed to update the heights of the bars.
+    </p>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

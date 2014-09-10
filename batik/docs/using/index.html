@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Using Batik</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menupage">
+<div class="menupagetitle">Index</div>
+</div>
+<div class="menuitem">
+<a href="../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_1.1.6', '../skin/')" id="menu_1.1.6Title" class="menutitle">Scripting</div>
+<div id="menu_1.1.6" class="menuitemgroup">
+<div class="menuitem">
+<a href="../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit">
+<hr>
+<a href="http://forrest.apache.org/"><img border="0" title="Built with Apache Forrest" alt="Built with Apache Forrest - logo" src="../images/built-with-forrest-button.png" style="width: 88px;height: 31px;"></a>
+</div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Using Batik</h1>
+    
+<p>
+      The Batik toolkit has a number of modules that can be used to provide
+      SVG support to your application.  This section includes resources for
+      explaining how to use these modules.
+    </p>
+    
+<dl>
+      
+<dt>Architecture</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/architecture.html">architecture</a> page gives an
+          overview of how the various modules in Batik fit together.
+        </p>
+      
+</dd>
+      
+<dt>Javadoc APIs</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/../javadoc/">Javadoc APIs</a> document all
+          of the classes packaged with Batik.
+        </p>
+      
+</dd>
+      <!--dt>CSS engine</dt>
+      <dd>
+        <p>
+          The <a href="site:css">CSS engine</a> page describes how to use
+          the CSS 2 engine that comes with Batik.
+        </p>
+      </dd-->
+      
+<dt>DOM API</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/dom-api.html">DOM API</a> page explains how to use the
+          DOM interfaces to create and render SVG documents.
+        </p>
+      
+</dd>
+      
+<dt>Parsers</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/parsers.html">Parsers</a> page describes the parser
+          classes that can be used for parsing the microsyntaxes of SVG
+          (such as path data and transform lists).
+        </p>
+      
+</dd>
+      
+<dt>Scripting</dt>
+      
+<dd>
+        
+<p>
+          The scripting pages (<a href="../using/scripting/ecmascript.html">Scriping with
+            ECMAScript</a>, <a href="../using/scripting/java.html">Scripting with
+            Java</a> and <a href="../using/scripting/security.html">Security</a>)
+          document how to programmatically manipulate SVG documents, and how
+          script interpreters can be used and extended in Batik.
+        </p>
+      
+</dd>
+      
+<dt>SVG generator</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/svg-generator.html">SVG Generator</a> page documents the
+          <span class="codefrag">SVGGraphics2D</span> class, which can be used to construct
+          SVG documents from Java2D drawing commands.
+        </p>
+      
+</dd>
+      
+<dt>Swing components</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/swing.html">Swing components</a> page describes the
+          SVG canvas component, the primary method for displaying SVG content
+          in Swing applications.
+        </p>
+      
+</dd>
+      
+<dt>Transcoder API</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/transcoder.html">Transcoder API</a> page explains how
+          to use the transcoder classes to convert SVG content to other formats
+          (raster or vector).
+        </p>
+      
+</dd>
+      
+<dt>Extending Batik</dt>
+      
+<dd>
+        
+<p>
+          The <a href="../using/extending.html">Extending Batik</a> page lists the parts
+          of the Batik API that are extensible and explains how to add
+          functionality to the existing modules.
+        </p>
+      
+</dd>
+      <!--dt>Batik in an applet</dt>
+      <dd>
+        <p>
+          The <a href="site:applet">Batik in an applet</a> page explains how
+          Batik can be used in a Java applet in a web page.
+        </p>
+      </dd>
+      <dt>Glossary</dt>
+      <dd>
+        <p>
+          Finally, the <a href="site:glossary">Glossary page</a> explains common Batik
+          terminology used in this section.
+        </p>
+      </dd-->
+    
+</dl>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<div id="logos"></div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Parser module</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../using/dom-api.html">DOM API</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Parsers</div>
+</div>
+<div onclick="SwitchMenu('menu_1.1.6', '../skin/')" id="menu_1.1.6Title" class="menutitle">Scripting</div>
+<div id="menu_1.1.6" class="menuitemgroup">
+<div class="menuitem">
+<a href="../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Parser module</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#parsersHandlersAndProducers">Parsers, handlers and producers</a>
+</li>
+<li>
+<a href="#examples">Examples</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      SVG has a number of microsyntaxes that are used within attribute values,
+      such as the <span class="codefrag">transform</span> attribute on
+      <span class="codefrag">SVGTransformable</span> elements, and the path data <span class="codefrag">d</span>
+      attribute on <span class="codefrag">path</span> elements.  Since these are not trivial to
+      parse, this functionality has been factored out into a separate package
+      that can be used by other SVG-processing applications if needed.
+    </p>
+
+    
+<a name="N10020"></a><a name="parsersHandlersAndProducers"></a>
+<h2 class="boxed">Parsers, handlers and producers</h2>
+<div class="section">
+<p>
+        In the parser module, each microsyntax is supported by a pair of classes:
+        a parser and a handler.  The parser is a class that implements the
+        <a class="class" href="../javadoc/org/apache/batik/parser/Parser.html">Parser</a>
+        interface, which has methods to parse values from a
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/io/Reader.html">Reader</a>
+        or a 
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/String.html">String</a>.
+        The handler is an interface specific to the microsyntax that will have
+        its methods called whenever the corresponding element in the input is
+        parsed.  For those handler interfaces that have more than one method,
+        adapter classes are provided (named <span class="codefrag">Default</span>*).
+      </p>
+<p>
+        Parsers can also have an error handler associated with them, whose
+        single method <span class="codefrag">error</span> will be called when there is a
+        problem parsing the input.  If an error handler is not associated with
+        a parser, a
+        <a class="class" href="../javadoc/org/apache/batik/parser/ParseException.html">ParseException</a>
+        will be thrown if an error occurs.
+      </p>
+<p>
+        The microsyntaxes supported by the parser module are:
+      </p>
+<dl>
+        
+<dt>Angles</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/AngleParser.html">AngleParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/AngleHandler.html">AngleHandler</a>.
+            This parser is used for parsing angles formed by a floating point
+            number followed by <span class="codefrag">deg</span>, <span class="codefrag">grad</span> or
+            <span class="codefrag">rad</span>.  It is not currently used by the rest of the Batik
+            codebase.
+          </p>
+        
+</dd>
+        
+<dt>Clock values</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/ClockParser.html">ClockParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/ClockHandler.html">ClockHandler</a>.
+            This parser is used for parsing SMIL
+            <a class="external" href="http://www.w3.org/TR/smil-animation/#Timing-ClockValueSyntax">clock values</a>.
+          </p>
+        
+</dd>
+        
+<dt>Fragment identifiers</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/FragmentIdentifierParser.html">FragmentIdentifierParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/FragmentIdentifierHandler.html">FragmentIdentifierHandler</a>.
+            This parser is used for parsing the various formats of
+            <a class="external" href="http://www.w3.org/TR/SVG11/linking.html#SVGFragmentIdentifiers">fragment
+              identifier</a> that SVG allows.
+          </p>
+        
+</dd>
+        
+<dt>Lengths</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/LengthParser.html">LengthParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/LengthHandler.html">LengthHandler</a>.
+            This parser is used for parsing SVG length values.
+          </p>
+        
+</dd>
+        
+<dt>Length lists</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/LengthListParser.html">LengthListParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/LengthListHandler.html">LengthListHandler</a>.
+            This parser is used for parsing lists of comma or space separated
+            SVG lengths.
+          </p>
+        
+</dd>
+        
+<dt>Numbers</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/NumberListParser.html">NumberListParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/NumberListHandler.html">NumberListHandler</a>.
+            This parser is used for parsing SVG number values.
+          </p>
+        
+</dd>
+        
+<dt>Number lists</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/NumberListParser.html">NumberListParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/NumberListHandler.html">NumberListHandler</a>.
+            This parser is used for parsing lists of comma or space separated
+            SVG numbers.
+          </p>
+        
+</dd>
+        
+<dt>Path data</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/PathParser.html">PathParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/PathHandler.html">PathHandler</a>.
+            This parser is used for parsing SVG path data, as found in
+            <span class="codefrag">path</span> element <span class="codefrag">d</span> attributes.
+          </p>
+        
+</dd>
+        
+<dt>Points</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/PointsParser.html">PointsParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/PointsHandler.html">PointsHandler</a>.
+            This parser is used for parsing point lists, as found in
+            <span class="codefrag">polygon</span> element <span class="codefrag">points</span> attributes.
+          </p>
+        
+</dd>
+        
+<dt>Preserve aspect ratio values</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/PreserveAspectRatioParser.html">PreserveAspectRatioParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/PreserveAspectRatioHandler.html">PreserveAspectRatioHandler</a>.
+            This parser is used for parsing the values found in the
+            <span class="codefrag">preserveAspectRatio</span> attribute of <span class="codefrag">svg</span>
+            elements.
+          </p>
+        
+</dd>
+        
+<dt>Transform lists</dt>
+        
+<dd>
+          
+<p>
+            Implemented by
+            <a class="class" href="../javadoc/org/apache/batik/parser/TransformListParser.html">TransformListParser</a>,
+            handled with
+            <a class="class" href="../javadoc/org/apache/batik/parser/TransformListHandler.html">TransformListHandler</a>.
+            This parser is used for parsing transform lists, as found in the
+            <span class="codefrag">transform</span> attribute of any transformable element.
+          </p>
+        
+</dd>
+      
+</dl>
+<p>
+        Some microsyntaxes also have a corresponding producer class, which is
+        an implementation of the handler interface that generates an object
+        while parsing.
+      </p>
+</div>
+
+    
+<a name="N10147"></a><a name="examples"></a>
+<h2 class="boxed">Examples</h2>
+<div class="section">
+<p>
+        The following example code demonstrates how to use the parser classes
+        to parse a list of points:
+      </p>
+<pre class="code">import java.awt.geom.Point2D;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.apache.batik.parser.DefaultPointsHandler;
+import org.apache.batik.parser.ParseException;
+import org.apache.batik.parser.PointsHandler;
+import org.apache.batik.parser.PointsParser;
+
+public class PointsParserExample {
+
+    public List extractPoints(String s) throws ParseException {
+        final LinkedList points = new LinkedList();
+        PointsParser pp = new PointsParser();
+        PointsHandler ph = new DefaultPointsHandler() {
+            public void point(float x, float y) throws ParseException {
+                Point2D p = new Point2D.Float(x, y);
+                points.add(p);
+            }
+        };
+        pp.setPointsHandler(ph);
+        pp.parse(s);
+        return points;
+    }
+}</pre>
+<p>
+        This example uses the
+        <a class="class" href="../javadoc/org/apache/batik/parser/AWTTransformProducer.html">AWTTransformProducer</a>
+        class to generate an
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/awt/geom/AffineTransform.html">AffineTransform</a>
+        object from an SVG transform list:
+      </p>
+<pre class="code">import java.awt.geom.AffineTransform;
+
+import org.apache.batik.parser.AWTTransformProducer;
+import org.apache.batik.parser.ParseException;
+import org.apache.batik.parser.TransformListParser;
+
+public class TransformParserExample {
+
+    public AffineTransform parseTransformList(String s) throws ParseException {
+        TransformListParser p = new TransformListParser();
+        AWTTransformProducer tp = new AWTTransformProducer();
+        p.setTransformListHandler(tp);
+        p.parse(s);
+        return tp.getAffineTransform();
+    }
+}
+</pre>
+</div>
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

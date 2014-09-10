@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>Script security</title>
+<link type="text/css" href="../../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../../skin/profile.css" rel="stylesheet">
+<script src="../../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menuitem">
+<a href="../../using/dom-api.html">DOM API</a>
+</div>
+<div class="menuitem">
+<a href="../../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_selected_1.1.6', '../../skin/')" id="menu_selected_1.1.6Title" class="menutitle" style="background-image: url('../../skin/images/chapter_open.gif');">Scripting</div>
+<div id="menu_selected_1.1.6" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">Security</div>
+</div>
+</div>
+<div class="menuitem">
+<a href="../../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>Script security</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#sandbox">Running scripts securely</a>
+<ul class="minitoc">
+<li>
+<a href="#enforcing">Enforcing security in a Batik application</a>
+</li>
+<li>
+<a href="#squiggle">Squiggle security</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#externalResources">Controlling access to external resources</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      With the addition of scripting support in Batik 1.5, security features
+      have also been added to enable users of the Batik toolkit to run 
+      scripts in a secure manner.
+    </p>
+    
+<p>
+      If you are using script, please make sure you have reviewed the 
+      <a href="../../index.html#SecurityWarning">Script Security 
+        Warning</a> with regards to the Batik 1.5 release.
+    </p>
+
+    
+<a name="N1001B"></a><a name="sandbox"></a>
+<h2 class="boxed">Running scripts securely</h2>
+<div class="section">
+<p>
+        The Java platform offers a lot of options for running applications
+        securely.  Running an application securely requires that it runs in a
+        so-called security sand-box which controls all the access the
+        application makes to restricted resources (such as the file system).
+      </p>
+<p>
+        The concept of Java security is an application-wide concept. As such,
+        it has to be applied at the application level (and not at the
+        framework level).  In the Batik distribution, the sample applications
+        (such as the <a href="../../tools/browser.html">Squiggle Browser</a> and the
+        <a href="../../tools/rasterizer.html">SVG rasterizer</a>) apply
+        security (or disable it) but the framework does not apply it: it is
+        security-aware (meaning that it is able to handle security
+        exceptions).
+      </p>
+<a name="N1002F"></a><a name="enforcing"></a>
+<h3 class="boxed">Enforcing security in a Batik application</h3>
+<p>
+          Enforcing security in a Batik application is done by setting a 
+          <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/SecurityManager.html">java.lang.SecurityManager</a>.
+          This security manager will apply the security settings of the Java
+          platform (as defined by the
+          <em>jre-dir</em><span class="codefrag">/lib/security/java.policy</span> and,
+          optionally, by the policy file whose URL is defined in the
+          <span class="codefrag">java.security.policy</span> system property).
+        </p>
+<p>
+          The
+          <a class="class" href="../../javadoc/org/apache/batik/util/ApplicationSecurityEnforcer.html">org.apache.batik.util.ApplicationSecurityEnforcer</a>
+          helper class makes it easier for Batik application 
+          developers to add security support in their applications. That
+          helper class is used by the sample Batik applications.
+        </p>
+<a name="N1004E"></a><a name="squiggle"></a>
+<h3 class="boxed">Squiggle security</h3>
+<p>
+          The Squiggle browser lets the user decide whether or not scripts
+          should be run securely (see the &ldquo;Browser Options&rdquo; in the 
+          preference dialog box). When scripts are run securely, Squiggle
+          will enforce the security settings as follows:
+        </p>
+<ul>
+          
+<li>
+            The default policy is defined by the policy file found
+            in the distribution: <span class="codefrag">org/apache/batik/apps/svgbrowser/svgbrowser.policy</span>.
+            In the binary distribution, that file would be in the
+            <span class="codefrag">batik-squiggle.jar</span> file. In the source
+            distribution, that file would be in the
+            <span class="codefrag">resources</span> directory.  The default policy
+            file gives appropriate permissions to the Batik code,
+            the XML parser and the Rhino scripting engine and very
+            limited permissions to scripts.
+          </li>
+          
+<li>
+            At startup time, and whenever the preference settings are
+            modified, Squiggle makes a copy of the default policy
+            and appends any additional permissions granted to
+            scripts by the user through the preference
+            settings. This policy file can be found in the
+            <span class="codefrag">[user.home]/.batik</span> directory, and is
+            called <span class="codefrag">__svgbrowser.policy</span>.  Note that
+            this file is automatically generated and should not be
+            modified manually (as any edits would be lost).
+          </li>
+          
+<li>
+            The policy defined as described above is enforced
+            unless the <span class="codefrag">java.security.policy</span> system
+            property is defined. In that case, the policy defined
+            by the system property takes precedence and the policy
+            file generated from the Squiggle preferences is
+            ignored.
+          </li>
+        
+</ul>
+<p>
+          
+<strong>Important note:</strong>
+          The default policy files assume that the applications use the 
+          Xerces parser and give appropriate permissions to its 
+          <span class="codefrag">lib/xerces-2_5_0.jar</span> jar file. If you are using 
+          a different XML parser, you need to modify the policy files to 
+          grant the propser permissions to your XML parser instead of 
+          Xerces. You will have to replace:
+        </p>
+<pre class="code">grant codeBase "${app.dev.base}/lib/xerces_2_5_0.jar" {
+  permission java.security.AllPermission;
+};</pre>
+<p>with:</p>
+<pre class="code">grant codeBase "${app.dev.base}/lib/myXMLParser.jar" {
+  permission java.security.AllPermission;
+};</pre>
+<p>
+          in the <span class="codefrag">resources/org/apache/batik/apps/svgbrowser/resources/svgbrowser.policy</span>
+          file (for the source distribution) and do the same in 
+          <span class="codefrag">resources/org/apache/batik/apps/svgbrowser/resources/svgbrowser.bin.policy</span> (for 
+          the binary distribution which will then need to be rebuilt with the <span class="codefrag">build dist-zip</span>
+          command.
+        </p>
+<p>
+          Alternatively, you can write your own policy file and specify its
+          URL through the <span class="codefrag">java.security.policy</span> system property (which you can
+          specify through the <span class="codefrag">-Djava.security.policy=</span><em>url</em> command line 
+          option).
+        </p>
+</div>
+
+    
+<a name="N100A2"></a><a name="externalResources"></a>
+<h2 class="boxed">Controlling access to external resources</h2>
+<div class="section">
+<p>
+        SVG makes a very powerful use of external resources in many elements
+        such as <span class="codefrag">image</span>, <span class="codefrag">use</span>, <span class="codefrag">font</span>,
+        <span class="codefrag">script</span> and <span class="codefrag">radialGradient</span>. There are over
+        fifteen SVG elements that may reference external resources that way.   
+      </p>
+<p>
+        In some environments, and typically for security reasons, it is 
+        important to control the resources referenced by an SVG document
+        and be able to accept or reject these resources.
+      </p>
+<p>
+        In the Batik toolkit, this flexibility is provided by the 
+        <a class="class" href="../../javadoc/org/apache/batik/bridge/UserAgent.html">org.apache.batik.bridge.UserAgent</a>
+        interface which can define various strategies with regards to external
+        resources.  By providing a new implementation of the
+        <span class="codefrag">UserAgent</span> interface, it is possible to apply the desired
+        security strategy for scripts and external resources.
+      </p>
+<p>
+        The following <span class="codefrag">UserAgent</span> methods are provided for 
+        that purpose:
+      </p>
+<ul>
+        
+<li>
+          
+<span class="codefrag">getScriptSecurity(scriptType, scriptURL, docURL)</span>
+          should return the
+          <a class="class" href="../../javadoc/org/apache/batik/bridge/ScriptSecurity.html">ScriptSecurity</a>
+          strategy for a script of type <span class="codefrag">scriptType</span> (e.g.,
+          <span class="codefrag">text/ecmascript</span>) coming from <span class="codefrag">scriptURL</span>, 
+          when referenced from the document whose URL is <span class="codefrag">docURL</span>.
+        </li>
+        
+<li>
+          
+<span class="codefrag">getExternalResourceSecurity(resourceURL, docURL)</span>
+          should return the
+          <a class="class" href="../../javadoc/org/apache/batik/bridge/ExternalResourceSecurity.html">ExternalResourceSecurity</a>
+          strategry for a resource coming from <span class="codefrag">resourceURL</span>
+          referenced from the document at URL <span class="codefrag">docURL</span>.
+        </li>
+      
+</ul>
+<p>
+        The <span class="codefrag">ScriptSecurity</span> and <span class="codefrag">ExternalResourceSecurity</span>
+        interfaces have methods (<span class="codefrag">checkLoadScript</span> and 
+        <span class="codefrag">checkLoadExternalResource</span> respectively) which should 
+        throw a
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/lang/SecurityException.html">SecurityException</a>
+        if accessing the script or resource is considered a security violation.
+      </p>
+<div class="note">
+<div class="label">Note</div>
+<div class="content">
+        The <span class="codefrag">UserAgent</span> interface has two additional methods
+        (<span class="codefrag">checkLoadScript</span> and <span class="codefrag">checkLoadExternalResource</span>
+        which are meant to provide a short hand for getting a security strategy 
+        object and calling the <span class="codefrag">checkLoad</span>* method on that object.
+        This is how the
+        <a class="class" href="../../javadoc/org/apache/batik/bridge/UserAgentAdapter.html">org.apache.batik.bridge.UserAgentAdapter</a>
+        class implements this method.
+      </div>
+</div>
+<p>
+        Batik provides the following set of <span class="codefrag">ScriptSecurity</span>
+        implementations:
+      </p>
+<dl>
+        
+<dt>NoLoadScriptSecurity</dt>
+        
+<dd>
+          
+<p>The script resource should not be loaded.</p>
+        
+</dd>
+        
+<dt>EmbededScriptSecurity</dt>
+        
+<dd>
+          
+<p>
+            The script resource will only be loaded if it is embeded in the SVG
+            document referencing it. This means that script attributes (such as
+            <span class="codefrag">onclick</span> on a <span class="codefrag">rect</span> element),
+            inline <span class="codefrag">script</span> elements and <span class="codefrag">script</span> elements
+            using a <span class="codefrag">data:</span> URL as its <span class="codefrag">xlink:href</span> attribute
+            value will be allowed. All other script resources should not be
+            loaded.
+          </p>
+        
+</dd>
+        
+<dt>DefaultScriptSecurity</dt>
+        
+<dd>
+          
+<p>
+            The script resource will only 
+            be loaded if it is embeded in the SVG document (see the description
+            of <span class="codefrag">EmbededScriptSecurity</span>) or if it is coming from the same
+            location as the document referencing the script. If the document comes 
+            from a network server, then any script coming from that server will
+            be allowed. If the document comes from the file system, then only 
+            scripts under the same directory root as the SVG document will be allowed.
+          </p>
+        
+</dd>
+        
+<dt>RelaxedScriptSecurity</dt>
+        
+<dd>
+          
+<p>
+            Scripts from any location can be loaded.
+          </p>
+        
+</dd>
+      
+</dl>
+<p>
+        In addition, Batik provides the following set of
+        <span class="codefrag">ExternalResourceSecurity</span> implementations:
+      </p>
+<dl>
+        
+<dt>NoLoadExternalResourceSecurity</dt>
+        
+<dd>
+          
+<p>No external references are allowed.</p>
+        
+</dd>
+        
+<dt>EmbededExternalResourceSecurity</dt>
+        
+<dd>
+          
+<p>
+            Only resources embeded into the file are allowed (i.e., references
+            through the <span class="codefrag">data:</span> protocol).
+          </p>
+        
+</dd>
+        
+<dt>DefaultExternalResourceSecurity</dt>
+        
+<dd>
+          
+<p>
+            Embeded external resources (see above) and resources coming from
+            the same location as the document referencing them are allowed.
+          </p>
+        
+</dd>
+        
+<dt>RelaxedExternalResourceSecurity</dt>
+        
+<dd>
+          
+<p>Resources from any location can be loaded.</p>
+        
+</dd>
+      
+</dl>
+</div>
+
+  
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>

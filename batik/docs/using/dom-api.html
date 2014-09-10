@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="Apache Forrest" name="Generator">
+<meta name="Forrest-version" content="0.8">
+<meta name="Forrest-skin-name" content="pelt">
+<title>SVG DOM API</title>
+<link type="text/css" href="../skin/basic.css" rel="stylesheet">
+<link media="screen" type="text/css" href="../skin/screen.css" rel="stylesheet">
+<link media="print" type="text/css" href="../skin/print.css" rel="stylesheet">
+<link type="text/css" href="../skin/profile.css" rel="stylesheet">
+<script src="../skin/getBlank.js" language="javascript" type="text/javascript"></script><script src="../skin/getMenu.js" language="javascript" type="text/javascript"></script><script src="../skin/fontsize.js" language="javascript" type="text/javascript"></script>
+<link rel="shortcut icon" href="../">
+</head>
+<body onload="init()">
+<script type="text/javascript">ndeSetTextSize();</script>
+<div id="top">
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+<a href="http://www.apache.org/">apache</a> &gt; <a href="http://xml.apache.org/">xml</a> &gt; <a href="http://xmlgraphics.apache.org/">graphics</a><script src="../skin/breadcrumbs.js" language="JavaScript" type="text/javascript"></script>
+</div>
+<!--+
+    |header
+    +-->
+<div class="header">
+<!--+
+    |start group logo
+    +-->
+<div class="grouplogo">
+<a href="http://xmlgraphics.apache.org/"><img class="logoImage" alt="Apache XML Graphics" src="../images/group-logo.png" title="Apache XML Graphics"></a>
+</div>
+<!--+
+    |end group logo
+    +-->
+<!--+
+    |start Project Logo
+    +-->
+<div class="projectlogoA1">
+<a href="http://xmlgraphics.apache.org/batik/"><img class="logoImage" alt="Apache Batik" src="../images/batik.png" title="Apache Batik"></a>
+</div>
+<!--+
+    |end Project Logo
+    +-->
+<!--+
+    |start Tabs
+    +-->
+<ul id="tabs">
+<li>
+<a class="unselected" href="../index.html">Home</a>
+</li>
+<li>
+<a class="unselected" href="../tools/index.html">Tools and applications</a>
+</li>
+<li class="current">
+<a class="selected" href="../using/index.html">Using Batik</a>
+</li>
+<li>
+<a class="unselected" href="../dev/index.html">Development</a>
+</li>
+</ul>
+<!--+
+    |end Tabs
+    +-->
+</div>
+</div>
+<div id="main">
+<div id="publishedStrip">
+<!--+
+    |start Subtabs
+    +-->
+<div id="level2tabs"></div>
+<!--+
+    |end Endtabs
+    +-->
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<!--+
+    |breadtrail
+    +-->
+<div class="breadtrail">
+
+             &nbsp;
+           </div>
+<!--+
+    |start Menu, mainarea
+    +-->
+<!--+
+    |start Menu
+    +-->
+<div id="menu">
+<div onclick="SwitchMenu('menu_selected_1.1', '../skin/')" id="menu_selected_1.1Title" class="menutitle" style="background-image: url('../skin/images/chapter_open.gif');">Using Batik</div>
+<div id="menu_selected_1.1" class="selectedmenuitemgroup" style="display: block;">
+<div class="menuitem">
+<a href="../using/index.html">Index</a>
+</div>
+<div class="menuitem">
+<a href="../using/architecture.html">Architecture</a>
+</div>
+<div class="menuitem">
+<a href="../javadoc/">Javadoc APIs</a>
+</div>
+<div class="menupage">
+<div class="menupagetitle">DOM API</div>
+</div>
+<div class="menuitem">
+<a href="../using/parsers.html">Parsers</a>
+</div>
+<div onclick="SwitchMenu('menu_1.1.6', '../skin/')" id="menu_1.1.6Title" class="menutitle">Scripting</div>
+<div id="menu_1.1.6" class="menuitemgroup">
+<div class="menuitem">
+<a href="../using/scripting/ecmascript.html">Scripting with ECMAScript</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/java.html">Scripting with Java</a>
+</div>
+<div class="menuitem">
+<a href="../using/scripting/security.html">Security</a>
+</div>
+</div>
+<div class="menuitem">
+<a href="../using/svg-generator.html">SVG generator</a>
+</div>
+<div class="menuitem">
+<a href="../using/swing.html">Swing components</a>
+</div>
+<div class="menuitem">
+<a href="../using/transcoder.html">Transcoder API</a>
+</div>
+<div class="menuitem">
+<a href="../using/extending.html">Extending Batik</a>
+</div>
+</div>
+<div id="credit"></div>
+<div id="roundbottom">
+<img style="display: none" class="corner" height="15" width="15" alt="" src="../skin/images/rc-b-l-15-1body-2menu-3menu.png"></div>
+<!--+
+  |alternative credits
+  +-->
+<div id="credit2">
+<a href="http://eu.apachecon.com/"><img border="0" title="ApacheCon Europe 2008" alt="ApacheCon Europe 2008 - logo" src="http://apache.org/ads/ApacheCon/2008-europe-125x125.png" style="width: 125px;height: 125px;"></a>
+</div>
+</div>
+<!--+
+    |end Menu
+    +-->
+<!--+
+    |start content
+    +-->
+<div id="content">
+<h1>SVG DOM API</h1>
+<div id="minitoc-area">
+<ul class="minitoc">
+<li>
+<a href="#gettingStarted">Getting started</a>
+</li>
+<li>
+<a href="#creating">Creating a Document</a>
+</li>
+<li>
+<a href="#buildsvgdoc">Building an SVG Document</a>
+</li>
+<li>
+<a href="#createdocfromsvgfile">Creating a Document from an SVG file</a>
+</li>
+<li>
+<a href="#rendering">Rendering an SVG Document</a>
+</li>
+</ul>
+</div>
+    
+<p>
+      The <a class="external" href="http://www.w3.org/dom/">Document Object Model</a> (DOM)
+      is an API for XML documents. It defines the logical structure of documents and
+      the way a document is accessed and manipulated. This page shows how to create
+      an SVG document using the DOM API.
+    </p>
+
+    
+<a name="N10018"></a><a name="gettingStarted"></a>
+<h2 class="boxed">Getting started</h2>
+<div class="section">
+<p>
+        The DOM API defines an interface called
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/DOMImplementation.html">DOMImplementation</a>,
+        which represents the boostrap of any DOM implementation. The role of
+        this class is to bootstrap a particular implementation of the DOM by
+        providing a method to create a
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Document.html">Document</a>.
+        Then, the concrete <span class="codefrag">Document</span> represents an XML document and
+        also acts like a factory for the various DOM objects such as
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Element.html">Element</a>,
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Attr.html">Attr</a>
+        and
+        <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/org/w3c/dom/Text.html">Text</a>.
+      </p>
+<p> 
+        How to get an instance of the <span class="codefrag">DOMImplementation</span> interface depends
+        on the DOM implementation you are using. In Batik, the DOM implementation is
+        located in the package <span class="codefrag">org.apache.batik.dom.svg</span> and the class is
+        named
+        <a class="class" href="http://xmlgraphics.apache.org/batik/javadoc/org/apache/batik/dom/svg/SVGDOMImplementation.html">SVGDOMImplementation</a>.
+        The following example shows how to get a concrete
+        <span class="codefrag">DOMImplementation</span> object.
+      </p>
+<pre class="code">import org.w3c.dom.DOMImplementation;
+import org.apache.batik.dom.svg.SVGDOMImplementation;
+
+DOMImplementation impl = SVGDOMImplementation.getDOMImplementation();</pre>
+<p> 
+        Once you have an instance of a <span class="codefrag">DOMImplementation</span>, you are not
+        relying on Batik-specific code any more and ready to use the DOM API.
+      </p>
+</div>
+
+    
+<a name="N10059"></a><a name="creating"></a>
+<h2 class="boxed">Creating a Document</h2>
+<div class="section">
+<p>
+        Using the <span class="codefrag">DOMImplementation</span>, you are now able to create a
+        <span class="codefrag">Document</span>. The following example illustrates how to create an SVG
+        document. Note that the Batik&rsquo;s DOM implementation can be
+        used to represent either an SVG document fragment or any kind of XML
+        document.  Note that by choosing the namespace URI and the local name of
+        the root element of SVG, we are creating an SVG document.
+      </p>
+<pre class="code">import org.apache.batik.dom.svg.SVGDOMImplementation;
+import org.w3c.dom.Document;
+
+// We are using a constant available on the SVGDOMImplementation,
+// but we could have used "http://www.w3.org/2000/svg".
+String svgNS = SVGDOMImplementation.SVG_NAMESPACE_URI;
+DOMImplementation impl = SVGDOMImplementation.getDOMImplementation();
+<strong>Document doc = impl.createDocument(svgNS, "svg", null);</strong>
+      
+</pre>
+<p>
+        As we have created an SVG <span class="codefrag">Document</span>, we can cast this document to an
+        <a class="class" href="../javadoc/org/w3c/dom/svg/SVGDocument.html">SVGDocument</a>
+        (defined in the <span class="codefrag">org.w3c.dom.svg</span> package) if needed.
+      </p>
+</div>
+
+    
+<a name="N1007E"></a><a name="buildsvgdoc"></a>
+<h2 class="boxed">Building an SVG Document</h2>
+<div class="section">
+<p>
+        Finally, using the <span class="codefrag">Document</span> object, we are now able to
+        construct SVG content. Note that the document created before supports both
+        generic XML and SVG. Though the DOM implementation of Batik is an SVG DOM
+        implementation, the SVG-specific methods that rely on the document having
+        been rendered (particularly geometry related methods, such as
+        <a href="../javadoc/org/w3c/dom/svg/SVGLocatable.html#getBBox()">SVGLocatable.getBBox</a>)
+        cannot be used at this point.
+      </p>
+<p>
+        The document can be built using DOM Level 2 Core methods.  The following
+        example shows how to create a red rectangle located at (10, 20), with a
+        size of (100, 50) placed in a (400, 450) SVG canvas:
+      </p>
+<pre class="code">
+import org.apache.batik.dom.svg.SVGDOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+DOMImplementation impl = SVGDOMImplementation.getDOMImplementation();
+String svgNS = SVGDOMImplementation.SVG_NAMESPACE_URI;
+Document doc = impl.createDocument(svgNS, "svg", null);
+
+// Get the root element (the 'svg' element).
+<strong>Element svgRoot = doc.getDocumentElement();</strong>
+
+// Set the width and height attributes on the root 'svg' element.
+<strong>svgRoot.setAttributeNS(null, "width", "400");</strong>
+svgRoot.setAttributeNS(null, "height", "450");
+
+// Create the rectangle.
+<strong>Element rectangle = doc.createElementNS(svgNS, "rect");</strong>
+rectangle.setAttributeNS(null, "x", "10");
+rectangle.setAttributeNS(null, "y", "20");
+rectangle.setAttributeNS(null, "width", "100");
+rectangle.setAttributeNS(null, "height", "50");
+rectangle.setAttributeNS(null, "fill", "red");
+
+// Attach the rectangle to the root 'svg' element.
+<strong>svgRoot.appendChild(rectangle);</strong>
+      
+</pre>
+<p>
+        The example given constructs a document equivalent to parsing the
+        following SVG file:
+      </p>
+<pre class="code">&lt;svg xmlns="http://www.w3.org/2000/svg" width="400" height="450"&gt;
+  &lt;rect x="10" y="20" width="100" height="50" fill="red"/&gt;
+&lt;/svg&gt;</pre>
+</div>
+
+  
+<a name="N100A9"></a><a name="createdocfromsvgfile"></a>
+<h2 class="boxed">Creating a Document from an SVG file</h2>
+<div class="section">
+<p>
+      With Batik, you can also create an SVG DOM tree from a URI, an
+      <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/io/InputStream.html">InputStream</a>,
+      or a
+      <a class="external" href="http://java.sun.com/j2se/1.5.0/docs/api/java/io/Reader.html">Reader</a>,
+      using the
+      <a class="class" href="../javadoc/org/apache/batik/dom/util/SAXDocumentFactory.html">SAXSVGDocumentFactory</a>.
+      The following example illustrates how to create an SVG document from a
+      URI using the <span class="codefrag">SAXSVGDocumentFactory</span> class.
+    </p>
+<pre class="code">import java.io.IOException;
+
+import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
+import org.apache.batik.util.XMLResourceDescriptor;
+
+import org.w3c.dom.Document;
+
+try {
+    String parser = XMLResourceDescriptor.getXMLParserClassName();
+    SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
+    String uri = "http://www.example.org/diagram.svg";
+    <strong>Document doc = f.createDocument(uri);</strong>
+} catch (IOException ex) {
+    // ...
+}
+    </pre>
+<p>
+      As we have created an SVG <span class="codefrag">Document</span>, we can cast this document to an
+      <span class="codefrag">SVGDocument</span> (defined in the <span class="codefrag">org.w3c.dom.svg</span> package)
+      if needed.
+    </p>
+</div>
+
+  
+<a name="N100D8"></a><a name="rendering"></a>
+<h2 class="boxed">Rendering an SVG Document</h2>
+<div class="section">
+<p>
+      Batik provides several ways to use an SVG DOM tree. Two modules can be
+      immediately used to render your SVG document.
+    </p>
+<dl>
+      
+<dt>JSVGCanvas</dt>
+      
+<dd>
+        
+<p>
+          The
+          <a class="class" href="../javadoc/org/apache/batik/swing/JSVGCanvas.html">JSVGCanvas</a>
+          is a Swing component that can display SVG document. A SVG document can
+          be specified using a URI or an SVG DOM tree (using the
+          <a class="class" href="../javadoc/org/apache/batik/swing/JSVGCanvas.html#setSVGDocument(Document)">setSVGDocument</a>
+          method). For futher information about the <span class="codefrag">JSVGCanvas</span>,
+          see the <a href="../using/swing.html">Swing components module
+            documentation</a>.
+        </p>
+      
+</dd>
+      
+<dt>ImageTranscoder</dt>
+      
+<dd>
+        The
+        <a class="class" href="../javadoc/org/apache/batik/transcoder/image/ImageTranscoder.html">ImageTranscoder</a>
+        is a transcoder that can take a URI, an <span class="codefrag">InputStream</span> or an
+        SVG DOM tree and produces a raster image (such JPEG, PNG or TIFF).
+        By creating a
+        <a class="class" href="../javadoc/org/apache/batik/transcoder/TranscoderInput.html">TranscoderInput</a>
+        object with the SVG DOM tree, you will be able to transform your SVG
+        content to a raster image. For futher information, see the
+        <a href="../using/transcoder.html">transcoder module documentation</a>.
+      </dd>
+    
+</dl>
+</div>
+
+
+</div>
+<!--+
+    |end content
+    +-->
+<div class="clearboth">&nbsp;</div>
+</div>
+<div id="footer">
+<!--+
+    |start bottomstrip
+    +-->
+<div class="lastmodified">
+<script type="text/javascript"><!--
+document.write("Last Published: " + document.lastModified);
+//  --></script>
+</div>
+<div class="copyright">
+        Copyright &copy;
+         2000&ndash;2008 <a href="http://www.apache.org/licenses/">The Apache Software Foundation.</a>
+</div>
+<!--+
+    |end bottomstrip
+    +-->
+</div>
+</body>
+</html>
