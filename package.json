@@ -21,7 +21,8 @@
     "dependencies": {
        "jsdom": "*",
        "speech-rule-engine": "*",
-       "yargs": "*"
+       "yargs": "*",
+       "execSync": "*"
     },
     "main": "./lib/mj-page.js"
 }
