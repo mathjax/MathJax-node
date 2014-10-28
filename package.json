@@ -21,7 +21,8 @@
     "dependencies": {
        "jsdom": "1.0.2",
        "speech-rule-engine": "*",
-       "yargs": "*"
+       "yargs": "*",
+       "MathJax": "https://github.com/mathjax/MathJax/tarball/mathjax-node"
     },
     "main": "./lib/mj-page.js"
 }
