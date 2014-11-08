@@ -32,10 +32,6 @@ var jsdom = require('jsdom').jsdom;
 var argv = require("yargs")
   .strict()
   .usage("Usage: page2mml [options] < input.html > output.html",{
-    linebreaks: {
-      boolean: true,
-      describe: "perform automatic line-breaking"
-    },
     nodollars: {
       boolean: true,
       describe: "don't use single-dollar delimiters"
@@ -81,7 +77,6 @@ function processHTML(html,callback) {
     equationNumbers: argv.eqno,
     singleDollars: !argv.nodollars,
     ex: argv.ex, width: argv.width,
-    linebreaks: argv.linebreaks,
     xmlns:xmlns
   }, function (result) {
     document.body.innerHTML = result.html;

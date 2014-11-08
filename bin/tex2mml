@@ -44,10 +44,6 @@ var argv = require("yargs")
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
     },
-    linebreaks: {
-      boolean: true,
-      describe: "perform automatic line-breaking"
-    },
     semantics: {
       boolean: true,
       describe: "add TeX code in <semantics> tag"
@@ -75,8 +71,7 @@ mjAPI.typeset({
   mml:true,
   speakText: argv.speech,
   speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle,
-  linebreaks: argv.linebreaks
+  speakStyle: argv.speechstyle
 }, function (data) {
   if (!data.errors) {console.log(data.mml)}
 });

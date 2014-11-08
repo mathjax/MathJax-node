@@ -28,10 +28,6 @@ var mjAPI = require("../lib/mj-single.js");
 var argv = require("yargs")
   .demand(1).strict()
   .usage("Usage: am2mml [options] 'math' > file.mml",{
-    linebreaks: {
-      boolean: true,
-      describe: "perform automatic line-breaking"
-    },
     speech: {
       boolean: true,
       describe: "include speech text"
@@ -65,8 +61,7 @@ mjAPI.typeset({
   format: "AsciiMath", mml:true,
   speakText: argv.speech,
   speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle,
-  linebreaks: argv.linebreaks
+  speakStyle: argv.speechstyle
 }, function (data) {
   if (!data.errors) {console.log(data.mml)}
 });
