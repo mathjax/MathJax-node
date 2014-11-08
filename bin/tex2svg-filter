@@ -40,6 +40,14 @@ var argv = require("yargs")
       boolean: true,
       describe: "include speech text"
     },
+    speechrules: {
+      default: "mathspeak",
+      describe: "ruleset to use for speech text (chromevox or mathspeak)"
+    },
+    speechstyle: {
+      default: "default",
+      describe: "style to use for speech text (default, brief, sbrief)"
+    },
     linebreaks: {
       boolean: true,
       describe: "perform automatic line-breaking"
@@ -80,15 +88,9 @@ var rl = readline.createInterface({
 var tex = [], n = 0;
 
 //
-//  Data passed to mj-single-svg to maintain state and produce svg images
+//  Data passed to mj-single-svg to maintain state
 //
-var data = {
-  math:"", state:{},
-  svg:true, img:true,
-  ex:argv.ex, width:argv.width,
-  linebreaks: argv.linebreaks,
-  speakText: argv.speech
-};
+var state = {};
 
 //
 //  Save an SVG file:
@@ -102,10 +104,19 @@ var data = {
 //
 function SaveSVG() {
   if (tex.length === 0) return;
+  var data = {
+    math:"", state:state,
+    format: "TeX",
+    svg:true, img:true,
+    ex:argv.ex, width:argv.width,
+    linebreaks: argv.linebreaks,
+    speakText: argv.speech,
+    speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
+    speakStyle: argv.speechstyle
+  };
   n++; var N = n; while (N.length < 3) {N = "0"+N}
   var file = prefix+N+".svg";
   var math = tex.join("\n"); tex = [];
-  data.format = "TeX";
   if (math.slice(0,2) === "$$" && math.slice(-2) === "$$") {
     math = math.slice(2,math.length-2);
   } else if (math.slice(0,1) === "$" && math.slice(-1) === "$") {
