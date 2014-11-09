@@ -36,6 +36,10 @@ var argv = require("yargs")
       boolean: true,
       description: "don't use the global font cache"
     },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
     speech: {
       boolean: true,
       describe: "include speech text"
@@ -47,10 +51,6 @@ var argv = require("yargs")
     speechstyle: {
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
-    },
-    linebreaks: {
-      boolean: true,
-      describe: "perform automatic line-breaking"
     },
     font: {
       default: "TeX",

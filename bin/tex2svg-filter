@@ -36,6 +36,10 @@ var fs = require('fs');
 var argv = require("yargs")
   .demand(1).strict()
   .usage("Usage: tex2svg-filter [options] 'SVG-file-prefix'",{
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
     speech: {
       boolean: true,
       describe: "include speech text"
@@ -47,10 +51,6 @@ var argv = require("yargs")
     speechstyle: {
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
-    },
-    linebreaks: {
-      boolean: true,
-      describe: "perform automatic line-breaking"
     },
     font: {
       default: "TeX",
@@ -107,7 +107,7 @@ function SaveSVG() {
   var data = {
     math:"", state:state,
     format: "TeX",
-    svg:true, img:true,
+    svg:true,
     ex:argv.ex, width:argv.width,
     linebreaks: argv.linebreaks,
     speakText: argv.speech,

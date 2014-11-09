@@ -70,7 +70,7 @@ mjAPI.start();
 mjAPI.typeset({
   math: argv._[0],
   format: (argv.inline ? "inline-TeX" : "TeX"),
-  svg:true, img:true,
+  svg:true,
   speakText: argv.speech,
   speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
   speakStyle: argv.speechstyle,
