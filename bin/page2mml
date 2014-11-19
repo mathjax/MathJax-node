@@ -32,9 +32,21 @@ var jsdom = require('jsdom').jsdom;
 var argv = require("yargs")
   .strict()
   .usage("Usage: page2mml [options] < input.html > output.html",{
-    linebreaks: {
+    preview: {
       boolean: true,
-      describe: "perform automatic line-breaking"
+      describe: "make MathML into a Mathjax preview"
+    },
+    speech: {
+      boolean: true,
+      describe: "include speech text"
+    },
+    speechrules: {
+      default: "mathspeak",
+      describe: "ruleset to use for speech text (chromevox or mathspeak)"
+    },
+    speechstyle: {
+      default: "default",
+      describe: "style to use for speech text (default, brief, sbrief)"
     },
     nodollars: {
       boolean: true,
@@ -80,8 +92,11 @@ function processHTML(html,callback) {
     inputs: argv.format,
     equationNumbers: argv.eqno,
     singleDollars: !argv.nodollars,
+    addPreview: argv.preview,
+    speakText: argv.speech,
+    speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
+    speakStyle: argv.speechstyle,
     ex: argv.ex, width: argv.width,
-    linebreaks: argv.linebreaks,
     xmlns:xmlns
   }, function (result) {
     document.body.innerHTML = result.html;

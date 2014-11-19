@@ -2,9 +2,10 @@
 
 /*************************************************************************
  *
- *  tex2mml
+ *  mml2mml
  *
- *  Uses MathJax to convert a TeX or LaTeX string to a MathML string.
+ *  Uses MathJax to convert a MathML string to a normalized MathML
+ *  string (can include speech text).
  *
  * ----------------------------------------------------------------------
  *
@@ -27,11 +28,7 @@ var mjAPI = require("../lib/mj-single.js");
 
 var argv = require("yargs")
   .demand(1).strict()
-  .usage("Usage: tex2mml [options] 'math' > file.mml",{
-    inline: {
-      boolean: true,
-      describe: "process as in-line TeX"
-    },
+  .usage("Usage: mml2mml [options] 'math' > file.xml",{
     speech: {
       boolean: true,
       describe: "include speech text"
@@ -43,32 +40,16 @@ var argv = require("yargs")
     speechstyle: {
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
-    },
-    semantics: {
-      boolean: true,
-      describe: "add TeX code in <semantics> tag"
-    },
-    notexhints: {
-      boolean: true,
-      describe: "don't add TeX-specific classes"
     }
   })
   .argv;
 
-mjAPI.config({
-  MathJax: {
-    menuSettings: {
-      semantics: argv.semantics,
-      texHints: !argv.notexhints
-    }
-  }
-});
+mjAPI.config({});
 mjAPI.start();
 
 mjAPI.typeset({
   math: argv._[0],
-  format: (argv.inline ? "inline-TeX" : "TeX"),
-  mml:true,
+  format: "MathML", mml:true,
   speakText: argv.speech,
   speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
   speakStyle: argv.speechstyle

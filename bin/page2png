@@ -2,11 +2,11 @@
 
 /************************************************************************
  *
- *  page2svg
+ *  page2png
  *
  *  Reads an HTML5 file from stdin that contains math
  *  and writes a new HTML5 document to stdout that
- *  contains SVG versions of the math instead.
+ *  contains PNG versions of the math instead.
  *
  * ----------------------------------------------------------------------
  *
@@ -31,10 +31,10 @@ var jsdom = require('jsdom').jsdom;
 
 var argv = require("yargs")
   .strict()
-  .usage("Usage: page2svg [options] < input.html > output.html",{
+  .usage("Usage: page2png [options] < input.html > output.html",{
     preview: {
       boolean: true,
-      describe: "make SVG into a Mathjax preview"
+      describe: "make PNG into a Mathjax preview"
     },
     speech: {
       boolean: true,
@@ -56,14 +56,6 @@ var argv = require("yargs")
       boolean: true,
       describe: "don't use single-dollar delimiters"
     },
-    nofontcache: {
-      boolean: true,
-      describe: "don't use <defs> and <use> tags for fonts"
-    },
-    localcache: {
-      boolean: true,
-      describe: "cache fonts for each equation separately"
-    },
     format: {
       default: "AsciiMath,TeX,MathML",
       describe: "input format(s) to look for"
@@ -75,6 +67,10 @@ var argv = require("yargs")
     img: {
        default: "",
        describe: "make external svg images with this name prefix"
+    },
+    dpi: {
+       default: "144",
+       describe: "the dpi for the PNG images"
     },
     font: {
       default: "TeX",
@@ -104,12 +100,11 @@ function processHTML(html,callback) {
   var xmlns = getXMLNS(document);
   mjAPI.typeset({
     html: document.body.innerHTML,
-    renderer: (argv.img == "" ? "SVG" : "IMG"),
+    renderer: "PNG", dpi: argv.dpi,
     inputs: argv.format,
     equationNumbers: argv.eqno,
     singleDollars: !argv.nodollars,
-    useFontCache: !argv.nofontcache,
-    useGlobalCache: !argv.localcache,
+    useGlobalCache: false,
     addPreview: argv.preview,
     speakText: argv.speech,
     speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
@@ -121,16 +116,11 @@ function processHTML(html,callback) {
     document.body.innerHTML = result.html;
     document.head.appendChild(document.body.firstChild);
     if (argv.img !== "") {
-      var img = document.getElementsByClassName("MathJax_SVG_IMG");
+      var img = document.getElementsByClassName("MathJax_PNG_IMG");
       for (var i = 0, m = img.length; i < m; i++) {
         var N = (i+1).toString(); while (N.length < 4) {N = "0"+N}
-        var file = argv.img+N+".svg";
-        var svg = [
-          '<?xml version="1.0" standalone="no"?>',
-          '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
-          new Buffer(img[i].src.replace(/^.*?,/,""),"base64").toString("utf-8")
-        ].join("\n");
-        fs.writeFileSync(file,svg);
+        var file = argv.img+N+".png";
+        fs.writeFileSync(file,new Buffer(img[i].src.replace(/^.*?,/,""),"base64"));
         img[i].src = file;
       }
     }

@@ -10,23 +10,13 @@ See the comments in the individual files for more details.
 
 The `bin` directory contains a collection of command-line programs for 
 converting among MathJax's various formats.  These can be used as examples 
-of calling the MathJax API's.
+of calling the MathJax API.
 
 Use
 
     npm install https://github.com/mathjax/MathJax-node/tarball/master
 
 to install MathJax-node and its dependencies.
-
-You will need to use a local copy of MathJax, and it needs to be the
-[develop](https://github.com/mathjax/MathJax/tree/develop) branch (which
-has some modifications that will go into the core version of MathJax
-after the v2.4 release).  Put your copy of MathJax in the `mathjax`
-directory.
-
-    git clone https://github.com/mathjax/MathJax mathjax
-    cd mathjax
-    git checkout develop
 
 These API's can produce PNG images, but that requires the
 [Batik](http://xmlgraphics.apache.org/batik/download.html) library.  It 

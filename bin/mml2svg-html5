@@ -36,13 +36,21 @@ var argv = require("yargs")
       boolean: true,
       description: "don't use the global font cache"
     },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
     speech: {
       boolean: true,
       describe: "include speech text"
     },
-    linebreaks: {
-      boolean: true,
-      describe: "perform automatic line-breaking"
+    speechrules: {
+      default: "mathspeak",
+      describe: "ruleset to use for speech text (chromevox or mathspeak)"
+    },
+    speechstyle: {
+      default: "default",
+      describe: "style to use for speech text (default, brief, sbrief)"
     },
     font: {
       default: "TeX",
@@ -87,6 +95,8 @@ function processHTML(html,callback) {
       format:"MathML",
       svg:true, useGlobalCache: !argv.localcache,
       speakText: argv.speech,
+      speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
+      speakStyle: argv.speechstyle,
       ex: argv.ex, width: argv.width,
       linebreaks: argv.linebreaks,
       state:state, xmlns:xmlns

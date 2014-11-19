@@ -1,6 +1,6 @@
 {
     "name": "MathJax-node",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "API's for calling MathJax from node.js",
     "keywords": ["MathJax","math","svg","MathML","TeX","AsciiMath"],
     "maintainers": [
@@ -19,9 +19,10 @@
         "url": "git://github.com/mathjax/MathJax-node.git"
     },
     "dependencies": {
-       "jsdom": "*",
+       "jsdom": "1.0.2",
        "speech-rule-engine": "*",
-       "yargs": "*"
+       "yargs": "*",
+       "MathJax": "https://github.com/mathjax/MathJax/tarball/mathjax-node"
     },
     "main": "./lib/mj-page.js"
 }
