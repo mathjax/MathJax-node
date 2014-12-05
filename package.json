@@ -22,6 +22,7 @@
        "jsdom": "1.0.2",
        "speech-rule-engine": "*",
        "yargs": "*",
+       "svg2png": "1.1.0",
        "MathJax": "https://github.com/mathjax/MathJax/tarball/mathjax-node"
     },
     "main": "./lib/mj-page.js"
