@@ -59,12 +59,16 @@ var argv = require("yargs")
     width: {
       default: 100,
       describe: "width of container in ex"
+    },
+    allowinvalid: {
+      boolean: true,
+      describe: "do not fail for invalid TeX commands (display red)"
     }
   })
   .argv;
 
 if (argv.font === "STIX") argv.font = "STIX-Web";
-mjAPI.config({MathJax: {SVG: {font: argv.font}}});
+mjAPI.config({MathJax: {SVG: {font: argv.font}}, allowInvalidTeX: argv.allowinvalid});
 mjAPI.start();
 
 mjAPI.typeset({
