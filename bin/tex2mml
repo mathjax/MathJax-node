@@ -51,6 +51,10 @@ var argv = require("yargs")
     notexhints: {
       boolean: true,
       describe: "don't add TeX-specific classes"
+    },
+    allowinvalid: {
+      boolean: true,
+      describe: "do not fail for invalid TeX commands (display red)"
     }
   })
   .argv;
@@ -61,7 +65,8 @@ mjAPI.config({
       semantics: argv.semantics,
       texHints: !argv.notexhints
     }
-  }
+  },
+  allowInvalidTeX: argv.allowinvalid
 });
 mjAPI.start();
 
