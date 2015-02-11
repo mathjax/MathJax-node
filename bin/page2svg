@@ -100,7 +100,7 @@ mjAPI.start();
 //  Process an HTML file:
 //
 function processHTML(html,callback) {
-  var document = jsdom(html,null,{features:{FetchExternalResources: false}});
+  var document = jsdom(html,{features:{FetchExternalResources: false}});
   var xmlns = getXMLNS(document);
   mjAPI.typeset({
     html: document.body.innerHTML,
