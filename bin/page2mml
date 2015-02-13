@@ -71,13 +71,17 @@ var argv = require("yargs")
     width: {
       default: 100,
       describe: "width of container in ex"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
 
 argv.format = argv.format.split(/ *, */);
 
-mjAPI.config({MathJax: {menuSettings: {semantics: argv.semantics}}});
+mjAPI.config({MathJax: {menuSettings: {semantics: argv.semantics}}, extensions: argv.extensions});
 mjAPI.start();
 
 //
