@@ -4,3 +4,6 @@ batik/*
 !batik/README.md
 mathjax/*
 !mathjax/README.md
+
+# WebStorm
+.idea
