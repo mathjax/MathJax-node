@@ -47,12 +47,16 @@ var argv = require("yargs")
     width: {
       default: 100,
       describe: "width of container in ex"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
 
 if (argv.font === "STIX") argv.font = "STIX-Web";
-mjAPI.config({MathJax: {SVG: {font: argv.font}}});
+mjAPI.config({MathJax: {SVG: {font: argv.font}}, extensions: argv.extensions});
 mjAPI.start();
 
 if (argv.dpi === 0) {argv.dpi = argv.ex * 16} // pixels properly sized
