@@ -65,12 +65,12 @@ var argv = require("yargs")
       describe: "equation number style (none, AMS, or all)"
     },
     img: {
-       default: "",
-       describe: "make external svg images with this name prefix"
+      default: "",
+      describe: "make external svg images with this name prefix"
     },
     dpi: {
-       default: "144",
-       describe: "the dpi for the PNG images"
+      default: 0,
+      describe: "dpi for image (0 = calculate automatically)"
     },
     font: {
       default: "TeX",
@@ -83,20 +83,26 @@ var argv = require("yargs")
     width: {
       default: 100,
       describe: "width of container in ex"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
 
 argv.format = argv.format.split(/ *, */);
 if (argv.font === "STIX") argv.font = "STIX-Web";
-mjAPI.config({MathJax: {SVG: {font: argv.font}}});
+mjAPI.config({MathJax: {SVG: {font: argv.font}}, extensions: argv.extensions});
 mjAPI.start();
+
+if (argv.dpi === 0) {argv.dpi = argv.ex * 16} // pixels properly sized
 
 //
 //  Process an HTML file:
 //
 function processHTML(html,callback) {
-  var document = jsdom(html,null,{features:{FetchExternalResources: false}});
+  var document = jsdom(html,{features:{FetchExternalResources: false}});
   var xmlns = getXMLNS(document);
   mjAPI.typeset({
     html: document.body.innerHTML,

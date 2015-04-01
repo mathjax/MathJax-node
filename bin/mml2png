@@ -33,8 +33,8 @@ var argv = require("yargs")
       describe: "perform automatic line-breaking"
     },
     dpi: {
-      default: 144,
-      describe: "dpi for image"
+      default: 0,
+      describe: "dpi for image (0 = calculate automatically)"
     },
     font: {
       default: "TeX",
@@ -47,13 +47,19 @@ var argv = require("yargs")
     width: {
       default: 100,
       describe: "width of container in ex"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
 
 if (argv.font === "STIX") argv.font = "STIX-Web";
-mjAPI.config({MathJax: {SVG: {font: argv.font}}});
+mjAPI.config({MathJax: {SVG: {font: argv.font}}, extensions: argv.extensions});
 mjAPI.start();
+
+if (argv.dpi === 0) {argv.dpi = argv.ex * 16} // pixels properly sized
 
 mjAPI.typeset({
   math: argv._[0],

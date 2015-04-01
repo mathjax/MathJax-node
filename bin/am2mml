@@ -43,6 +43,10 @@ var argv = require("yargs")
     semantics: {
       boolean: true,
       describe: "add AsciiMath code in <semantics> tag"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
@@ -52,7 +56,8 @@ mjAPI.config({
     menuSettings: {
       semantics: argv.semantics
     }
-  }
+  },
+  extensions: argv.extensions
 });
 mjAPI.start();
 
