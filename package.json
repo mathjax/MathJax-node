@@ -23,5 +23,5 @@
         "yargs": "*",
         "MathJax": "https://github.com/mathjax/MathJax/tarball/mathjax-node-2.5.1"
     },
-    "main": "./lib/mj-page.js"
+    "main": "./lib/mj.js"
 }
