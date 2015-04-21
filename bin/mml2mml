@@ -40,11 +40,15 @@ var argv = require("yargs")
     speechstyle: {
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
 
-mjAPI.config({});
+mjAPI.config({extensions: argv.extensions});
 mjAPI.start();
 
 mjAPI.typeset({

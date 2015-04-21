@@ -51,6 +51,10 @@ var argv = require("yargs")
     notexhints: {
       boolean: true,
       describe: "don't add TeX-specific classes"
+    },
+    extensions: {
+      default: "",
+      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
     }
   })
   .argv;
@@ -61,7 +65,8 @@ mjAPI.config({
       semantics: argv.semantics,
       texHints: !argv.notexhints
     }
-  }
+  },
+  extensions: argv.extensions
 });
 mjAPI.start();
 
