@@ -10,5 +10,3 @@
                         console.log("The file was saved!");
                     });
 ```
-
-In .jsignore lib is ignored. That should be changed in the future
