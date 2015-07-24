@@ -32,9 +32,7 @@
       "coveralls": "2.11.2"
     },
     "scripts": {
-      "test": "mocha",
-      "coverage": "istanbul cover _mocha -- -R spec",
-      "coveralls": "cat ./coverage/lcov.info | coveralls"
+      "test": "mocha"
     },
     "main": "./lib/mj-page.js"
 }
