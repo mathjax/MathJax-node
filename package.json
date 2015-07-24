@@ -10,7 +10,7 @@
         "url": "http://github.com/mathjax/MathJax-node/issues"
     },
     "license": {
-        "type": "Apache",
+        "type": "Apache-2.0",
         "url": "http://github.com/mathjax/MathJax-node/blob/master/LICENSE"
     },
     "repository": {
