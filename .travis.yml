@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- 'iojs'
+sudo: false
+script:
+  - npm install
+  - npm test
