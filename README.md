@@ -1,4 +1,4 @@
-# MathJax-node
+# MathJax-node [![Build Status](https://travis-ci.org/mathjax/MathJax-node.svg?branch=develop)](https://travis-ci.org/mathjax/MathJax-node)
 
 This repository contains files that provide APIs to call MathJax from 
 node.js programs.  There is an API for converting individual math 
