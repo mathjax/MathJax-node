@@ -1,4 +1,4 @@
-# MathJax-node [![Build Status](https://travis-ci.org/mathjax/MathJax-node.svg?branch=develop)](https://travis-ci.org/mathjax/MathJax-node)
+# mathjax-node [![Build Status](https://travis-ci.org/mathjax/MathJax-node.svg?branch=develop)](https://travis-ci.org/mathjax/MathJax-node)
 
 This repository contains files that provide APIs to call MathJax from 
 node.js programs.  There is an API for converting individual math 
@@ -14,9 +14,9 @@ of calling the MathJax API.
 
 Use
 
-    npm install MathJax-node
+    npm install mathjax-node
 
-to install MathJax-node and its dependencies.
+to install mathjax-node and its dependencies.
 
 These API's can produce PNG images, but that requires the
 [Batik](http://xmlgraphics.apache.org/batik/download.html) library.  It 
@@ -25,7 +25,7 @@ directory for more details.
 
 # Getting started
 
-MahJax-node provides two libraries, `lib/mj-single.js` and `lib/mj-page.js`. Below are two  very minimal examples -- be sure to check out the examples in `./bin/` for more advanced configurations.
+mathjax-node provides two libraries, `lib/mj-single.js` and `lib/mj-page.js`. Below are two  very minimal examples -- be sure to check out the examples in `./bin/` for more advanced configurations.
 
 * `lib/mj-single.js` is optimized for processing single equations.
 
