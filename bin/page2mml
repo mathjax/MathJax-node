@@ -104,7 +104,7 @@ function processHTML(html,callback) {
     xmlns:xmlns
   }, function (result) {
     document.body.innerHTML = result.html;
-    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
+    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"")+"\n";
     callback(HTML);
   });
 }
