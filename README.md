@@ -27,7 +27,7 @@ directory for more details.
 
 mathjax-node provides two libraries, `./lib/mj-single.js` and `./lib/mj-page.js`. Below are two  very minimal examples -- be sure to check out the examples in `./bin/` for more advanced configurations.
 
-* `.lib/mj-single.js` is optimized for processing single equations.
+* `./lib/mj-single.js` is optimized for processing single equations.
 
 
 ```javascript
