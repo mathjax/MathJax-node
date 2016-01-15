@@ -150,9 +150,9 @@ function getXMLNS(document) {
   var html = document.head.parentNode;
   for (var i = 0, m = html.attributes.length; i < m; i++) {
     var attr = html.attributes[i];
-    if (attr.nodeName.substr(0,6) === "xmlns:" &&
-        attr.nodeValue === "http://www.w3.org/1998/Math/MathML")
-             {return attr.nodeName.substr(6)}
+    if (attr.name.substr(0,6) === "xmlns:" &&
+        attr.value === "http://www.w3.org/1998/Math/MathML")
+             {return attr.name.substr(6)}
   }
   return "mml";
 }
