@@ -1,7 +1,16 @@
 language: node_js
 node_js:
-- 'stable'
+  - '4'
+  - '5'
+  - 'stable'
 sudo: false
 script:
   - npm install
   - npm test
+deploy:
+  provider: npm
+  email: manager@mathjax.org
+  api_key:
+    secure: nSm2ZQ92EV/fO+qIQb1LninJ/Ui+gzdn7B/6SHYwZ15mLAAT05UUaSTU7Olr8sFYGh0J3BIypkJLeTKK0oROoePzdYT7HPPHbU2nsky5AqLIUyVtYknhna8JSeES9hY9tejmP/IBxtfNgY6rNujI3gcN+q0iquYFY1XgJlWP1PM=
+  on:
+    tags: true
