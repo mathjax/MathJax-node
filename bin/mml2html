@@ -2,9 +2,9 @@
 
 /*************************************************************************
  *
- *  tex2html
+ *  mml2html
  *
- *  Uses MathJax to convert a TeX or LaTeX string to an HTML string.
+ *  Uses MathJax to convert a MathML string to an HTML string.
  *
  * ----------------------------------------------------------------------
  *
@@ -27,11 +27,7 @@ var mjAPI = require("../lib/mj-single.js");
 
 var argv = require("yargs")
   .demand(1).strict()
-  .usage("Usage: tex2html [options] 'math' > file.html",{
-    inline: {
-      boolean: true,
-      describe: "process as in-line TeX"
-    },
+  .usage("Usage: mml2html [options] 'math' > file.html",{
     speech: {
       boolean: true,
       describe: "include speech text"
@@ -71,12 +67,12 @@ var argv = require("yargs")
   })
   .argv;
 
-mjAPI.config({extensions: argv.extensions, fontURL: argv.fontURL});
+mjAPI.config({extensions: argv.extensions});
 mjAPI.start();
 
 mjAPI.typeset({
   math: argv._[0],
-  format: (argv.inline ? "inline-TeX" : "TeX"),
+  format: "MathML",
   html:true, css: argv.css,
   speakText: argv.speech,
   speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
