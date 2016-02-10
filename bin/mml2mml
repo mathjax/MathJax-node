@@ -28,7 +28,7 @@ var mjAPI = require("../lib/mj-single.js");
 
 var argv = require("yargs")
   .demand(1).strict()
-  .usage("Usage: mml2mml [options] 'math' > file.xml",{
+  .usage("Usage: mml2mml [options] 'math' > file.mml",{
     speech: {
       boolean: true,
       describe: "include speech text"

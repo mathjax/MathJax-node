@@ -2,15 +2,15 @@
 
 /************************************************************************
  *
- *  page2svg
+ *  page2html
  *
  *  Reads an HTML5 file from stdin that contains math
  *  and writes a new HTML5 document to stdout that
- *  contains SVG versions of the math instead.
+ *  contains CommonHTML versions of the math instead.
  *
  * ----------------------------------------------------------------------
  *
- *  Copyright (c) 2014 The MathJax Consortium
+ *  Copyright (c) 2016 The MathJax Consortium
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ var jsdom = require('jsdom').jsdom;
 
 var argv = require("yargs")
   .strict()
-  .usage("Usage: page2svg [options] < input.html > output.html",{
+  .usage("Usage: page2html [options] < input.html > output.html",{
     preview: {
       boolean: true,
-      describe: "make SVG into a MathJax preview"
+      describe: "make HTML into a MathJax preview"
     },
     speech: {
       boolean: true,
@@ -75,12 +75,16 @@ var argv = require("yargs")
     extensions: {
       default: "",
       describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
+    },
+    fontURL: {
+      default: "https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS",
+      describe: "the URL to use for web fonts"
     }
   })
   .argv;
 
 argv.format = argv.format.split(/ *, */);
-mjAPI.config({extensions: argv.extensions});
+mjAPI.config({extensions: argv.extensions, fontURL: argv.fontURL});
 mjAPI.start();
 
 //
