@@ -31,7 +31,7 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "main": "./lib/mj-page.js",
+  "main": "./lib/mj-single.js",
   "devDependencies": {
     "tape": "^4.0.3"
   }
