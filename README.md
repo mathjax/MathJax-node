@@ -25,14 +25,14 @@ directory for more details.
 
 # Getting started
 
-mathjax-node provides two libraries, `lib/mj-single.js` and `lib/mj-page.js`. Below are two  very minimal examples -- be sure to check out the examples in `./bin/` for more advanced configurations.
+mathjax-node provides two libraries, `./lib/mj-single.js` and `./lib/mj-page.js`. Below are two  very minimal examples -- be sure to check out the examples in `./bin/` for more advanced configurations.
 
-* `lib/mj-single.js` is optimized for processing single equations.
+* `./lib/mj-single.js` is optimized for processing single equations.
 
 
 ```javascript
 // a simple TeX-input example
-var mjAPI = require("./lib/mj-single.js");
+var mjAPI = require("mathjax-node/lib/mj-single.js");
 mjAPI.config({
   MathJax: {
     // traditional MathJax configuration
@@ -52,11 +52,11 @@ mjAPI.typeset({
 ```
 
 
-* `lib/mj-page.js` is optimized for handling full HTML pages. 
+* `./lib/mj-page.js` is optimized for handling full HTML pages. 
 
 
 ```javascript
-var mjAPI = require("./lib/mj-page.js");
+var mjAPI = require("mathjax-node/lib/mj-page.js");
 var jsdom = require("jsdom").jsdom;
 
 var document = jsdom("<!DOCTYPE html><html lang='en'><head><title>Test</title></head><body><h1>Let's test mj-page</h1> <p> \\[f: X \\to Y\\], where \\( X = 2^{\mathbb{N}}\\) </p></body></html>");

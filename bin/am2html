@@ -2,14 +2,13 @@
 
 /*************************************************************************
  *
- *  mml2mml
+ *  am2html
  *
- *  Uses MathJax to convert a MathML string to a normalized MathML
- *  string (can include speech text).
+ *  Uses MathJax to convert an AsciiMath string to an HTML string.
  *
  * ----------------------------------------------------------------------
  *
- *  Copyright (c) 2014 The MathJax Consortium
+ *  Copyright (c) 2016 The MathJax Consortium
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,7 +27,7 @@ var mjAPI = require("../lib/mj-single.js");
 
 var argv = require("yargs")
   .demand(1).strict()
-  .usage("Usage: mml2mml [options] 'math' > file.mml",{
+  .usage("Usage: am2html [options] 'math' > file.html",{
     speech: {
       boolean: true,
       describe: "include speech text"
@@ -41,22 +40,45 @@ var argv = require("yargs")
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
     },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
+    ex: {
+      default: 6,
+      describe: "ex-size in pixels"
+    },
+    width: {
+      default: 100,
+      describe: "width of container in ex"
+    },
     extensions: {
       default: "",
       describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
+    },
+    css: {
+      boolean: true,
+      describe: "output the required CSS rather than the HTML itself"
+    },
+    fontURL: {
+      default: "https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS",
+      describe: "the URL to use for web fonts"
     }
   })
   .argv;
 
-mjAPI.config({extensions: argv.extensions});
+mjAPI.config({extensions: argv.extensions, fontURL: argv.fontURL});
 mjAPI.start();
 
 mjAPI.typeset({
   math: argv._[0],
-  format: "MathML", mml:true,
+  format: "AsciiMath",
+  html:true, css: argv.css,
   speakText: argv.speech,
   speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle
+  speakStyle: argv.speechstyle,
+  ex: argv.ex, width: argv.width,
+  linebreaks: argv.linebreaks
 }, function (data) {
-  if (!data.errors) {console.log(data.mml)}
+  if (!data.errors) {console.log(argv.css ? data.css : data.html)}
 });

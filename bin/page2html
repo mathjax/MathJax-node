@@ -2,15 +2,15 @@
 
 /************************************************************************
  *
- *  page2mml
+ *  page2html
  *
  *  Reads an HTML5 file from stdin that contains math
  *  and writes a new HTML5 document to stdout that
- *  contains MathML versions of the math instead.
+ *  contains CommonHTML versions of the math instead.
  *
  * ----------------------------------------------------------------------
  *
- *  Copyright (c) 2014 The MathJax Consortium
+ *  Copyright (c) 2016 The MathJax Consortium
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ var jsdom = require('jsdom').jsdom;
 
 var argv = require("yargs")
   .strict()
-  .usage("Usage: page2mml [options] < input.html > output.html",{
+  .usage("Usage: page2html [options] < input.html > output.html",{
     preview: {
       boolean: true,
-      describe: "make MathML into a Mathjax preview"
+      describe: "make HTML into a MathJax preview"
     },
     speech: {
       boolean: true,
@@ -48,13 +48,13 @@ var argv = require("yargs")
       default: "default",
       describe: "style to use for speech text (default, brief, sbrief)"
     },
+    linebreaks: {
+      boolean: true,
+      describe: "perform automatic line-breaking"
+    },
     nodollars: {
       boolean: true,
       describe: "don't use single-dollar delimiters"
-    },
-    semantics: {
-      boolean: true,
-      describe: "add TeX or AsciiMath code in <semantics> tag"
     },
     format: {
       default: "AsciiMath,TeX,MathML",
@@ -75,13 +75,16 @@ var argv = require("yargs")
     extensions: {
       default: "",
       describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
+    },
+    fontURL: {
+      default: "https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS",
+      describe: "the URL to use for web fonts"
     }
   })
   .argv;
 
 argv.format = argv.format.split(/ *, */);
-
-mjAPI.config({MathJax: {menuSettings: {semantics: argv.semantics}}, extensions: argv.extensions});
+mjAPI.config({extensions: argv.extensions, fontURL: argv.fontURL});
 mjAPI.start();
 
 //
@@ -91,8 +94,8 @@ function processHTML(html,callback) {
   var document = jsdom(html,{features:{FetchExternalResources: false}});
   var xmlns = getXMLNS(document);
   mjAPI.typeset({
-    html:document.body.innerHTML,
-    renderer:"NativeMML",
+    html: document.body.innerHTML,
+    renderer: "CommonHTML",
     inputs: argv.format,
     equationNumbers: argv.eqno,
     singleDollars: !argv.nodollars,
@@ -101,10 +104,12 @@ function processHTML(html,callback) {
     speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
     speakStyle: argv.speechstyle,
     ex: argv.ex, width: argv.width,
+    linebreaks: argv.linebreaks,
     xmlns:xmlns
   }, function (result) {
     document.body.innerHTML = result.html;
-    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"")+"\n";
+    document.head.appendChild(document.body.firstChild);
+    var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
     callback(HTML);
   });
 }
@@ -116,9 +121,9 @@ function getXMLNS(document) {
   var html = document.head.parentNode;
   for (var i = 0, m = html.attributes.length; i < m; i++) {
     var attr = html.attributes[i];
-    if (attr.name.substr(0,6) === "xmlns:" &&
-        attr.value === "http://www.w3.org/1998/Math/MathML")
-             {return attr.name.substr(6)}
+    if (attr.nodeName.substr(0,6) === "xmlns:" &&
+        attr.nodeValue === "http://www.w3.org/1998/Math/MathML")
+             {return attr.nodeName.substr(6)}
   }
   return "mml";
 }
