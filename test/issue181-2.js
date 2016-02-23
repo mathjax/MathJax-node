@@ -1,7 +1,7 @@
 var tape = require('tape');
 var execFileSync = require('child_process').execFileSync;
 
-tape('page with no math should not change', function(t) {
+tape('page with no math should not change (issue 181)', function(t) {
   t.plan(1);
 
   var html = "<!DOCTYPE html>\n<html><head></head><body><p>testing</p></body></html>\n";

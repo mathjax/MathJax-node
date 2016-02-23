@@ -1,7 +1,7 @@
 var tape = require('tape');
 var mjAPI = require("../lib/mj-page.js");
 
-tape('page with no math should not add undefined styles', function(t) {
+tape('page with no math should not add undefined styles (issue 181)', function(t) {
   t.plan(1);
 
   var html = "<html><head></head><body><p>testing</p></body>";
