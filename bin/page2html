@@ -110,7 +110,7 @@ function processHTML(html,callback) {
     //
     //  Replace the body with the one containing the math.
     //
-    document.body.innerHTML = result.html;
+    document.body.innerHTML = result.html.replace(/(\n|\s)*$/,"");
     //
     //  Remove style element from previous run, if there is one.
     //
@@ -120,9 +120,10 @@ function processHTML(html,callback) {
     //
     //  Move the CHTML styles to the head, and return the HTML document.
     //
-    document.head.appendChild(document.body.firstChild);
+    styles = document.body.removeChild(document.body.firstChild);
+    if (styles.textContent !== "") document.head.appendChild(styles);
     var HTML = "<!DOCTYPE html>\n"+document.documentElement.outerHTML.replace(/^(\n|\s)*/,"");
-    callback(HTML);
+    callback(HTML+"\n");
   });
 }
 
