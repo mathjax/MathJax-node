@@ -2,13 +2,13 @@
 
 /*************************************************************************
  *
- *  tex2mml
+ *  tex2stree
  *
  *  Uses MathJax to convert a TeX or LaTeX string to a MathML string.
  *
  * ----------------------------------------------------------------------
  *
- *  Copyright (c) 2014 The MathJax Consortium
+ *  Copyright (c) 2016 The MathJax Consortium
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
