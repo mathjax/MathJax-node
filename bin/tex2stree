@@ -49,11 +49,12 @@ mjAPI.start();
 mjAPI.typeset({
   math: argv._[0],
   format: "TeX",
-  semantic: true
+  semantic: true,
+  minSTree: argv.min
 }, function (data) {
   if (!data.errors) {
     if (argv.xml) {
-      console.log(argv.min ? data.streeXml : data.pprintXml(data.streeXml));}
+      console.log(argv.min ? data.streeXml : (data.streeXml));}
     if (argv.json) {
       console.log(argv.min ? JSON.stringify(data.streeJson) :
                   JSON.stringify(data.streeJson, null, 2));}
