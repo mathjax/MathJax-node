@@ -54,7 +54,7 @@ mjAPI.typeset({
 }, function (data) {
   if (!data.errors) {
     if (argv.xml) {
-      console.log(argv.min ? data.streeXml : (data.streeXml));}
+      console.log(data.streeXml);}
     if (argv.json) {
       console.log(argv.min ? JSON.stringify(data.streeJson) :
                   JSON.stringify(data.streeJson, null, 2));}
