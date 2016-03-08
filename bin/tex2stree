@@ -28,6 +28,10 @@ var mjAPI = require("../lib/mj-single.js");
 var argv = require("yargs")
   .demand(1).strict()
   .usage("Usage: tex2stree [options] 'math' > file.(json|xml)",{
+    min: {
+      boolean: true,
+      describe: "minimise output"
+    },
     json: {
       boolean: true,
       describe: "return semantic tree in Json"
@@ -45,12 +49,14 @@ mjAPI.start();
 mjAPI.typeset({
   math: argv._[0],
   format: "TeX",
-  semantic: true
+  semantic: true,
+  minSTree: argv.min
 }, function (data) {
   if (!data.errors) {
     if (argv.xml) {
       console.log(data.streeXml);}
     if (argv.json) {
-      console.log(JSON.stringify(data.streeJson));}
+      console.log(argv.min ? JSON.stringify(data.streeJson) :
+                  JSON.stringify(data.streeJson, null, 2));}
     }
 });
