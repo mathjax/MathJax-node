@@ -2,9 +2,9 @@
 
 /*************************************************************************
  *
- *  tex2stree
+ *  am2stree
  *
- *  Uses MathJax to convert a TeX or LaTeX string to SRE's semantic tree.
+ *  Uses MathJax to convert a AsciiMath string to SRE's semantic tree.
  *
  * ----------------------------------------------------------------------
  *
@@ -27,7 +27,7 @@ var mjAPI = require("../lib/mj-single.js");
 
 var argv = require("yargs")
   .demand(1).strict()
-  .usage("Usage: tex2stree [options] 'math' > file.(json|xml)",{
+  .usage("Usage: am2stree [options] 'math' > file.(json|xml)",{
     min: {
       boolean: true,
       describe: "minimise output"
@@ -48,7 +48,7 @@ mjAPI.start();
 
 mjAPI.typeset({
   math: argv._[0],
-  format: "TeX",
+  format: "AsciiMath",
   semantic: true,
   minSTree: argv.min
 }, function (data) {
