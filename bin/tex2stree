@@ -4,7 +4,7 @@
  *
  *  tex2stree
  *
- *  Uses MathJax to convert a TeX or LaTeX string to a MathML string.
+ *  Uses MathJax to convert a TeX or LaTeX string to SRE's semantic tree.
  *
  * ----------------------------------------------------------------------
  *
