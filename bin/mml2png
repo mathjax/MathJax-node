@@ -68,5 +68,10 @@ mjAPI.typeset({
   ex: argv.ex, width: argv.width,
   linebreaks: argv.linebreaks
 }, function (data) {
-  if (!data.errors) {process.stdout.write(new Buffer(data.png.slice(22),'base64'))}
+  if (!data.errors) {
+      process.stdout.write(new Buffer(data.png.slice(22),'base64'));
+  } else {
+      // Throw process exit code to control it on third party applications.
+      process.exit(1);
+  }
 });

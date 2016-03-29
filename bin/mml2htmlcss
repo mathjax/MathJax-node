@@ -84,5 +84,8 @@ mjAPI.typeset({
     console.log("</style>\n</head>\n<body>");
     console.log(data.html);
     console.log("</body>\n</html>");
+  } else {
+      // Throw process exit code to control it on third party applications.
+      process.exit(1);
   }
 });

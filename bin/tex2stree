@@ -58,5 +58,8 @@ mjAPI.typeset({
     if (argv.json) {
       console.log(argv.min ? JSON.stringify(data.streeJson) :
                   JSON.stringify(data.streeJson, null, 2));}
+    } else {
+      // Throw process exit code to control it on third party applications.
+      process.exit(1);
     }
 });
