@@ -15,7 +15,6 @@ tape('displayAlign:left in HTML output', function(t) {
     html: true
   }, function(data) {
     var document = jsdom(data.html);
-    console.log(data.html);
     var window = document.defaultView;
     var element = window.document.getElementsByClassName("MJXc-display")[0];
     var result = element.getAttribute('style');
