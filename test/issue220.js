@@ -1,5 +1,5 @@
 var tape = require('tape');
-var mjAPI = require("..//lib/mj-single.js");
+var mjAPI = require("../lib/mj-single.js");
 var jsdom = require('jsdom').jsdom;
 
 tape('displayAlign:left in HTML output', function(t) {
