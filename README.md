@@ -1,3 +1,7 @@
+**WARNING: This project has been renamed `mathjax-node`.**
+
+Use `npm install mathjax-node` instead.
+
 # MathJax-node
 
 This repository contains files that provide APIs to call MathJax from 

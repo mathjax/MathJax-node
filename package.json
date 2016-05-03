@@ -1,6 +1,6 @@
 {
     "name": "MathJax-node",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "API's for calling MathJax from node.js",
     "keywords": ["MathJax","math","svg","MathML","TeX","AsciiMath"],
     "maintainers": [
