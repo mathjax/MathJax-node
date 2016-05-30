@@ -35,7 +35,7 @@ tape('Speech should replace alttext from source', function(t) {
     var labelledby = window.document.querySelector('[aria-labelledby]');
     t.ok(labelledby, 'svg output has the correct aria-labelledby');
 
-    // text mml output
+    // test mml output
     var count = data.mml.match(/alttext/g).length;
     var checkAlt = data.mml.indexOf('alttext=\'1\'') > -1;
     t.notOk( count-1, 'mml output has only one alttext');
