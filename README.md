@@ -18,7 +18,7 @@ Use
 
 to install mathjax-node and its dependencies.
 
-These API's no longer produce PNG images but can easily be integrated into workflows using svg-to-png converters (e.g., png2svg, librsvg, batik).
+These API's no longer produce PNG images but can easily be integrated into workflows using svg-to-png converters (e.g., svg2png, librsvg, batik).
 
 # Getting started
 
