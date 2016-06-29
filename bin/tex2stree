@@ -24,6 +24,7 @@
  */
 
 var mjAPI = require("../lib/main.js");
+var sre = require('speech-rule-engine');
 
 var argv = require("yargs")
   .demand(1).strict()
@@ -49,14 +50,16 @@ mjAPI.start();
 mjAPI.typeset({
   math: argv._[0],
   format: "TeX",
-  semantic: true,
-  minSTree: argv.min
+  mml: true
 }, function (data) {
   if (!data.errors) {
     if (argv.xml) {
-      console.log(data.streeXml);}
+      var semantic = sre.toSemantic(data.mml).toString();
+      console.log(argv.min ?  semantic : sre.pprintXML(semantic));
+    }
     if (argv.json) {
-      console.log(argv.min ? JSON.stringify(data.streeJson) :
-                  JSON.stringify(data.streeJson, null, 2));}
+      var json = sre.toJson(data.mml);
+      console.log(argv.min ? JSON.stringify(json) :
+                  JSON.stringify(json, null, 2));}
     }
 });
