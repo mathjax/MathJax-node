@@ -24,6 +24,7 @@
  */
 
 var mjAPI = require("../lib/main.js");
+var speech = require('../lib/speech.js');                    //  Speech integraton helper functions.
 
 var argv = require("yargs")
   .demand(1).strict()
@@ -75,11 +76,14 @@ mjAPI.typeset({
   math: argv._[0],
   format: (argv.inline ? "inline-TeX" : "TeX"),
   svg:true,
-  speakText: argv.speech,
-  speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle,
+  mml: argv.speech,
   ex: argv.ex, width: argv.width,
   linebreaks: argv.linebreaks
 }, function (data) {
-  if (!data.errors) {console.log(data.svg)}
+  if (!data.errors) {
+    console.log(argv.speech ?
+                speech.generate(data.svgElement, data.mml,
+                                argv.speechrules, argv.speechstyle) :
+                data.svg);
+  }
 });
