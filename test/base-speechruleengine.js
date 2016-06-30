@@ -1,5 +1,5 @@
 var tape = require('tape');
-var mjAPI = require("..//lib/main.js");
+var mjAPI = require("../lib/main.js");
 
 tape('basic test: check speechruleengine', function(t) {
   t.plan(1);

@@ -1,5 +1,5 @@
 var tape = require('tape');
-var mjAPI = require("..//lib/main.js");
+var mjAPI = require("../lib/main.js");
 var jsdom = require('jsdom').jsdom;
 
 tape('HTML output should remove automatically generated IDs', function(t) {
