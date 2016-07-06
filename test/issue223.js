@@ -1,6 +1,6 @@
 
 var tape = require('tape');
-var mjAPI = require("../lib/mj-single.js");
+var mjAPI = require("../lib/main.js");
 var jsdom = require('jsdom').jsdom;
 
 tape('displayIndent:left in HTML output', function(t) {
