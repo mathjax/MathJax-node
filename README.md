@@ -65,7 +65,7 @@ mjAPI.start();
 
 mjAPI.typeset({
   html: document.body.innerHTML,
-  renderer: "NativeMML",
+  renderer: "CommonHTML",
   inputs: ["TeX"],
   xmlns: "mml"
 }, function(result) {
