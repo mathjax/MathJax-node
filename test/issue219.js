@@ -12,15 +12,15 @@ tape('Basic Check: pass jsdom object to output', function(t) {
     math: tex,
     format: "TeX",
     html: true,
-    htmlElement: true,
+    htmlNode: true,
     svg: true,
-    svgElement: true,
+    svgNode: true,
     mml: true,
-    mmlElement: true
+    mmlNode: true
   }, function(data) {
     var window = jsdom().defaultView;
-    t.ok(data.htmlElement instanceof window.HTMLElement, 'htmlElement is an HTMLElement');
-    t.ok(data.svgElement instanceof window.HTMLElement, 'svgElement is an HTMLElement');
-    t.ok(data.mmlElement instanceof window.HTMLElement, 'mmlElement is an HTMLElement');
+    t.ok(data.htmlNode instanceof window.HTMLElement, 'htmlNode is an HTMLElement');
+    t.ok(data.svgNode instanceof window.HTMLElement, 'svgNode is an HTMLElement');
+    t.ok(data.mmlNode instanceof window.HTMLElement, 'mmlNode is an HTMLElement');
   });
 });
