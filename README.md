@@ -20,6 +20,7 @@ to install mathjax-node and its dependencies.
 
 * mathjax-node no longer includes an API for processing HTML-fragments but can easily be integrated into workflows for processing larger documents.
 * the API no longer produces PNG images but can easily be integrated into workflows using svg-to-png converters (e.g., svg2png, librsvg, batik).
+* mathjax-node requires Node.js v4 or later.
 
 # Getting started
 
