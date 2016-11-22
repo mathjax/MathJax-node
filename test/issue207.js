@@ -4,7 +4,7 @@ var mjAPI = require("../lib/main.js");
 var jsdom = require('jsdom').jsdom;
 
 tape('Generate dummy speechText', function(t) {
-  t.plan(7);
+  t.plan(6);
   mjAPI.start();
   var input1 = 'x';
   var input2 = '<math display="block" alttext="hello"><mi>x</mi></math>';
@@ -26,9 +26,7 @@ tape('Generate dummy speechText', function(t) {
     var result = element.getAttribute('alttext');
     t.equal(result, input1, 'MathML output contains dummy speechText');
     var document = jsdom(data.svg).defaultView.document;
-    var title = document.querySelector('title');
     var desc = document.querySelector('desc');
-    t.equal('Equation', title.innerHTML, 'SVG output contains title');
     t.equal(result, desc.innerHTML, 'SVG output contains dummy speechText');
   });
 
