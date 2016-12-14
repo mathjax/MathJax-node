@@ -1,52 +1,57 @@
-
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
 var jsdom = require('jsdom').jsdom;
 
 tape('Generate dummy speechText', function(t) {
-  t.plan(6);
+  t.plan(9);
   mjAPI.start();
-  var input1 = 'x';
-  var input2 = '<math display="block" alttext="hello"><mi>x</mi></math>';
-  var expected = 'hello';
-  // basic text
+  var input1 = 'source';
+  var input2 = '<math display="block" alttext="alttext"><mi>x</mi></math>';
+  var input3 = '<math display="block"><mi>x</mi></math>';
+  var expected1 = 'source';
+  var expected2 = 'alttext';
+  var expected3 = 'Equation';
+  var desc1 = 'source';
+  var desc2 = 'original MathML alttext';
+  var desc3 = 'default dummy value';
+
+  mjSpeechTest = function(data, expected, desc) {
+    var document = jsdom(data.html).defaultView.document;
+    var element = document.querySelector('.MJXc-display');
+    var actual = element.getAttribute('aria-label');
+    t.equal(actual, expected, 'HTML output contains speechText from ' + desc);
+    document = jsdom(data.mml).defaultView.document;
+    element = document.querySelector('math');
+    actual = element.getAttribute('alttext');
+    t.equal(actual, expected, 'MathML output contains speechText from ' + desc);
+    document = jsdom(data.svg).defaultView.document;
+    var desc = document.querySelector('desc');
+    t.equal(actual, desc.innerHTML,
+            'SVG output contains speechText from ' + desc);
+  };
+
+  // TeX source
   mjAPI.typeset({
     math: input1,
     format: "TeX",
     html: true,
     svg: true,
     mml: true
-  }, function(data) {
-    var document = jsdom(data.html).defaultView.document;
-    var element = document.querySelector('.MJXc-display');
-    var result = element.getAttribute('aria-label');
-    t.equal(result, input1, 'HTML output contains dummy speechText');
-    var document = jsdom(data.mml).defaultView.document;
-    var element = document.querySelector('math');
-    var result = element.getAttribute('alttext');
-    t.equal(result, input1, 'MathML output contains dummy speechText');
-    var document = jsdom(data.svg).defaultView.document;
-    var desc = document.querySelector('desc');
-    t.equal(result, desc.innerHTML, 'SVG output contains dummy speechText');
-  });
-
+  }, function(data) {mjSpeechTest(data, expected1, desc1)});
+  // MathML alttext
   mjAPI.typeset({
     math: input2,
     format: "MathML",
     html: true,
     svg: true,
     mml: true
-  }, function(data) {
-    var document = jsdom(data.html).defaultView.document;
-    var element = document.querySelector('.MJXc-display');
-    var result = element.getAttribute('aria-label');
-    t.equal(result, expected, 'HTML output from MathML contains original speechText');
-    var document = jsdom(data.mml).defaultView.document;
-    var element = document.querySelector('math');
-    var result = element.getAttribute('alttext');
-    t.equal(result, expected, 'MathML output from MathML contains original dummy speechText');
-    var document = jsdom(data.svg).defaultView.document;
-    var desc = document.querySelector('desc');
-    t.equal(expected, desc.innerHTML, 'SVG output from MathML contains original dummy speechText');
-  });
+  }, function(data) {mjSpeechTest(data, expected2, desc2)});
+  // MathML without alttext
+  mjAPI.typeset({
+    math: input3,
+    format: "MathML",
+    html: true,
+    svg: true,
+    mml: true
+  }, function(data) {mjSpeechTest(data, expected3, desc3)});
 });
