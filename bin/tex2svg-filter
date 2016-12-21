@@ -42,6 +42,7 @@ var argv = require("yargs")
     },
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
     },
     font: {

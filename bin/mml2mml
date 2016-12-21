@@ -31,6 +31,7 @@ var argv = require("yargs")
   .usage("Usage: mml2mml [options] 'math' > file.mml",{
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
     },
     extensions: {

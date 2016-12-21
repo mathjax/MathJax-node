@@ -30,6 +30,7 @@ var argv = require("yargs")
   .usage("Usage: mml2htmlcss [options] 'math' > file.html",{
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
     },
     linebreaks: {
