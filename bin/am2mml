@@ -32,14 +32,6 @@ var argv = require("yargs")
       boolean: true,
       describe: "include speech text"
     },
-    speechrules: {
-      default: "mathspeak",
-      describe: "ruleset to use for speech text (chromevox or mathspeak)"
-    },
-    speechstyle: {
-      default: "default",
-      describe: "style to use for speech text (default, brief, sbrief)"
-    },
     semantics: {
       boolean: true,
       describe: "add AsciiMath code in <semantics> tag"
@@ -64,9 +56,7 @@ mjAPI.start();
 mjAPI.typeset({
   math: argv._[0],
   format: "AsciiMath", mml:true,
-  speakText: argv.speech,
-  speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle
+  speakText: argv.speech
 }, function (data) {
   if (!data.errors) {console.log(data.mml)}
 });
