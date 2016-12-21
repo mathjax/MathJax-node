@@ -25,8 +25,8 @@ tape('Generate dummy speechText', function(t) {
     actual = element.getAttribute('alttext');
     t.equal(actual, expected, 'MathML output contains speechText from ' + desc);
     document = jsdom(data.svg).defaultView.document;
-    var svgDesc = document.querySelector('desc');
-    actual = svgDesc.innerHTML;
+    var svgTitle = document.querySelector('title');
+    actual = svgTitle.innerHTML;
     t.equal(actual, expected, 'SVG output contains speechText from ' + desc);
   };
 
