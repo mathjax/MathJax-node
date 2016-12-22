@@ -30,15 +30,8 @@ var argv = require("yargs")
   .usage("Usage: am2html [options] 'math' > file.html",{
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
-    },
-    speechrules: {
-      default: "mathspeak",
-      describe: "ruleset to use for speech text (chromevox or mathspeak)"
-    },
-    speechstyle: {
-      default: "default",
-      describe: "style to use for speech text (default, brief, sbrief)"
     },
     linebreaks: {
       boolean: true,
@@ -75,8 +68,6 @@ mjAPI.typeset({
   format: "AsciiMath",
   html:true, css: argv.css,
   speakText: argv.speech,
-  speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle,
   ex: argv.ex, width: argv.width,
   linebreaks: argv.linebreaks
 }, function (data) {

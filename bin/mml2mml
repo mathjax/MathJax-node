@@ -31,15 +31,8 @@ var argv = require("yargs")
   .usage("Usage: mml2mml [options] 'math' > file.mml",{
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
-    },
-    speechrules: {
-      default: "mathspeak",
-      describe: "ruleset to use for speech text (chromevox or mathspeak)"
-    },
-    speechstyle: {
-      default: "default",
-      describe: "style to use for speech text (default, brief, sbrief)"
     },
     extensions: {
       default: "",
@@ -54,9 +47,7 @@ mjAPI.start();
 mjAPI.typeset({
   math: argv._[0],
   format: "MathML", mml:true,
-  speakText: argv.speech,
-  speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle
+  speakText: argv.speech
 }, function (data) {
   if (!data.errors) {console.log(data.mml)}
 });

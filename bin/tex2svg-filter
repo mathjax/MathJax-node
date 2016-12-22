@@ -42,15 +42,8 @@ var argv = require("yargs")
     },
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
-    },
-    speechrules: {
-      default: "mathspeak",
-      describe: "ruleset to use for speech text (chromevox or mathspeak)"
-    },
-    speechstyle: {
-      default: "default",
-      describe: "style to use for speech text (default, brief, sbrief)"
     },
     font: {
       default: "TeX",
@@ -88,7 +81,7 @@ var rl = readline.createInterface({
 
 //
 //  The accumulated TeX code, and file number
-//  
+//
 var tex = [], n = 0;
 
 //
@@ -114,9 +107,7 @@ function SaveSVG() {
     svg:true,
     ex:argv.ex, width:argv.width,
     linebreaks: argv.linebreaks,
-    speakText: argv.speech,
-    speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-    speakStyle: argv.speechstyle
+    speakText: argv.speech
   };
   n++; var N = n; while (N.length < 3) {N = "0"+N}
   var file = prefix+N+".svg";

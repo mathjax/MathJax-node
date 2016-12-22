@@ -30,19 +30,12 @@ var argv = require("yargs")
   .usage("Usage: am2svg [options] 'math' > file.svg",{
     linebreaks: {
       boolean: true,
+      default: true,
       describe: "perform automatic line-breaking"
     },
     speech: {
       boolean: true,
       describe: "include speech text"
-    },
-    speechrules: {
-      default: "mathspeak",
-      describe: "ruleset to use for speech text (chromevox or mathspeak)"
-    },
-    speechstyle: {
-      default: "default",
-      describe: "style to use for speech text (default, brief, sbrief)"
     },
     font: {
       default: "TeX",
@@ -72,8 +65,6 @@ mjAPI.typeset({
   format: "AsciiMath",
   svg:true,
   speakText: argv.speech,
-  speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-  speakStyle: argv.speechstyle,
   ex: argv.ex, width: argv.width,
   linebreaks: argv.linebreaks
 }, function (data) {

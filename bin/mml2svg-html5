@@ -42,15 +42,8 @@ var argv = require("yargs")
     },
     speech: {
       boolean: true,
+      default: true,
       describe: "include speech text"
-    },
-    speechrules: {
-      default: "mathspeak",
-      describe: "ruleset to use for speech text (chromevox or mathspeak)"
-    },
-    speechstyle: {
-      default: "default",
-      describe: "style to use for speech text (default, brief, sbrief)"
     },
     font: {
       default: "TeX",
@@ -99,8 +92,6 @@ function processHTML(html,callback) {
       format:"MathML",
       svg:true, useGlobalCache: !argv.localcache,
       speakText: argv.speech,
-      speakRuleset: argv.speechrules.replace(/^chromevox$/i,"default"),
-      speakStyle: argv.speechstyle,
       ex: argv.ex, width: argv.width,
       linebreaks: argv.linebreaks,
       state:state, xmlns:xmlns
@@ -109,7 +100,7 @@ function processHTML(html,callback) {
       if (result.svg) {
         var div = document.createElement("div");
         div.innerHTML = result.svg;
-        if (node.getAttribute("display") === "block" || 
+        if (node.getAttribute("display") === "block" ||
             node.getAttribute("mode") === "display") {
           node.parentNode.replaceChild(div,node);
           div.className = "MathJax_SVG_display";
