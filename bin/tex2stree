@@ -2,13 +2,13 @@
 
 /*************************************************************************
  *
- *  mml2png
+ *  tex2stree
  *
- *  Uses MathJax and batik to convert a MathML string to a PNG image file.
+ *  Uses MathJax to convert a TeX or LaTeX string to SRE's semantic tree.
  *
  * ----------------------------------------------------------------------
  *
- *  Copyright (c) 2014 The MathJax Consortium
+ *  Copyright (c) 2016 The MathJax Consortium
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -27,51 +27,39 @@ var mjAPI = require("../lib/mj-single.js");
 
 var argv = require("yargs")
   .demand(1).strict()
-  .usage("Usage: mml2png [options] 'math' > file.png",{
-    linebreaks: {
+  .usage("Usage: tex2stree [options] 'math' > file.(json|xml)",{
+    min: {
       boolean: true,
-      describe: "perform automatic line-breaking"
+      describe: "minimise output"
     },
-    dpi: {
-      default: 0,
-      describe: "dpi for image (0 = calculate automatically)"
+    json: {
+      boolean: true,
+      describe: "return semantic tree in Json"
     },
-    font: {
-      default: "TeX",
-      describe: "web font to use"
-    },
-    ex: {
-      default: 6,
-      describe: "ex-size in pixels"
-    },
-    width: {
-      default: 100,
-      describe: "width of container in ex"
-    },
-    extensions: {
-      default: "",
-      describe: "extra MathJax extensions e.g. 'Safe,TeX/noUndefined'"
+    xml: {
+      boolean: true,
+      describe: "return semantic tree in XML"
     }
   })
   .argv;
 
-if (argv.font === "STIX") argv.font = "STIX-Web";
-mjAPI.config({MathJax: {SVG: {font: argv.font}}, extensions: argv.extensions});
+mjAPI.config({});
 mjAPI.start();
-
-if (argv.dpi === 0) {argv.dpi = argv.ex * 16} // pixels properly sized
 
 mjAPI.typeset({
   math: argv._[0],
-  format: "MathML",
-  png:true, dpi:argv.dpi,
-  ex: argv.ex, width: argv.width,
-  linebreaks: argv.linebreaks
+  format: "TeX",
+  semantic: true,
+  minSTree: argv.min
 }, function (data) {
   if (!data.errors) {
-      process.stdout.write(new Buffer(data.png.slice(22),'base64'));
-  } else {
+    if (argv.xml) {
+      console.log(data.streeXml);}
+    if (argv.json) {
+      console.log(argv.min ? JSON.stringify(data.streeJson) :
+                  JSON.stringify(data.streeJson, null, 2));}
+    } else {
       // Throw process exit code to control it on third party applications.
       process.exit(1);
-  }
+    }
 });

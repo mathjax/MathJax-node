@@ -77,5 +77,10 @@ mjAPI.typeset({
   ex: argv.ex, width: argv.width,
   linebreaks: argv.linebreaks
 }, function (data) {
-  if (!data.errors) {console.log(data.svg)}
+  if (!data.errors) {
+      console.log(data.svg);
+  } else {
+      // Throw process exit code to control it on third party applications.
+      process.exit(1);
+  }
 });
