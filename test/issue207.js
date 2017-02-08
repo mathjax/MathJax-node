@@ -17,7 +17,7 @@ tape('Generate dummy speechText', function(t) {
 
   mjSpeechTest = function(data, expected, desc) {
     var document = jsdom(data.html).defaultView.document;
-    var element = document.querySelector('.MJXc-display');
+    var element = document.querySelector('.mjx-math');
     var actual = element.getAttribute('aria-label');
     t.equal(actual, expected, 'HTML output contains speechText from ' + desc);
     document = jsdom(data.mml).defaultView.document;
