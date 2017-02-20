@@ -27,7 +27,7 @@ mathjax-node requires Node.js v4 or later.
 mathjax-node v1.0 dropped the following features that were present in earlier pre-releases.
 
 * `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
-* speech-rule-integration
+* speech-rule-engine integration
 * PNG generation
 
 These features can easily be recreated in separate modules for greate flexibility. For some community examples, see 
