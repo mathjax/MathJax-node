@@ -2,7 +2,7 @@ var tape = require('tape');
 var mjAPI = require("../lib/main.js");
 
 tape('CSS output', function(t) {
-    t.plan(2);
+    t.plan(3);
     mjAPI.start();
     var tex = 'x';
     mjAPI.typeset({
@@ -18,6 +18,7 @@ tape('CSS output', function(t) {
         css: true,
         svg: true
     }, function(data) {
-        t.ok(data.css, 'css output with SVG output');
+        t.ok(data.css, 'css output created alongside SVG output');
+        t.ok(data.svg, 'svg output is created');
     });
 });
