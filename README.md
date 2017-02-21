@@ -16,11 +16,26 @@ Use
 
 to install mathjax-node and its dependencies.
 
-**Note:**
 
-* mathjax-node no longer includes an API for processing HTML-fragments but can easily be integrated into workflows for processing larger documents.
-* the API no longer produces PNG images but can easily be integrated into workflows using svg-to-png converters (e.g., svg2png, librsvg, batik).
-* mathjax-node requires Node.js v4 or later.
+**Note:** 
+
+mathjax-node requires Node.js v4 or later.
+
+
+**Breaking Changes in v1.0:**
+
+mathjax-node v1.0 dropped the following features that were present in earlier pre-releases.
+
+* `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
+* speech-rule-engine integration
+* PNG generation
+
+These features can easily be recreated in separate modules for greate flexibility. For some community examples, see 
+
+* [mathjax-node-page](https://github.com/pkra/mathjax-node-page/) 
+* [mathjax-node-sre](https://github.com/pkra/mathjax-node-sre)
+* [mathjax-node-svg2png](https://github.com/pkra/mathjax-node-svg2png)
+
 
 # Getting started
 
