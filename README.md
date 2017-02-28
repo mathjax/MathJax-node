@@ -1,41 +1,36 @@
 # mathjax-node [![Build Status](https://travis-ci.org/mathjax/MathJax-node.svg?branch=develop)](https://travis-ci.org/mathjax/MathJax-node)
 
-This repository contains a library that provides an API to call [MathJax](https://github.com/mathjax/mathjax) from
-NodeJS programs.  The API converts individual math
-expressions (in any of MathJax's input formats) into HTML (with CSS), SVG or MathML code.
+This repository contains a library that provides an API to call [MathJax](https://github.com/mathjax/mathjax) from Node.js programs. The API converts individual math expressions (in any of MathJax's input formats) into HTML (with CSS), SVG or MathML code.
 
 See the comments in the individual files for more details.
 
-The `bin` directory contains a collection of command-line programs for
-converting among MathJax's various formats.  These can be used as examples
-of calling the MathJax API.
+The `bin` directory contains a collection of command-line programs for converting among MathJax's various formats. These can be used as examples of calling the MathJax API.
 
 Use
 
-    npm install mathjax-node
+```
+npm install mathjax-node
+```
 
 to install mathjax-node and its dependencies.
 
-
-**Note:** 
+**Note:**
 
 mathjax-node requires Node.js v4 or later.
-
 
 **Breaking Changes in v1.0:**
 
 mathjax-node v1.0 dropped the following features that were present in earlier pre-releases.
 
-* `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
-* speech-rule-engine integration
-* PNG generation
+- `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
+- speech-rule-engine integration
+- PNG generation
 
-These features can easily be recreated in separate modules for greate flexibility. For some community examples, see 
+These features can easily be recreated in separate modules for greater flexibility. For some community examples, see
 
-* [mathjax-node-page](https://github.com/pkra/mathjax-node-page/) 
-* [mathjax-node-sre](https://github.com/pkra/mathjax-node-sre)
-* [mathjax-node-svg2png](https://github.com/pkra/mathjax-node-svg2png)
-
+- [mathjax-node-page](https://github.com/pkra/mathjax-node-page/)
+- [mathjax-node-sre](https://github.com/pkra/mathjax-node-sre)
+- [mathjax-node-svg2png](https://github.com/pkra/mathjax-node-svg2png)
 
 # Getting started
 
@@ -76,4 +71,97 @@ mjAPI.typeset({
 
 The examples in `./bin/` provide a starting point for more advanced integrations.
 
-Be sure to also check out other [projects on NPM that depend on mathjax-node ](https://www.npmjs.com/browse/depended/mathjax-node).
+Be sure to also check out other [projects on NPM that depend on mathjax-node](https://www.npmjs.com/browse/depended/mathjax-node) .
+
+## Documentation
+
+mathjax-node exports three methods, `config`, `start`, `typeset`.
+
+### `config(options)`
+
+The `config` method is used to set _global_ configuration options. Its default options are
+
+```javascript
+{
+  displayMessages: false, // determines whether Message.Set() calls are logged
+  displayErrors:   true, // determines whether error messages are shown on the console
+  undefinedCharError: false, // determines whether "unknown characters" (i.e., no glyph in the configured fonts) are saved in the error array
+  extensions: '', // a convenience option to add MathJax extensions
+  fontURL: 'https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS', // for webfont urls in the CSS for HTML output
+  MathJax: { } // standard MathJax configuration options, see https://docs.mathjax.org for more detail.
+}
+```
+
+**Note.** Changes to these options require a restart of the API using the `start()` method (see below).
+
+### `start()`
+
+The `start` method start (and restarts) mathjax-node. This allows reconfiguration.
+
+**Note.** This is done automatically when `typeset` is first called (see below).
+
+### `typset(options, callback)`
+
+The `typeset` method is the main method of mathjax-node. It expects a configuration object and a callback.
+
+Once started, `typeset` can be called repeatedly and will potentially store information across calls (cf. `state` below).
+
+The following are the default options.
+
+```javascript
+{
+  ex: 6,                          // ex-size in pixels
+  width: 100,                     // width of container (in ex) for linebreaking and tags
+  useFontCache: true,             // use <defs> and <use> in svg output?
+  useGlobalCache: false,          // use common <defs> for all equations?
+  linebreaks: false,              // automatic linebreaking
+  equationNumbers: "none",        // automatic equation numbering ("none", "AMS" or "all")
+
+  math: "",                       // the math string to typeset
+  format: "TeX",                  // the input format (TeX, inline-TeX, AsciiMath, or MathML)
+  xmlns: "mml",                   // the namespace to use for MathML
+
+  html: false,                    // generate HTML output
+  htmlNode: false,                // generate HTML output as jsdom node
+  css: false,                     // generate CSS for HTML output
+  mml: false,                     // generate MathML output
+  mmlNode: false,                 // generate MathML output as jsdom node
+  svg: false,                     // generate SVG output
+  svgNode: false,                 // generate SVG output as jsdom node
+
+  speakText: true,                // add textual alternative (for TeX/asciimath the input string, for MathML a dummy string)
+
+  state: {},                    // an object to store information from multiple calls (e.g., <defs> if useGlobalCache, counter for equation numbering if equationNumbers ar )
+  timeout: 10 * 1000,             // 10 second timeout before restarting MathJax
+}
+```
+
+### `callback(result, input)`
+
+MathJax-node returns two objects to the `callback`, a return object and the original configuration object.
+
+The result (at most) the following structure:
+
+```javascript
+{
+  mml:                        // a string of MathML markup if requested
+  mmlNode:                    // a jsdom node of MathML markup if requested
+  html:                       // a string of HTML markup if requested
+  htmlNode:                   // a jsdom node of HTML markup if requested
+  css:                        // a string of CSS if HTML was requested
+  svg:                        // a string of SVG markup if requested
+  svgNode:                    // a jsdom node of SVG markup if requested
+  style:                      // a string of CSS inline style if SVG requested
+  speakText:                  // a string of speech text if requested
+
+  state: {                    // the state object (if useGlobalCache or equationNumbers is set)
+           glyphs:            // a collection of glyph data
+           defs :             // a string containing SVG def elements
+           AMS: {
+                startNumber:  // the current starting equation number
+                labels:       // the set of labels
+                IDs:          // IDs used in previous equations
+             }
+         }
+}
+```
