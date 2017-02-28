@@ -24,8 +24,7 @@
   },
   "dependencies": {
     "jsdom": "7.0 - 9.8",
-    "mathjax": "*",
-    "yargs": "3.*"
+    "mathjax": "*"
   },
   "scripts": {
     "test": "tape test/*.js"
