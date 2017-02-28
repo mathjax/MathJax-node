@@ -2,10 +2,6 @@
 
 This repository contains a library that provides an API to call [MathJax](https://github.com/mathjax/mathjax) from Node.js programs. The API converts individual math expressions (in any of MathJax's input formats) into HTML (with CSS), SVG or MathML code.
 
-See the comments in the individual files for more details.
-
-The `bin` directory contains a collection of command-line programs for converting among MathJax's various formats. These can be used as examples of calling the MathJax API.
-
 Use
 
 ```
@@ -25,16 +21,20 @@ mathjax-node v1.0 dropped the following features that were present in earlier pr
 - `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
 - speech-rule-engine integration
 - PNG generation
+- CLI tools in `bin/`
 
-These features can easily be recreated in separate modules for greater flexibility. For some community examples, see
+These features can easily be recreated in separate modules for greater flexibility. For examples, see
 
+- [mathjax-node-cli](https://github.com/mathjax/mathjax-node-cli/)
 - [mathjax-node-page](https://github.com/pkra/mathjax-node-page/)
 - [mathjax-node-sre](https://github.com/pkra/mathjax-node-sre)
 - [mathjax-node-svg2png](https://github.com/pkra/mathjax-node-svg2png)
 
+Be sure to also check out other [projects on NPM that depend on mathjax-node](https://www.npmjs.com/browse/depended/mathjax-node) .
+
 # Getting started
 
-mathjax-node provides a library, `./lib/main.js`. Below is a very minimal example - be sure to check out the examples in `./bin/` for more advanced examples.
+mathjax-node provides a library, `./lib/main.js`. Below is a very minimal example for using it - the tests and the examples mentioned above provide more advanced examples.
 
 ```javascript
 // a simple TeX-input example
@@ -66,12 +66,6 @@ mjAPI.typeset({
   // </math>
 });
 ```
-
-## Examples
-
-The examples in `./bin/` provide a starting point for more advanced integrations.
-
-Be sure to also check out other [projects on NPM that depend on mathjax-node](https://www.npmjs.com/browse/depended/mathjax-node) .
 
 ## Documentation
 
@@ -138,7 +132,7 @@ The following are the default options.
 
 ### `callback(result, input)`
 
-MathJax-node returns two objects to the `callback`, a return object and the original configuration object.
+mathjax-node returns two objects to the `callback`, a return object and the original configuration object.
 
 The result (at most) the following structure:
 
