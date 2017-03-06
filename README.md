@@ -16,12 +16,14 @@ mathjax-node requires Node.js v4 or later.
 
 **Breaking Changes in v1.0:**
 
-mathjax-node v1.0 dropped the following features that were present in earlier pre-releases.
 
-- `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
-- speech-rule-engine integration
-- PNG generation
-- CLI tools in `bin/`
+mathjax-node v1.0 makes breaking changes to the following features from the pre-releases.
+
+- [CHANGED] `lib/mj-single.js` has been renamed to `lib/main.js` (and set as `main` in `package.json`, i.e., `require('mathjax-node')` will load it.
+- [REMOVED] `lib/mj-page.js` (API for processing HTML-fragments) and related CLI tools
+- [REMOVED] speech-rule-engine integration
+- [REMOVED] PNG generation
+- [REMOVED] CLI tools in `bin/`
 
 These features can easily be recreated in separate modules for greater flexibility. For examples, see
 
@@ -30,7 +32,7 @@ These features can easily be recreated in separate modules for greater flexibili
 - [mathjax-node-sre](https://github.com/pkra/mathjax-node-sre)
 - [mathjax-node-svg2png](https://github.com/pkra/mathjax-node-svg2png)
 
-Be sure to also check out other [projects on NPM that depend on mathjax-node](https://www.npmjs.com/browse/depended/mathjax-node) .
+Be sure to also check out other [projects on NPM that depend on mathjax-node](https://www.npmjs.com/browse/depended/mathjax-node).
 
 # Getting started
 
@@ -96,11 +98,11 @@ The `start` method start (and restarts) mathjax-node. This allows reconfiguratio
 
 ### `typset(options, callback)`
 
-The `typeset` method is the main method of mathjax-node. It expects a configuration object and a callback.
+The `typeset` method is the main method of mathjax-node. It expects an configuration object `input` and a `callback`.
 
-Once started, `typeset` can be called repeatedly and will potentially store information across calls (cf. `state` below).
+Once called, `typeset` can be called repeatedly and will optionally store information across calls (see `state` below); this information can be reset using the `start()` method (see above).
 
-The following are the default options.
+The following are the default input options.
 
 ```javascript
 {
@@ -130,11 +132,11 @@ The following are the default options.
 }
 ```
 
-### `callback(result, input)`
+### `callback(result, options)`
 
-mathjax-node returns two objects to the `callback`, a return object and the original configuration object.
+mathjax-node returns two objects to the `callback`: a `result` object as well as the original input `options`.
 
-The result (at most) the following structure:
+The `result` object will contain (at most) the following structure:
 
 ```javascript
 {
@@ -159,3 +161,5 @@ The result (at most) the following structure:
          }
 }
 ```
+
+The `options` contains the configuration object passed to `typeset`; this can be useful for passing other data along.
