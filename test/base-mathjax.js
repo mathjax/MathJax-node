@@ -1,8 +1,8 @@
 var tape = require('tape');
-var mjAPI = require("..//lib/mj-single.js");
+var mjAPI = require("../lib/main.js");
 
 tape('basic test: check MathJax core', function(t) {
-  t.plan(1);
+  t.plan(2);
 
   var tex = '';
   mjAPI.start();
@@ -11,7 +11,8 @@ tape('basic test: check MathJax core', function(t) {
     math: tex,
     format: "TeX",
     mml: true
-  }, function(data) {
-    t.ok(data.mml, 'MathJax core seems ok');
+  }, function(result,data) {
+    t.ok(result.mml, 'MathJax core seems ok');
+    t.ok(data.format, 'MathJax input preserved');
   });
 });
