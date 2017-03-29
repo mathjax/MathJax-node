@@ -96,7 +96,7 @@ The `start` method start (and restarts) mathjax-node. This allows reconfiguratio
 
 **Note.** This is done automatically when `typeset` is first called (see below).
 
-### `typset(options, callback)`
+### `typeset(options, callback)`
 
 The `typeset` method is the main method of mathjax-node. It expects a configuration object `input` and a `callback`.
 
