@@ -1,7 +1,7 @@
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
 
-tape('mediawiki-texvc test: check MathJax core', function(t) {
+tape('User config: autoload-all should enable color extension', function(t) {
     t.plan(1);
 
     var tex = '\\definecolor{myorange}{RGB}{255,165,100}\\color{myorange}e^{i \\pi}\\color{Black} = -1';
