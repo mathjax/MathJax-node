@@ -96,7 +96,7 @@ The `start` method start (and restarts) mathjax-node. This allows reconfiguratio
 
 **Note.** This is done automatically when `typeset` is first called (see below).
 
-### `typset(options, callback)`
+### `typeset(options, callback)`
 
 The `typeset` method is the main method of mathjax-node. It expects a configuration object `input` and a `callback`.
 
@@ -140,6 +140,7 @@ The `result` object will contain (at most) the following structure:
 
 ```javascript
 {
+  errors:                     // an array of MathJax error messages if any errors occurred
   mml:                        // a string of MathML markup if requested
   mmlNode:                    // a jsdom node of MathML markup if requested
   html:                       // a string of HTML markup if requested
@@ -148,6 +149,8 @@ The `result` object will contain (at most) the following structure:
   svg:                        // a string of SVG markup if requested
   svgNode:                    // a jsdom node of SVG markup if requested
   style:                      // a string of CSS inline style if SVG requested
+  height:                     // a string containing the height of the SVG output if SVG was requested
+  width:                      // a string containing the width of the SVG output if SVG was requested
   speakText:                  // a string of speech text if requested
 
   state: {                    // the state object (if useGlobalCache or equationNumbers is set)
