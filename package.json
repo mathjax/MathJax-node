@@ -17,6 +17,29 @@
   "bugs": {
     "url": "http://github.com/mathjax/MathJax-node/issues"
   },
+  "bin": {
+    "am2html": "./bin/am2html",
+    "am2htmlcss": "./bin/am2htmlcss",
+    "am2mml": "./bin/am2mml",
+    "am2png": "./bin/am2png",
+    "am2svg": "./bin/am2svg",
+    "mml2html": "./bin/mml2html",
+    "mml2htmlcss": "./bin/mml2htmlcss",
+    "mml2mml": "./bin/mml2mml",
+    "mml2png": "./bin/mml2png",
+    "mml2svg": "./bin/mml2svg",
+    "mml2svg-html5": "./bin/mml2svg-html5",
+    "page2html": "./bin/page2html",
+    "page2mml": "./bin/page2mml",
+    "page2png": "./bin/page2png",
+    "page2svg": "./bin/page2svg",
+    "tex2html": "./bin/tex2html",
+    "tex2htmlcss": "./bin/tex2htmlcss",
+    "tex2mml": "./bin/tex2mml",
+    "tex2png": "./bin/tex2png",
+    "tex2svg": "./bin/tex2svg",
+    "tex2svg-filter": "./bin/tex2svg-filter"
+  },
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
