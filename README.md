@@ -83,7 +83,7 @@ The `config` method is used to set _global_ configuration options. Its default o
   displayErrors:   true, // determines whether error messages are shown on the console
   undefinedCharError: false, // determines whether "unknown characters" (i.e., no glyph in the configured fonts) are saved in the error array
   extensions: '', // a convenience option to add MathJax extensions
-  fontURL: 'https://cdn.mathjax.org/mathjax/latest/fonts/HTML-CSS', // for webfont urls in the CSS for HTML output
+  fontURL: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS', // for webfont urls in the CSS for HTML output
   MathJax: { } // standard MathJax configuration options, see https://docs.mathjax.org for more detail.
 }
 ```
