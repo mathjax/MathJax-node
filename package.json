@@ -1,6 +1,6 @@
 {
   "name": "mathjax-node",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "API's for calling MathJax from node.js",
   "keywords": [
     "MathJax",
