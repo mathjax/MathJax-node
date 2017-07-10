@@ -36,4 +36,10 @@ tape('displayIndent:left in HTML output', function(t) {
     var result = element.style.marginLeft;
     t.ok((result === expected), 'style includes a margin');
   });
+   // reset configuration
+    mjAPI.typeset({
+        math: ''
+    }, function(){
+        mjAPI.config({MathJax: {displayIndent: '0em'}});
+    })
 });
