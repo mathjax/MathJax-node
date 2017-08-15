@@ -4,8 +4,8 @@ mjAPI.config({undefinedCharError: true});
 
 tape('basic test: check warnings', function (t) {
     t.plan(2);
-    mjAPI.typeset({math:'呵', html:true})
+    mjAPI.typeset({math:'\u5475', html:true})
         .catch(errors => t.ok(errors, 'CommonHTML output reports error'));
-    mjAPI.typeset({math:'呵', svg:true})
+    mjAPI.typeset({math:'\u5475', svg:true})
         .catch(errors => t.ok(errors, 'SVG output reports error'));
 });
