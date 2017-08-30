@@ -98,7 +98,7 @@ The `start` method start (and restarts) mathjax-node. This allows reconfiguratio
 
 ### `typeset(options[, callback])`
 
-The `typeset` method is the main method of mathjax-node. It expects a configuration object `input` and optionally a callback.
+The `typeset` method is the main method of mathjax-node. It expects a configuration object `options` and optionally a callback.
 
 If no `callback` is passed, it will return a Promise.
 
@@ -134,7 +134,7 @@ The following are the default input options.
 }
 ```
 
-### `Promise.resolve(result,options)` / `Promise.reject(errors) / `callback(result, options)`
+### `Promise.resolve(result,options)` / `Promise.reject(errors)` / `callback(result, options)`
 
 mathjax-node returns two objects to `Promise.resolve` or `callback`: a `result` object and the original input `options`.
 
@@ -167,6 +167,6 @@ The `result` object will contain (at most) the following structure:
 }
 ```
 
-If the `errors` array is non-empty, the Promise will reject.
+If the `errors` array is non-empty, the Promise will reject, and be passed the `errors` array.
 
 The `options` contains the configuration object passed to `typeset`; this can be useful for passing other data along or for identifying which `typeset()` call is associated with this (`callback`) call (in case you use the same `callback` function for more than one `typeset()`).
