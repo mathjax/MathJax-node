@@ -112,6 +112,7 @@ The following are the default input options.
   useGlobalCache: false,          // use common <defs> for all equations?
   linebreaks: false,              // automatic linebreaking
   equationNumbers: "none",        // automatic equation numbering ("none", "AMS" or "all")
+  cjkCharWidth: 13,               // width of CJK character
 
   math: "",                       // the math string to typeset
   format: "TeX",                  // the input format (TeX, inline-TeX, AsciiMath, or MathML)
