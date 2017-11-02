@@ -23,6 +23,7 @@
     "url": "git://github.com/mathjax/MathJax-node.git"
   },
   "dependencies": {
+    "is-fullwidth-code-point": "^2.0.0",
     "jsdom": "7.0 - 9.12",
     "mathjax": "*"
   },
