@@ -1,5 +1,6 @@
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
+var mjVersion = require('../package-lock.json').dependencies['mathjax'].version
 
 tape('basic configuration: check fontURL', function (t) {
     t.plan(2);
@@ -10,12 +11,12 @@ tape('basic configuration: check fontURL', function (t) {
         format: "TeX",
         css: true
     }, function (result, data) {
-        t.ok(result.css.indexOf('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS') > -1, 'Default fontURL');
+        t.ok(result.css.indexOf('https://cdnjs.cloudflare.com/ajax/libs/mathjax/' + mjVersion + '/fonts/HTML-CSS') > -1, 'Default fontURL');
     });
     // reconfigure
     mjAPI.typeset({
         math: ''
-    }, function(){
+    }, function () {
         mjAPI.config({
             fontURL: 'https://example.com'
         });
