@@ -1,6 +1,6 @@
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
-var jsdom = require('jsdom').jsdom;
+var JSDOM = require('jsdom').JSDOM;
 
 tape('Generate dummy speechText', function(t) {
   t.plan(9);
@@ -16,15 +16,15 @@ tape('Generate dummy speechText', function(t) {
   var desc3 = 'default dummy value';
 
   mjSpeechTest = function(data, expected, desc) {
-    var document = jsdom(data.html).defaultView.document;
+    var document = new JSDOM(data.html).window.document;
     var element = document.querySelector('.mjx-math');
     var actual = element.getAttribute('aria-label');
     t.equal(actual, expected, 'HTML output contains speechText from ' + desc);
-    document = jsdom(data.mml).defaultView.document;
+    document = new JSDOM(data.mml).window.document;
     element = document.querySelector('math');
     actual = element.getAttribute('alttext');
     t.equal(actual, expected, 'MathML output contains speechText from ' + desc);
-    document = jsdom(data.svg).defaultView.document;
+    document = new JSDOM(data.svg).window.document;
     var svgTitle = document.querySelector('title');
     actual = svgTitle.innerHTML;
     t.equal(actual, expected, 'SVG output contains speechText from ' + desc);

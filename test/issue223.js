@@ -1,7 +1,6 @@
-
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
-var jsdom = require('jsdom').jsdom;
+var JSDOM = require('jsdom').JSDOM;
 
 tape('displayIndent:left in HTML output', function(t) {
   t.plan(2);
@@ -17,9 +16,8 @@ tape('displayIndent:left in HTML output', function(t) {
     format: "TeX",
     html: true
   }, function(data) {
-    var document = jsdom(data.html);
-    var window = document.defaultView;
-    var element = window.document.getElementsByClassName('MJXc-display')[0];
+    var document = new JSDOM(data.html).window.document;
+    var element = document.getElementsByClassName('MJXc-display')[0];
     var result = element.style.marginLeft;
     t.ok((result === expected), 'style includes a margin');
   });
@@ -30,9 +28,8 @@ tape('displayIndent:left in HTML output', function(t) {
     format: "TeX",
     html: true
   }, function(data) {
-    var document = jsdom(data.html);
-    var window = document.defaultView;
-    var element = window.document.getElementsByClassName('mjx-table')[0];
+    var document = new JSDOM(data.html).window.document;
+    var element = document.getElementsByClassName('mjx-table')[0];
     var result = element.style.marginLeft;
     t.ok((result === expected), 'style includes a margin');
   });

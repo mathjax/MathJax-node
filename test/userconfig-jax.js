@@ -1,6 +1,5 @@
 var tape = require('tape');
 var mjAPI = require('../lib/main.js');
-var jsdom = require('jsdom').jsdom;
 
 tape('User configuration with jax array', function (t) {
         t.plan(1);
