@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "is-fullwidth-code-point": "^2.0.0",
-    "jsdom": "7.0 - 9.12",
+    "jsdom": "^10.0",
     "mathjax": "^2.7.2"
   },
   "scripts": {
