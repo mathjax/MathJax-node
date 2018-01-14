@@ -1,6 +1,6 @@
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
-var jsdom = require('jsdom').jsdom;
+var JSDOM = require('jsdom').JSDOM;
 
 tape('color extension should be reset', function(t) {
   t.plan(3);
@@ -20,9 +20,9 @@ tape('color extension should be reset', function(t) {
     format: "TeX",
      mml: true
   }, function(data) {
-    var document = jsdom(data.mml);
-    var mstyle = document.defaultView.document.querySelector('mstyle');
-    t.ok(document.defaultView.document.querySelectorAll('mi')[0].parentNode === mstyle, 'Color macro behaves correctly (1 of 2)');
-    t.notOk(document.defaultView.document.querySelectorAll('mi')[1].parentNode === mstyle, 'Color macro behaves correctly (2 of 2)');
+    var document = new JSDOM(data.mml).window.document;
+    var mstyle = document.querySelector('mstyle');
+    t.ok(document.querySelectorAll('mi')[0].parentNode === mstyle, 'Color macro behaves correctly (1 of 2)');
+    t.notOk(document.querySelectorAll('mi')[1].parentNode === mstyle, 'Color macro behaves correctly (2 of 2)');
   });
 });

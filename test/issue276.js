@@ -1,6 +1,6 @@
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
-var jsdom = require('jsdom').jsdom;
+var JSDOM = require('jsdom').JSDOM;
 
 tape('SVG output: physical units', function(t) {
   t.plan(1);
@@ -12,9 +12,8 @@ tape('SVG output: physical units', function(t) {
     format: "MathML",
     svg: true
   }, function(data) {
-    var document = jsdom(data.svg);
-    var doc = document.defaultView.document;
-    var width =  doc.querySelector('svg').getAttribute('width');
+    var document = new JSDOM(data.svg).window.document;
+    var width =  document.querySelector('svg').getAttribute('width');
     t.notEqual(width, '0', '');
   });
 });

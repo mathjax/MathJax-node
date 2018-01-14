@@ -1,6 +1,5 @@
 var tape = require('tape');
 var mjAPI = require('../lib/main.js');
-var jsdom = require('jsdom').jsdom;
 
 tape('getSVG should increment state.ID', function(t) {
   t.plan(1);

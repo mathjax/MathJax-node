@@ -1,6 +1,6 @@
 var tape = require('tape');
 var mjAPI = require("../lib/main.js");
-var jsdom = require('jsdom').jsdom;
+var JSDOM = require('jsdom').JSDOM;
 
 tape('the SVG width should match the default', function(t) {
   t.plan(1);
@@ -14,8 +14,8 @@ tape('the SVG width should match the default', function(t) {
     format: "TeX",
     svg: true
   }, function(data) {
-    var document = jsdom(data.svg);
-    var window = document.defaultView;
+    var window = new JSDOM(data.svg).window;
+    var document = window.document;
     var element = window.document.getElementsByTagName("svg")[0];
     var width = element.getAttribute('width');
     t.equal(width, expected);
