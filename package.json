@@ -25,7 +25,7 @@
   "dependencies": {
     "is-fullwidth-code-point": "^2.0.0",
     "jsdom": "^11.0.0",
-    "mathjax": "^2.7.2"
+    "mathjax": "^2.7.3"
   },
   "engines": {
     "node": ">=6.0.0"
