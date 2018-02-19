@@ -63,7 +63,7 @@ The `config` method is used to set _global_ configuration options. Its default o
   undefinedCharError: false, // determines whether "unknown characters" (i.e., no glyph in the configured fonts) are saved in the error array
   extensions: '',            // a convenience option to add MathJax extensions
   fontURL: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS', // for webfont urls in the CSS for HTML output
-  paths: {}                  // configures custom path variables (e.g., for third party extensions, cf. test/config-third-party-extensions.js)
+  paths: {},                  // configures custom path variables (e.g., for third party extensions, cf. test/config-third-party-extensions.js)
   MathJax: { }               // standard MathJax configuration options, see https://docs.mathjax.org for more detail.
 }
 ```
