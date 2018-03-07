@@ -5,6 +5,7 @@ tape('basic test: check typeset promise API', function (t) {
     t.plan(2);
 
     var tex = '';
+    mjAPI.config({displayErrors: false});
     mjAPI.start();
 
     // promise resolved
