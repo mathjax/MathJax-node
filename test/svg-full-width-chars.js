@@ -4,8 +4,9 @@ var mjAPI = require("../lib/main.js");
 tape('the SVG output should renders full-width characters correctly', function(t) {
   t.plan(1);
 
+  mjAPI.config({displayErrors: false});
   mjAPI.start();
-  var tex = '\\text{拾零}^i';
+  var tex = '\\text{\u62FE\u96F6}^i';
 
   mjAPI.typeset({
     math: tex,

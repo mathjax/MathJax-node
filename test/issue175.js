@@ -4,6 +4,7 @@ var JSDOM = require('jsdom').JSDOM;
 
 tape('color extension should be reset', function(t) {
   t.plan(3);
+  mjAPI.config({displayErrors: false});
   mjAPI.start();
   var tex = '\\colorbox{green}{x}';
   var tex2 = '\\color{red}{x}x';
