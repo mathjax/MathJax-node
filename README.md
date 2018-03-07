@@ -11,7 +11,7 @@ npm install mathjax-node
 to install mathjax-node and its dependencies.
 
 **Note:**
-The current version of mathjax-node requires Node.js v6 or later, and uses jsdom version 10.
+The current version of mathjax-node requires Node.js v6 or later, and uses jsdom version 11.
 
 ## Getting started
 
