@@ -1,6 +1,6 @@
 {
   "name": "mathjax-node",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "API's for calling MathJax from node.js",
   "keywords": [
     "MathJax",
@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "is-fullwidth-code-point": "^2.0.0",
-    "jsdom": "^10.0.0",
+    "jsdom": "^11.0.0",
     "mathjax": "^2.7.2"
   },
   "engines": {

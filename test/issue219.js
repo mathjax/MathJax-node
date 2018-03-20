@@ -20,7 +20,7 @@ tape('Basic Check: pass jsdom object to output', function(t) {
   }, function(data) {
     var window = new JSDOM().window;
     t.ok(data.htmlNode instanceof window.HTMLElement, 'htmlNode is an HTMLElement');
-    t.ok(data.svgNode instanceof window.HTMLElement, 'svgNode is an HTMLElement');
-    t.ok(data.mmlNode instanceof window.HTMLElement, 'mmlNode is an HTMLElement');
+    t.ok(data.svgNode instanceof window.SVGElement, 'svgNode is an SVGElement');
+    t.ok(data.mmlNode instanceof window.Element, 'mmlNode is an Element');
   });
 });
