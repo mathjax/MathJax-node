@@ -3,7 +3,7 @@ var mjAPI = require("../lib/main.js");
 
 tape('HTML output when requesting both SVG and HTML', function(t) {
     t.plan(2);
-    mjAPI.start();
+
     var tex = 'x';
 
     mjAPI.typeset({
@@ -23,4 +23,5 @@ tape('HTML output when requesting both SVG and HTML', function(t) {
     }, function(data) {
         t.ok(data.html, 'html output is present')
     });
+
 });
