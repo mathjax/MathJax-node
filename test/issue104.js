@@ -5,7 +5,6 @@ var JSDOM = require('jsdom').JSDOM;
 tape('the SVG width should match the default', function(t) {
   t.plan(1);
 
-  mjAPI.start();
   var tex = 'a \\\\ b';
   var expected = '100ex';
 
@@ -20,4 +19,5 @@ tape('the SVG width should match the default', function(t) {
     var width = element.getAttribute('width');
     t.equal(width, expected);
   });
+
 });

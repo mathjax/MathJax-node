@@ -3,8 +3,7 @@ var mjAPI = require("../lib/main.js");
 
 tape('CSS output', function(t) {
     t.plan(3);
-    mjAPI.start();
-    var tex = 'x';
+
     mjAPI.typeset({
         math: tex,
         format: "TeX",
@@ -12,6 +11,9 @@ tape('CSS output', function(t) {
     }, function(data) {
         t.ok(data.css, 'css output while no other output');
     });
+
+    var tex = 'x';
+
     mjAPI.typeset({
         math: tex,
         format: "TeX",
@@ -21,4 +23,5 @@ tape('CSS output', function(t) {
         t.ok(data.css, 'css output created alongside SVG output');
         t.ok(data.svg, 'svg output is created');
     });
+
 });
