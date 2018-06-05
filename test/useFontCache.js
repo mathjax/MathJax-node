@@ -5,6 +5,7 @@ tape('basic configuration: useFontCache', function (t) {
     t.plan(2);
 
     var tex = 'a';
+
     mjAPI.typeset({
         math: tex,
         format: "TeX",
@@ -13,6 +14,7 @@ tape('basic configuration: useFontCache', function (t) {
     }, function (result, data) {
         t.ok(result.svg.indexOf('<use') === -1, 'useFontCache set to false');
     });
+
     mjAPI.typeset({
         math: tex,
         format: "TeX",
@@ -21,4 +23,5 @@ tape('basic configuration: useFontCache', function (t) {
     }, function (result, data) {
         t.ok(result.svg.indexOf('<use') >  -1, 'useFontCache set to true');
     });
+
 });

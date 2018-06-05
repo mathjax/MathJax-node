@@ -3,7 +3,7 @@ var mjAPI = require("../lib/main.js");
 
 tape('mmlNode should not produce mml', function(t) {
     t.plan(1);
-    mjAPI.start();
+
     var tex = 'x';
 
     mjAPI.typeset({
@@ -13,4 +13,5 @@ tape('mmlNode should not produce mml', function(t) {
     }, function(data) {
         t.ok(data.mml === undefined, 'mml not generated');
     });
+
 });

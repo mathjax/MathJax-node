@@ -3,17 +3,18 @@ var mjAPI = require("../lib/main.js");
 var JSDOM = require('jsdom').JSDOM;
 
 tape('SVG output: physical units', function(t) {
-  t.plan(1);
-  mjAPI.start();
-  var mml = '<math><mspace width="1cm"></mspace></math>';
+    t.plan(1);
 
-  mjAPI.typeset({
-    math: mml,
-    format: "MathML",
-    svg: true
-  }, function(data) {
-    var document = new JSDOM(data.svg).window.document;
-    var width =  document.querySelector('svg').getAttribute('width');
-    t.notEqual(width, '0', '');
-  });
+    var mml = '<math><mspace width="1cm"></mspace></math>';
+
+    mjAPI.typeset({
+        math: mml,
+        format: "MathML",
+        svg: true
+    }, function(data) {
+        var document = new JSDOM(data.svg).window.document;
+        var width =  document.querySelector('svg').getAttribute('width');
+        t.notEqual(width, '0', '');
+    });
+
 });
