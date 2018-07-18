@@ -14,6 +14,6 @@ deploy:
   provider: npm
   email: manager@mathjax.org
   api_key:
-    secure: MG7sE1EsJd1wvcy1HPqX1YD3kvW0JODhgxN5xquHxitF8ua9Wevn0xwNnYMZdHhaiimaRn63L6wE1Rx6B41Z07uOAIPzcGi9Z6qqqQjrxhGC7WKdLd8gLD7RULhneTZ/ABjPgH2YQ31zcR17QEo34O4HbpKYmcrfSNfHd1IOgvA=
+    secure: VyQLfUM+kLK4qNVdu6eqGO5Z5/raIuPL/fvnDvbf0KR4asHb3ieb9Q6YrHCMSKWGrVDx7sMn5xnk2TmcxL+9z3C1+wZIB+pBFTkcIZLMj+l/bwukJ0onTdfnOZPFxnBukgkgiXLpEzEIwJ6R+ULq0UsFhYni1eS9bp7hRn1+7Q4=
   on:
     tags: true
