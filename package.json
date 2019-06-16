@@ -34,7 +34,9 @@
     "test": "tape test/*.js"
   },
   "main": "./lib/main.js",
+  "types": "./mathjax-node.d.ts",
   "devDependencies": {
+    "@types/jsdom": "^12.2.3",
     "tape": "^4.0.3"
   }
 }
