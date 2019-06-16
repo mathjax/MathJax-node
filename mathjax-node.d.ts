@@ -54,7 +54,7 @@ declare module 'mathjax-node' {
 
         speakText: boolean,                // add textual alternative (for TeX/asciimath the input string, for MathML a dummy string)
 
-        state: MathJaxState,                      // an object to store information from multiple calls (e.g., <defs> if useGlobalCache, counter for equation numbering if equationNumbers ar )
+        state: object,                      // an object to store information from multiple calls (e.g., <defs> if useGlobalCache, counter for equation numbering if equationNumbers ar )
         timeout: number,             // 10 second timeout before restarting MathJax
 
     }
@@ -77,7 +77,7 @@ declare module 'mathjax-node' {
 
     export type ResultCallback = (result: MathJaxResult, options: MathJaxOptions) => any;
 
-    export default class MathJax {
+    class MathJax {
         /**
          * The config method is used to set global configuration options.
          * Note: Changes to these options require a restart of the API using the start()
@@ -107,5 +107,7 @@ declare module 'mathjax-node' {
         typeset(options: MathJaxOptions): Promise<[MathJaxResult, MathJaxOptions]>
         typeset(options: MathJaxOptions, callback?: ResultCallback): void
     }
+
+    export default new MathJax();
 
 }
