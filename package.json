@@ -25,6 +25,7 @@
   "dependencies": {
     "is-fullwidth-code-point": "^2.0.0",
     "jsdom": "^11.0.0",
+    "lodash": "^4.17.14",
     "mathjax": "^2.7.2"
   },
   "engines": {
