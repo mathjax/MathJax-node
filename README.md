@@ -1,6 +1,6 @@
 # mathjax-node [![Build Status](https://travis-ci.org/mathjax/MathJax-node.svg?branch=develop)](https://travis-ci.org/mathjax/MathJax-node)
 
-This repository contains a library that provides an API to call [MathJax](https://github.com/mathjax/mathjax) from Node.js programs. The API converts individual math expressions (in any of MathJax's input formats) into HTML (with CSS), SVG, or MathML code.
+This repository contains a library that provides an API to call [MathJax version 2](https://github.com/mathjax/mathjax) from Node.js programs. This API converts individual math expressions (in any of MathJax's input formats) into HTML (with CSS), SVG, or MathML code. For [MathJax version 3](https://github.com/mathjax/MathJax-src), see instead [MathJax-demos-node](https://github.com/mathjax/MathJax-demos-node).
 
 Use
 
